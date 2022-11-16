@@ -2,17 +2,18 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Row, Card, Col, Form, Button } from 'react-bootstrap'
 import Logo from '../../assets/image/bangkit.png'
+import LogoLogin from '../../assets/png/login2.png'
 
 function Login() {
 
   return (
 
-        <Container fluid className='mt-5' >
+        <Container fluid className='authenticate py-5' >
                 <Row>
-                    <Card className='col-9 mx-auto shadow-lg'>
+                    <Card className='col-9 mx-auto rounded shadow-lg' >
                         <Row className='d-flex justify-content-between'>
-                            <Col xs={6} className='p-0 bg-danger' >
-                                <img className='img-fluid w-100' src='https://cdni.iconscout.com/illustration/premium/thumb/boy-writing-notes-while-learning-from-online-class-4762285-3963991.png' />
+                            <Col xs={6} className='bg-danger d-flex justify-content-center flex-column' >
+                                <img className='img-fluid w-100' src={LogoLogin} />
                             </Col>
                             <Col xs={5} className='p-3 mx-auto'>
                                 <div className='text-center my-3'>
@@ -36,8 +37,9 @@ function Login() {
                                             <label className='label-input'>Password</label>
                                         </div>
                                     </Form.Group>
-                                    <Form.Group>
-                                        <Button variant='danger' className='w-100 mb-2'>Sign-in</Button>
+                                    <Form.Group className='mb-5'>
+                                        {/* <Button variant='danger' className='w-100 mb-2'>Sign-in</Button> */}
+                                        <Link to='/' className='btn btn-danger w-100 mb-2'>Sign-in</Link>
                                         <p className='text-dark'>Belum punya akun ? <Link to='/register' className='text-danger text-decoration-none'>Daftar sekarang</Link></p>
                                     </Form.Group>
                                 </Form>
