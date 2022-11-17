@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link, redirect } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap'
 import { API_KEY_USER } from '../../env/env'
 import Swal from 'sweetalert2'
@@ -10,6 +11,7 @@ const MySwal = withReactContent(Swal)
 
 function Register() {
 
+const state = useSelector( state => state.userSession );
 const [ username, setUsername ] = useState();
 const [ name, setName ] = useState();
 const [ email, setEmail ] = useState();
@@ -73,7 +75,7 @@ const handleSubmit = (e) => {
     }
 
 }
-
+console.log(state);
   return (
     <Container fluid>
             <Row>

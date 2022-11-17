@@ -7,6 +7,7 @@ import Login from './page/authenticate/Login'
 import Register from './page/authenticate/Register'
 import RegisterCompany from './page/authenticate/RegisterCompany'
 import Homepage from './page/homepage/Homepage'
+import Dashboard from './page/company/Dashboard'
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
 
           <Routes>
               <Route path='/' element={<Homepage/>} />
+              <Route path='/dashboard' element={<Dashboard/>} />
               <Route path='/login' element={<Login/>} />
               <Route path='/register' element={<Register/>} />
               <Route path='/register-company' element={<RegisterCompany/>} />
