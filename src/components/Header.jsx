@@ -10,8 +10,8 @@ function Header() {
                 <img src={Pandemic} className='img-fluid' />
             </Col>
             <Col xs='6' className='mx-auto'>
-                <h1 className='text-header text-dark'>loremmmm</h1>
-                <h5 className='text-danger my-3 text-break'>loremmmmmm</h5>
+                <h1 className='text-header text-dark'>Bangkit bersama melawan Pandemi Covid-19</h1>
+                <h5 className='text-danger my-3 text-break'>Buat akun dan terhubung langsung dengan instansi - instansi yang akan membantumu</h5>
                 <button className="learn-more w-50">
                   <span className="circle" aria-hidden="true">
                   <span className="icon arrow"></span>

@@ -49,13 +49,13 @@ function Navigation() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="d-flex w-100 justify-content-end">
-                <NavLink className='nav-links text-dark p-2 me-3' to="#home">Beranda</NavLink>
+                <NavLink className='nav-item text-dark p-2 me-3' to="/">Beranda</NavLink>
                 <NavDropdown className='nav-links text-dark me-3' title='Informasi Bantuan' id="collasible-nav-dropdown">
-                    <NavDropdown.Item>Lowongan Pekerjaan</NavDropdown.Item>
-                    <NavDropdown.Item>Beasiswa Gratis</NavDropdown.Item>
+                    <NavLink to='/jobs' className='dropdown-item'>Lowongan Pekerjaan</NavLink>
+                    <NavLink to='/scholarship' className='dropdown-item'>Beasiswa Gratis</NavLink>
                 </NavDropdown>
-                <NavLink className='nav-links text-dark p-2 me-3' to="#pricing">Article</NavLink>
-                <NavLink className='nav-links text-dark p-2 me-3' to="#pricing">Profile</NavLink>
+                <NavLink className='nav-item text-dark p-2 me-3' to="/article">Article</NavLink>
+                <NavLink className='nav-item text-dark p-2 me-3' to="#pricing">Profile</NavLink>
                 { state.isLogin==false ? (
                 <NavLink to='/login' className='btn btn-outline-danger'>Login</NavLink>
                 ): (

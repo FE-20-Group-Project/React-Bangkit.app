@@ -1,19 +1,35 @@
-import React from 'react'
-import { KEY_SESSION } from '../../env/env'
+import React, { useEffect, useState } from 'react'
+import { KEY_SESSION, API_KEY_INFORMATION } from '../../env/env'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import { logOut } from '../../redux/action/userSession'
-import { Container, Row, Card, Table, Button } from 'react-bootstrap'
+import { Container, Row, Card, Table, Button, Badge, ToggleButton } from 'react-bootstrap'
 import { BsFillBriefcaseFill } from 'react-icons/bs'
-import { FaBars } from 'react-icons/fa'
+import { FaBars, FaEdit, FaSignOutAlt, FaTrash } from 'react-icons/fa'
 import Navigation from '../../components/Navigation'
 
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import axios from 'axios'
 
 const MySwal = withReactContent(Swal)
 
 function Dashboard() {
 const navigate = useNavigate();
+const dispatch = useDispatch();
+const [ information, setInformation ] = useState([]);
+
+useEffect( () => {
+    getApiInformation(API_KEY_INFORMATION).then( data => {
+        setInformation(data);
+    } )
+}, [] )
+
+const getApiInformation = async (api) => {
+    const response = await axios.get(api);
+    const result = response.data;
+    return result;
+}
 
 const logout = () => {
     MySwal.fire({
@@ -28,9 +44,7 @@ const logout = () => {
         dispatch(logOut());
         localStorage.removeItem(KEY_SESSION);
         MySwal.fire(
-            'Deleted!',
-            'Your file has been deleted.',
-            'success'
+            'Berhasil Logout!',
         )
         navigate('/login');
         console.log(state);
@@ -58,50 +72,49 @@ const logout = () => {
             <aside className='col-10 mx-auto p-5'>
             <header className='d-flex justify-content-between mb-3'>
                 <h1>Dashboard</h1>
-                <Button variant='danger' onClick={ () => logout() } className='btn-sm' >Logout</Button>
+                <Button onClick={ () => logout() } className='btn-sm border-0 bg-light text-dark'><FaSignOutAlt className='me-1' /> Logout</Button>
             </header>
                 <Row className='d-flex justify-content-around'>
-                    <Card className='col-3 text-center shadow-lg p-3'>
-                        <BsFillBriefcaseFill className='fs-1' />
-                        <span>Pengajuan Loker</span>
+                    <Card className='col-3 shadow-lg p-3'>
+                        <span className='fs-1'>5</span>
+                        <span className='fs-5'>Loker</span>
                     </Card>
                     <Card className='col-3 shadow-lg p-3'>
-                        <BsFillBriefcaseFill className='fs-1' />
-                        <span>Pengajuan Beasiswa</span>
+                        <span className='fs-1'>5</span>
+                        <span className='fs-5'>Beasiswa</span>
                     </Card>
-                    <Card className='col-3 text-center shadow-lg p-3'>
-                        <BsFillBriefcaseFill className='fs-1' />
-                        <span>Jumlah Kasus Covid</span>
+                    <Card className='col-3 shadow-lg p-3'>
+                        <span className='fs-1'>5</span>
+                        <span className='fs-5'>Jumlah Kasus</span>
                     </Card>
                 </Row>
-                <Row className='card mt-3 p-3'>
-                <Table striped bordered hover>
+                <Row className='card table-responsive mt-3 p-3'>
+                    <h5 className='text-dark fw-semibold'>Tracking Information</h5>
+                <Table responsive striped bordered hover>
                     <thead>
                         <tr>
-                        <th>#</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Username</th>
+                        <th>No.</th>
+                        <th>Bantuan</th>
+                        <th>Kualifikasi</th>
+                        <th>Jenis Pekerjaan</th>
+                        <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                        <td>1</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        </tr>
-                        <tr>
-                        <td>2</td>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        </tr>
-                        <tr>
-                        <td>3</td>
-                        <td colSpan={2}>Larry the Bird</td>
-                        <td>@twitter</td>
-                        </tr>
+                        { information.map( (item, index) => {
+                              return  (
+                                <tr key={index}>
+                                    <td>{index + 1}</td>
+                                    <td>{item.nama}</td>
+                                    <td>{item.kualifikasi}</td>
+                                    <td>{item.jenisPekerjaan}</td>
+                                    <td className='d-flex py-4'>
+                                        <Button variant='warning' className=' me-2'><FaEdit/></Button>
+                                        <Button variant='danger'><FaTrash/></Button>
+                                    </td>
+                                </tr>
+                            )
+                        } ) }
                     </tbody>
                     </Table>
                 </Row>
