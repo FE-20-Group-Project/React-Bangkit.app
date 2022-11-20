@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { KEY_SESSION, API_KEY_INFORMATION } from '../../env/env'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { getProgram, removeProgram } from '../../redux/action/programAction'
 import { logOut } from '../../redux/action/userSession'
 import { Container, Row, Card, Table, Button, Badge, ToggleButton, FormGroup, Form } from 'react-bootstrap'
 import { BsFillBriefcaseFill } from 'react-icons/bs'
@@ -18,21 +19,28 @@ const MySwal = withReactContent(Swal)
 function Dashboard() {
 const navigate = useNavigate();
 const dispatch = useDispatch();
-const [ information, setInformation ] = useState([]);
 const {isLogin} = useSelector( state => state.userSession );
+const {companyProgram} = useSelector( state => state.companyProgram );
 const [ addDisability, setAddDisability ] = useState(false);
+const [ editVisibility, setEditVisibility ] = useState(false);
+const [ currentProgram, setCurrentProgram ] = useState({});
 
 useEffect( () => {
-    getApiInformation(`${API_KEY_INFORMATION}?company_id=${isLogin.company_id}`).then( data => {
-        setInformation(data);
-    } )
+    dispatch(getProgram(isLogin.company_id));
 }, [] )
 
 const handleAdd = () => {
     setAddDisability(!addDisability);
+    // setEditVisibility(false);
 }
 
-const handleDelete = async (id) => {
+const handleEditVisibility = (item) => {
+    setEditVisibility(true);
+    setAddDisability(!addDisability);
+    setCurrentProgram(item);
+}
+
+const handleDelete = (id) => {
 
      MySwal.fire({
         title: 'Yakin ingin menghapus data berikut?',
@@ -43,7 +51,7 @@ const handleDelete = async (id) => {
         confirmButtonText: 'Ya, hapus!'
     }).then((result) => {
         if(result.isConfirmed) {
-        const response = axios.delete(`${API_KEY_INFORMATION}/${id}`);
+        dispatch(removeProgram(id, isLogin.company_id));
         MySwal.fire(
             'Data berhasil dihapus!',
         )
@@ -51,11 +59,6 @@ const handleDelete = async (id) => {
     })
 }
 
-const getApiInformation = async (api) => {
-    const response = await axios.get(api);
-    const result = response.data;
-    return result;
-}
 
 const logout = () => {
     MySwal.fire({
@@ -99,7 +102,7 @@ const logout = () => {
                         <span className='fs-5'>Beasiswa</span>
                     </Card>
                 </Row>
-                <FormCompany handleAdd={handleAdd} addDisability={addDisability} />
+                <FormCompany handleAdd={handleAdd} addDisability={addDisability} handleEditVisibility={editVisibility} currentProgram={currentProgram} />
                 <Row className='card table-responsive mt-3 p-3'>
                     <h5 className='text-dark fw-semibold'>Tracking Information</h5>
                 <Table responsive striped bordered hover>
@@ -113,7 +116,7 @@ const logout = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        { information.map( (item, index) => {
+                        { companyProgram.map( (item, index) => {
                               return  (
                                 <tr key={index}>
                                     <td>{index + 1}</td>
@@ -121,7 +124,7 @@ const logout = () => {
                                     <td>{item.kualifikasi}</td>
                                     <td>{item.jenisPekerjaan}</td>
                                     <td className='d-flex py-4'>
-                                        <Button variant='warning' className=' me-2'><FaEdit/></Button>
+                                        <Button onClick={ () => handleEditVisibility(item) } variant='warning' className=' me-2'><FaEdit/></Button>
                                         <Button onClick={() => handleDelete(item.id)} variant='danger'><FaTrash/></Button>
                                     </td>
                                 </tr>
