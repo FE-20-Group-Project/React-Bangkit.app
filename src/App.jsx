@@ -1,32 +1,40 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { Routes, Route } from 'react-router-dom'
+import Login from './page/authenticate/Login'
+import Register from './page/authenticate/Register'
+import RegisterCompany from './page/authenticate/RegisterCompany'
+import Homepage from './page/homepage/Homepage'
+import Article from './page/information/pandemic/Article'
+import Jobs from './page/information/jobs/Jobs'
+import Scholarship from './page/information/scholarship/Scholarship'
+import Dashboard from './page/company/Dashboard'
+import Footer from './components/Footer'
+import Aboutpage from './page/about/Aboutpage'
+import DetailJobs from './page/information/jobs/DetailJobs'
+import DetailScolarship from './page/information/scholarship/DetailScolarship'
 
 function App() {
-  const [count, setCount] = useState(0)
+
 
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+
+          <Routes>
+              <Route path='/' element={<Homepage/>} />
+              <Route path='/dashboard' element={<Dashboard/>} />
+              <Route path='/login' element={<Login/>} />
+              <Route path='/register' element={<Register/>} />
+              <Route path='/register-company' element={<RegisterCompany/>} />
+              <Route path='/about-us' element={<Aboutpage/>} />
+              <Route path='/article' element={<Article/>} />
+              <Route path='/jobs' element={<Jobs/>} />
+              <Route path='/jobs/:id' element={<DetailJobs/>} />
+              <Route path='/scholarship' element={<Scholarship/>} />
+              <Route path='/scholarship/:id' element={<DetailScolarship/>} />
+          </Routes>
     </div>
   )
 }
