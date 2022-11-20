@@ -2,6 +2,9 @@ import React from 'react'
 import { Container, Row, Card, Col, Button, Carousel } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import Homepage from '../assets/png/homepage.jpg'
+import Pandemic from '../assets/png/pandemic1.png'
+import Beasiswa from '../assets/png/beasiswa2.png'
+import JobSeeker from '../assets/png/jobseeker2.png'
 
 
 
@@ -40,21 +43,21 @@ function Header() {
             <Carousel.Item>
               <img
                 className="d-block w-100"
-                src="https://www.montgomerycountymd.gov/library/resources/images/for-you/job-seekers-banner-image.jpg"
+                src={JobSeeker}
                 alt="First slide"
               />
             </Carousel.Item>
             <Carousel.Item>
               <img
                 className="d-block w-100"
-                src="https://www.montgomerycountymd.gov/library/resources/images/for-you/job-seekers-banner-image.jpg"
+                src={Pandemic}
                 alt="Second slide"
               />
             </Carousel.Item>
             <Carousel.Item>
               <img
                 className="d-block w-100"
-                src="https://www.montgomerycountymd.gov/library/resources/images/for-you/job-seekers-banner-image.jpg"
+                src={Beasiswa}
                 alt="Third slide"
               />
             </Carousel.Item>

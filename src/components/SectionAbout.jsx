@@ -65,7 +65,7 @@ function SectionAbout() {
             <Card className='col-5 d-flex justify-content-around m-3 p-3'>
               <Row className='d-flex justify-content-around '>
                     <Col xs='1'>
-                      <FcFactory className='fs-1'/>
+                      <FcGraduationCap className='fs-1'/>
                     </Col>
                     <Col xs='10'>
                       <p>Menurut United Nations International Children's Emergency Fund (UNICEF) pada hasil surveinya menunjukan bahwa dari dampak Covid-19, sebanyak 938 anak atau sekitar 1% anak mengalami putus sekolah dan 74% diantaranya memiliki alasan putus sekolah dikarenakan tidak ada biaya.</p>
@@ -75,7 +75,7 @@ function SectionAbout() {
             <Card className='col-5 d-flex justify-content-around m-3 p-3'>
               <Row className='d-flex justify-content-around '>
                     <Col xs='1'>
-                      <FcFactory className='fs-1'/>
+                      <FcPlus className='fs-1'/>
                     </Col>
                     <Col xs='10'>
                       <p>Menurut data Kementerian Kesehatan Republik Indonesia, per tanggal 21 Februari 2021, kasus aktif covid-19 di indonesia mencapai 157.088 kasus mengalami kenaikan 1.109 kasus. </p>
