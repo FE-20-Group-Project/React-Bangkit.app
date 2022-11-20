@@ -16,7 +16,7 @@ function ScholarshipList({scholarship}) {
                             <Col xs='6' >
                                 <Card.Title className='fw-semibold'>{item.nama}</Card.Title>
                                 <Card.Body>{item.jenisPekerjaan}</Card.Body>
-                                <Card.Body>{item.lokasi}</Card.Body>
+                                <Card.Body>{item.createdAt}</Card.Body>
                             </Col>
                             <Col xs='3' className='d-flex justify-content-center flex-column' >
                                 <Link to={'/scholarship/' + item.id} className='btn btn-warning w-100 rounded-0 mb-3'><FaInfoCircle className='ms-2'/> Detail</Link>

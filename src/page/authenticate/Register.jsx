@@ -12,7 +12,6 @@ const MySwal = withReactContent(Swal)
 function Register() {
 
 const navigate = useNavigate();
-const state = useSelector( state => state.userSession );
 const [ username, setUsername ] = useState();
 const [ name, setName ] = useState();
 const [ email, setEmail ] = useState();
@@ -26,21 +25,21 @@ const register = async (api, data, form) => {
     const findUsername = users.findIndex( index => index.username == data.username );
     if( findEmail !== -1 ) {
         form.reset();
-        MySwal.fire({
+        return MySwal.fire({
             icon: 'error',
             title: 'Gagal Registrasi',
             text: 'Maaf email yang anda masukan sudah ada!',
         })
     }else if ( findUsername !== -1 ) {
         form.reset();
-        MySwal.fire({
+        return MySwal.fire({
             icon: 'error',
             title: 'Gagal Registrasi',
             text: 'Maaf username yang anda masukan sudah ada!',
         })
     }else {
         const response = await axios.post(api, data);
-                MySwal.fire({
+            return MySwal.fire({
                 icon: 'success',
                 title: 'Registrasi Berhasil',
                 text: 'Akunmu sudah berhasil didaftarkan, silahkan login terlebih dahulu!',

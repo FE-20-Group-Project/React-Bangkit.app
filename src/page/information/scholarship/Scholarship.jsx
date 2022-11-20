@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import { API_KEY_INFORMATION } from '../../../env/env'
+import { useDispatch, useSelector } from 'react-redux'
+import { getScholarship } from '../../../redux/action/scholarshipAction'
 import Navigation from '../../../components/Navigation'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
@@ -14,17 +14,12 @@ import ScholarshipList from '../../../components/ScholarshipList'
 const MySwal = withReactContent(Swal)
 
 function Scholarship() {
-  const [ isLoading, setIsLoading ] = useState(true);
-  const [ beasiswa, setBeasiswa ] = useState([]);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { scholarship, isLoading } = useSelector( state => state.scholarshipList );
 
   useEffect( () => {
-  
-          getAPiScholarship(`${API_KEY_INFORMATION}?type=Beasiswa`).then( data => {
-                setBeasiswa(data);
-                setIsLoading(false);
-          } )
-  
+        dispatch(getScholarship());
   }, [] );
 
   const getAPiScholarship = async (api) => {
@@ -40,7 +35,7 @@ function Scholarship() {
           <Loading/>
         ) : (
             <>
-              <SectionScholarship scholarship={beasiswa} />
+              <SectionScholarship scholarship={scholarship} />
               <Footer/>
             </>
         ) }

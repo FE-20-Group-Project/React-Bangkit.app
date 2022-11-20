@@ -31,7 +31,7 @@ function BannerFeature() {
                             <p>Lowongan terbuka untuk para pekerja yang kesulitan dalam mencari pekerjaan di masa pandemi yang kian meluas.</p>
                         </div>
                     </div>
-                    <Link to='/jobs' className="card-neu-button text-center text-light">More info</Link>
+                    <Link to='/jobs' className="card-neu-button text-center text-light">Info Selengkapnya</Link>
                 </div>
             </Col>
             <Col xs='5' className='m-3 p-0'>
@@ -45,7 +45,7 @@ function BannerFeature() {
                             <p>Bantuan bagi para pelajar atau mahasiswa yang kesulitan dalam melanjutkan pendidikan dikarenakan keterbatasan ekonomi.</p>
                         </div>
                     </div>
-                    <button className="card-neu-button">More info</button>
+                    <Link to='/scholarship' className="card-neu-button text-center text-light">Info Selengkapnya</Link>
                 </div>
             </Col>
    
