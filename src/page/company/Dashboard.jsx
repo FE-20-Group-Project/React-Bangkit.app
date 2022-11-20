@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { KEY_SESSION, API_KEY_INFORMATION } from '../../env/env'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { getProgram, removeProgram } from '../../redux/action/programAction'
 import { logOut } from '../../redux/action/userSession'
 import { Container, Row, Card, Table, Button, Badge, ToggleButton, FormGroup, Form } from 'react-bootstrap'
 import { BsFillBriefcaseFill } from 'react-icons/bs'
@@ -12,27 +13,35 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import axios from 'axios'
 import FormCompany from '../../components/FormCompany'
+import Loading from '../../components/loader/Loading'
 
 const MySwal = withReactContent(Swal)
 
 function Dashboard() {
 const navigate = useNavigate();
 const dispatch = useDispatch();
-const [ information, setInformation ] = useState([]);
 const {isLogin} = useSelector( state => state.userSession );
+const {companyProgram, isLoading} = useSelector( state => state.companyProgram );
 const [ addDisability, setAddDisability ] = useState(false);
+const [ editVisibility, setEditVisibility ] = useState(false);
+const [ currentProgram, setCurrentProgram ] = useState({});
 
 useEffect( () => {
-    getApiInformation(`${API_KEY_INFORMATION}?company_id=${isLogin.company_id}`).then( data => {
-        setInformation(data);
-    } )
+    dispatch(getProgram(isLogin.company_id));
 }, [] )
 
 const handleAdd = () => {
     setAddDisability(!addDisability);
+    // setEditVisibility(false);
 }
 
-const handleDelete = async (id) => {
+const handleEditVisibility = (item) => {
+    setEditVisibility(true);
+    setAddDisability(!addDisability);
+    setCurrentProgram(item);
+}
+
+const handleDelete = (id) => {
 
      MySwal.fire({
         title: 'Yakin ingin menghapus data berikut?',
@@ -43,7 +52,7 @@ const handleDelete = async (id) => {
         confirmButtonText: 'Ya, hapus!'
     }).then((result) => {
         if(result.isConfirmed) {
-        const response = axios.delete(`${API_KEY_INFORMATION}/${id}`);
+        dispatch(removeProgram(id, isLogin.company_id));
         MySwal.fire(
             'Data berhasil dihapus!',
         )
@@ -51,11 +60,6 @@ const handleDelete = async (id) => {
     })
 }
 
-const getApiInformation = async (api) => {
-    const response = await axios.get(api);
-    const result = response.data;
-    return result;
-}
 
 const logout = () => {
     MySwal.fire({
@@ -86,49 +90,53 @@ const logout = () => {
         <Row className='d-flex justify-content-between'>
             <header className='d-flex justify-content-between mb-3'>
                 <h1>Dashboard</h1>
-                <Button onClick={ () => logout() } className='btn-sm border-0 bg-light text-dark'><FaSignOutAlt className='me-1' /> Logout</Button>
+                <Button onClick={ () => logout() } className='btn-md border-0 bg-light text-dark'><FaSignOutAlt className='me-1' /> Logout</Button>
             </header>
             <section>
                 <Row className='d-flex justify-content-around'>
-                    <Card className='col-3 shadow-lg p-3'>
+                    <Card className='col-8 col-md-3 m-3 shadow-lg p-3'>
                         <span className='fs-1'>5</span>
                         <span className='fs-5'>Loker</span>
                     </Card>
-                    <Card className='col-3 shadow-lg p-3'>
+                    <Card className='col-8 col-md-3 m-3 shadow-lg p-3'>
                         <span className='fs-1'>5</span>
                         <span className='fs-5'>Beasiswa</span>
                     </Card>
                 </Row>
-                <FormCompany handleAdd={handleAdd} addDisability={addDisability} />
+                <FormCompany handleAdd={handleAdd} addDisability={addDisability} handleEditVisibility={editVisibility} currentProgram={currentProgram} />
                 <Row className='card table-responsive mt-3 p-3'>
                     <h5 className='text-dark fw-semibold'>Tracking Information</h5>
-                <Table responsive striped bordered hover>
-                    <thead>
-                        <tr>
-                        <th>No.</th>
-                        <th>Bantuan</th>
-                        <th>Kualifikasi</th>
-                        <th>Jenis Pekerjaan</th>
-                        <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        { information.map( (item, index) => {
-                              return  (
-                                <tr key={index}>
-                                    <td>{index + 1}</td>
-                                    <td>{item.nama}</td>
-                                    <td>{item.kualifikasi}</td>
-                                    <td>{item.jenisPekerjaan}</td>
-                                    <td className='d-flex py-4'>
-                                        <Button variant='warning' className=' me-2'><FaEdit/></Button>
-                                        <Button onClick={() => handleDelete(item.id)} variant='danger'><FaTrash/></Button>
-                                    </td>
-                                </tr>
-                            )
-                        } ) }
-                    </tbody>
-                    </Table>
+                    { isLoading ? (
+                        <Loading/>
+                    ) : (
+                        <Table responsive striped bordered hover>
+                        <thead>
+                            <tr>
+                            <th>No.</th>
+                            <th>Bantuan</th>
+                            <th>Kualifikasi</th>
+                            <th>Jenis Pekerjaan</th>
+                            <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            { companyProgram.map( (item, index) => {
+                                return  (
+                                    <tr key={index}>
+                                        <td>{index + 1}</td>
+                                        <td>{item.nama}</td>
+                                        <td>{item.kualifikasi}</td>
+                                        <td>{item.jenisPekerjaan}</td>
+                                        <td className='d-flex py-4'>
+                                            <Button onClick={ () => handleEditVisibility(item) } variant='warning' className=' me-2'><FaEdit/></Button>
+                                            <Button onClick={() => handleDelete(item.id)} variant='danger'><FaTrash/></Button>
+                                        </td>
+                                    </tr>
+                                )
+                            } ) }
+                        </tbody>
+                        </Table>
+                    ) }
                 </Row>
             </section>
         </Row>

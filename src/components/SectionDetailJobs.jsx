@@ -8,8 +8,8 @@ function SectionDetailJobs({jobs, detailJobs}) {
     const {isLogin} = useSelector( state => state.userSession );
   return (
     <section className='container my-5'>
-        <Row>
-            <Col xs='5' className='card p-0' style={{ overflow: 'scroll', height: '100vh' }}>
+        <Row className='flex-column-reverse flex-xl-row'>
+            <Col xs='12' xl='5' className='card p-0 my-3' style={{ overflow: 'scroll', height: '100vh' }}>
                     <Card.Header className='bg-danger text-center text-light fw-semibold' >
                     Lowongan berdasarkan Profil Anda
                     </Card.Header>
@@ -32,7 +32,7 @@ function SectionDetailJobs({jobs, detailJobs}) {
                         </Card>
             ) ) }
             </Col>
-            <Col xs='7' className='card p-5'>
+            <Col xs='12' xl='7' className='card p-5'>
                 <h2 className='mb-3'>{detailJobs.nama}</h2>
                 <p className='mb-3'>{detailJobs.lokasi}</p>
                 <p className='mb-3'>{detailJobs.gaji}</p>

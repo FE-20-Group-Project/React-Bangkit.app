@@ -50,13 +50,11 @@ function DetailJobs() {
 
   return (
     <>
-        <Navigation/>
         { isLoading ? (
             <Loading/>
         ) : (
             <>
                 <SectionDetailJobs jobs={jobs} detailJobs={detailJobs} />
-                <Footer/>
             </>
         ) }
       

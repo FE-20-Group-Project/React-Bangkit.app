@@ -5,11 +5,9 @@ import Footer from '../../../components/Footer'
 
 function Article() {
   return (
-    <>
-        <Navigation/>
+    <div className='bg-virus'>
         <ArticleSection/>
-        <Footer/>
-    </>
+    </div>
   )
 }
 

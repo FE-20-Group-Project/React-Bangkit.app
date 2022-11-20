@@ -30,7 +30,6 @@ function RegisterCompany() {
               })
         }else {
             const response = await axios.post(api, data);
-            console.log(response);
             return  MySwal.fire({
                 icon: 'success',
                 title: 'Registrasi Berhasil',
@@ -68,15 +67,15 @@ function RegisterCompany() {
     <Row>
         <Container className='p-5'>
                 <Row className='d-flex justify-content-between'>
-                    <Col xs='6' className='d-flex justify-content-center py-3 flex-column'>
+                    <Col xs='10' md='5' className='mx-auto d-flex justify-content-center py-3 flex-column'>
                         <aside className='ps-3 text-primary rounded'>
-                            <img width='400' src={Register} />
+                            <img className='img-fluid' src={Register} />
                             <h3 className='fw-bold'>Ayo bergabung bersama kami dan kirimkan bantuan untuk mereka yang membutuhkan!</h3>
                         </aside>
                     </Col>
-                    <Col xs='5' className='bg-light'>
+                    <Col xs='10' md='5' className='bg-light mx-auto'>
                     <div className='text-center my-3'>
-                                <h2 className='fw-semibold text-primary mt-2'>REGISTER COMPANY</h2>
+                                <h2 className='fw-semibold text-dark mt-2'>REGISTER COMPANY</h2>
                             </div>
                             <Form onSubmit={ handleSubmit } >
                                 <Form.Group className='mb-4'>
