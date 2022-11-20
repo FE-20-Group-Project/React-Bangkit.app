@@ -41,7 +41,7 @@ function Navigation() {
 }
 
   return (
-    <Navbar collapseOnSelect expand="md" variant="light" className='bg-light border-bottom border-3 border-danger py-3'>
+    <Navbar collapseOnSelect expand="md" variant="light" className='bg-light border-bottom border-5 shadow-md border-danger py-3 position-sticky top-0' style={{ zIndex: '9' }}>
     <Container>
       <NavLink to='/'>
             <img src={Logo} width='100px' />
