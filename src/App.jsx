@@ -15,13 +15,14 @@ import Footer from './components/Footer'
 import Aboutpage from './page/about/Aboutpage'
 import DetailJobs from './page/information/jobs/DetailJobs'
 import DetailScolarship from './page/information/scholarship/DetailScolarship'
+import Navigation from './components/Navigation'
 
 function App() {
 
 
   return (
     <div className="App">
-
+        <Navigation/>
           <Routes>
               <Route path='/' element={<Homepage/>} />
               <Route path='/dashboard' element={<Dashboard/>} />
@@ -35,6 +36,7 @@ function App() {
               <Route path='/scholarship' element={<Scholarship/>} />
               <Route path='/scholarship/:id' element={<DetailScolarship/>} />
           </Routes>
+          <Footer/>
     </div>
   )
 }

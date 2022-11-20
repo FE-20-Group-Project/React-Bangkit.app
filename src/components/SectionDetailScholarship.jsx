@@ -10,8 +10,8 @@ function SectionDetailScholarship({beasiswa, detailBeasiswa}) {
     const {isLogin} = useSelector( state => state.userSession );
   return (
     <section className='container my-5' >
-              <Row>
-            <Col xs='5' className='card p-0' style={{ overflow: 'scroll', height: '100vh' }}>
+              <Row className='flex-column-reverse flex-xl-row'>
+            <Col xs='12' xl='5' className='card p-0 my-3' style={{ overflow: 'scroll', height: '100vh' }}>
                     <Card.Header className='bg-danger text-center text-light fw-semibold' >
                     Lowongan berdasarkan Profil Anda
                     </Card.Header>
@@ -34,7 +34,7 @@ function SectionDetailScholarship({beasiswa, detailBeasiswa}) {
                         </Card>
             ) ) }
             </Col>
-            <Col xs='7' className='card p-5'>
+            <Col xs='12' xl='7' className='card p-5'>
                 <h2 className='mb-3'>{detailBeasiswa.nama}</h2>
                 <p className='mb-3'>{detailBeasiswa.lokasi}</p>
                 <p className='mb-3'>{detailBeasiswa.gaji}</p>

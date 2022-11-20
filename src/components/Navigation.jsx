@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { KEY_SESSION } from '../env/env'
 import { logOut } from '../redux/action/userSession'
@@ -10,6 +10,7 @@ import withReactContent from 'sweetalert2-react-content'
 
 const MySwal = withReactContent(Swal)
 
+const linkStyle = { color: '#dc3545', fontWeight: 'bold', borderBottom: '3px solid #dc3545', backgroundColor: '#FFFFFF' }
 function Navigation() {
 
  const navigate = useNavigate()
@@ -29,8 +30,7 @@ function Navigation() {
         dispatch(logOut());
         localStorage.removeItem(KEY_SESSION);
         MySwal.fire(
-          'Deleted!',
-          'Your file has been deleted.',
+          'Berhasil Logout!',
           'success'
         )
         navigate('/login');
@@ -39,6 +39,7 @@ function Navigation() {
     })
 
 }
+
 
   return (
     <Navbar collapseOnSelect expand="md" variant="light" className='bg-light border-bottom border-5 shadow-md border-danger py-3 position-sticky top-0' style={{ zIndex: '9' }}>
@@ -49,17 +50,17 @@ function Navigation() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="d-flex w-100 justify-content-end">
-                <NavLink className='nav-item text-dark p-2 me-3' to="/">Beranda</NavLink>
+                <NavLink to="/" style={({isActive}) => (isActive ? linkStyle : undefined)} className='nav-item p-2 me-3' >Beranda</NavLink>
                 <NavDropdown className='nav-links text-dark me-3' title='Informasi Bantuan' id="collasible-nav-dropdown">
-                    <NavLink to='/jobs' className='dropdown-item'>Lowongan Pekerjaan</NavLink>
-                    <NavLink to='/scholarship' className='dropdown-item'>Beasiswa Gratis</NavLink>
+                    <NavLink to='/jobs' style={({isActive}) => (isActive ? linkStyle : undefined)} className='dropdown-item'>Lowongan Pekerjaan</NavLink>
+                    <NavLink to='/scholarship' style={({isActive}) => (isActive ? linkStyle : undefined)} className='dropdown-item'>Beasiswa Gratis</NavLink>
                 </NavDropdown>
-                <NavLink className='nav-item text-dark p-2 me-3' to="/article">Article</NavLink>
-                <NavLink className='nav-item text-dark p-2 me-3' to="#pricing">Profile</NavLink>
+                <NavLink to="/article" style={({isActive}) => (isActive ? linkStyle : undefined)} className='nav-item p-2 me-3' >Article</NavLink>
+                {/* <NavLink className='nav-item text-dark p-2 me-3' to="#pricing">Profile</NavLink> */}
                 { state.isLogin==false ? (
-                <NavLink to='/login' className='btn btn-outline-danger'>Login</NavLink>
+                <NavLink to='/login' className='btn btn-danger'>Login</NavLink>
                 ): (
-                <Nav.Link onClick={ () => logout() } className='btn btn-outline-danger'>Logout</Nav.Link>
+                <Nav.Link onClick={ () => logout() } className='btn btn-danger text-light'>Logout</Nav.Link>
                 ) }
                 
             </Nav>

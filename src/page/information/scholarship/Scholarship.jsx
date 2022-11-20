@@ -30,13 +30,11 @@ function Scholarship() {
 
   return (
     <>
-        <Navigation/>
         { isLoading ? (
           <Loading/>
         ) : (
             <>
               <SectionScholarship scholarship={scholarship} />
-              <Footer/>
             </>
         ) }
     </>

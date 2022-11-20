@@ -74,7 +74,7 @@ function FormCompany({handleAdd, addDisability,handleEditVisibility, currentProg
  
 
   return (
-    <Row className='col-6 mx-auto my-3'>
+    <Row className='col-10 col-md-6 mx-auto my-3'>
                     <Form.Group className='mb-3'>
                         <Button variant='danger' onClick={ () => handleAdd()} className='w-100'> { addDisability ? (<FaWindowClose/>) : (<><FaPlus/> Tambah Postingan Baru</>) }</Button>
                     </Form.Group>

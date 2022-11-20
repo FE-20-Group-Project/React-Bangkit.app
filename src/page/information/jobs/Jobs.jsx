@@ -24,13 +24,11 @@ function Jobs() {
 
   return (
     <>
-      <Navigation/>
       { isLoading ? (
         <Loading/>
       ) : (
           <>
               <SectionJob jobs={jobs} />
-              <Footer/>
           </>
       ) }
     </>

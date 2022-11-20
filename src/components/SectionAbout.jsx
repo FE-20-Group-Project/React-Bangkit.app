@@ -7,8 +7,8 @@ function SectionAbout() {
   return (
     <>
     <section className='about-section container-fluid bg-primary mb-5 p-5'>
-        <Row className='d-flex justify-content-between'>
-            <Col xs='5' className='d-flex justify-content-center flex-column'>
+        <Row className='d-flex justify-content-between f-wrap'>
+            <Col xs='12' xl='5' className='d-flex justify-content-center flex-column'>
               <Row>
                   <h5 className='text-danger'>Tentang Bangkit</h5>
                   <h1 className='text-light text-header-2'>Apa sih Bangkit itu?</h1>
@@ -20,19 +20,19 @@ function SectionAbout() {
                   </p>
               </Row>
             </Col>
-            <Col xs='5'>
+            <Col xs='10' md='7' xl='5'>
               <img className='img-fluid' src={Bangkit} />
             </Col>  
         </Row>
     </section>
     <section className='visi-misi-section container-fluid mb-5 bg-light'>
         <Row className='d-flex justify-content-around'>
-          <Col xs='5'>
+          <Col xs='10' md='5' className='p-3'>
             <h5 className='text-danger'>Visi Bangkit</h5>
             <h1 className='text-header-2 text-primary'>Sejuta digital talent untuk Indonesia</h1>
             <p>Visi kami adalah untuk menghasilkan sejuta digital talent untuk Indonesia melalui pendidikan vokasi digital.</p>
           </Col>
-          <Col xs='5'>
+          <Col xs='10' md='5' className='p-3'>
             <h5 className='text-danger'>Visi Bangkit</h5>
             <h1 className='text-header-2 text-primary'>Sejuta digital talent untuk Indonesia</h1>
             <p>Visi kami adalah untuk menghasilkan sejuta digital talent untuk Indonesia melalui pendidikan vokasi digital.</p>
@@ -42,7 +42,7 @@ function SectionAbout() {
     <section className='why-section container-fluid bg-light mb-5'>
       <h1 className='text-center text-dark fw-bold'>Kenapa Bangkit?</h1>
         <Row className='d-flex justify-content-around'>
-            <Card className='col-5 m-3 p-3'>
+            <Card className='col-10 col-md-5 m-3 p-3'>
               <Row className='d-flex justify-content-around '>
                   <Col xs='1'>
                     <FcFactory className='fs-1'/>
@@ -52,7 +52,7 @@ function SectionAbout() {
                   </Col>
               </Row>
             </Card>
-            <Card className='col-5 d-flex justify-content-around m-3 p-3'>
+            <Card className='col-10 col-md-5 d-flex justify-content-around m-3 p-3'>
               <Row className='d-flex justify-content-around '>
                     <Col xs='1'>
                       <FcFactory className='fs-1'/>
@@ -62,7 +62,7 @@ function SectionAbout() {
                     </Col>
                 </Row>
             </Card>
-            <Card className='col-5 d-flex justify-content-around m-3 p-3'>
+            <Card className='col-10 col-md-5 d-flex justify-content-around m-3 p-3'>
               <Row className='d-flex justify-content-around '>
                     <Col xs='1'>
                       <FcGraduationCap className='fs-1'/>
@@ -72,7 +72,7 @@ function SectionAbout() {
                     </Col>
                 </Row>
             </Card>
-            <Card className='col-5 d-flex justify-content-around m-3 p-3'>
+            <Card className='col-10 col-md-5 d-flex justify-content-around m-3 p-3'>
               <Row className='d-flex justify-content-around '>
                     <Col xs='1'>
                       <FcPlus className='fs-1'/>
