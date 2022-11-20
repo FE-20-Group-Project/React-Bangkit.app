@@ -81,15 +81,15 @@ const handleSubmit = (e) => {
             <Row>
                 <Container className='p-5'>
                     <Row className='d-flex justify-content-between'>
-                        <Col xs='6' className='d-flex justify-content-center flex-column'>
+                        <Col xs='10' md='6' className='d-flex justify-content-center mx-auto flex-column'>
                             <aside className='text-danger '>
                                 <h1 className='text-header'>Daftarkan Akunmu!</h1>
                                 <h5>Buat akun sekarang, ayo raih informasi bantuan dari berbagai instansi dan bangkit bersama</h5>
                             </aside>
                         </Col>
-                        <Col xs='5' className='bg-light'>
+                        <Col xs='10' md='5' className='bg-light mx-auto'>
                                 <div className='text-center my-3'>
-                                    <h2 className='fw-semibold text-danger mt-2'>REGISTER USER</h2>
+                                    <h2 className='fw-semibold text-dark mt-2'>REGISTER USER</h2>
                                 </div>
                                 <Form onSubmit={ handleSubmit }>
                                     <Form.Group className='mb-4'>

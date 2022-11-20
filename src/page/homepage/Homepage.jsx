@@ -22,7 +22,6 @@ function Homepage() {
   }, [] )
   return (
     <>
-        <Navigation/>
         { isLoading ? (
           <Loading/>
         ): (
@@ -33,7 +32,6 @@ function Homepage() {
             <SectionCovidInfo/>
             <SectionJoinUs/>
             <SectionContactUs/>
-            <Footer/>
           </>
         ) }
     </>

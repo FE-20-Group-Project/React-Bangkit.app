@@ -5,8 +5,8 @@ import Contact from '../assets/png/contact.jpg'
 function SectionContactUs() {
   return (
     <section className='container-fluid bg-danger mt-5 py-5'>
-        <Row className='d-flex justify-content-around'>
-            <Col xs='4'>
+        <Row className='d-flex justify-content-around f-wrap'>
+            <Col xs='10' md='5' className='p-3'>
                 <h3 className='fw-bold text-light text-center'>CONTACT US</h3>
                 <Form>
                     <Form.Group className='mb-3'>
@@ -38,7 +38,7 @@ function SectionContactUs() {
                     </Form.Group>
                 </Form>
             </Col>
-            <Col xs='4'>
+            <Col xs='8' md='5' className='p-3'>
                 <img src={Contact} className='img-fluid' />
             </Col>
         </Row>

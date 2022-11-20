@@ -13,6 +13,7 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import axios from 'axios'
 import FormCompany from '../../components/FormCompany'
+import Loading from '../../components/loader/Loading'
 
 const MySwal = withReactContent(Swal)
 
@@ -20,7 +21,7 @@ function Dashboard() {
 const navigate = useNavigate();
 const dispatch = useDispatch();
 const {isLogin} = useSelector( state => state.userSession );
-const {companyProgram} = useSelector( state => state.companyProgram );
+const {companyProgram, isLoading} = useSelector( state => state.companyProgram );
 const [ addDisability, setAddDisability ] = useState(false);
 const [ editVisibility, setEditVisibility ] = useState(false);
 const [ currentProgram, setCurrentProgram ] = useState({});
@@ -89,15 +90,15 @@ const logout = () => {
         <Row className='d-flex justify-content-between'>
             <header className='d-flex justify-content-between mb-3'>
                 <h1>Dashboard</h1>
-                <Button onClick={ () => logout() } className='btn-sm border-0 bg-light text-dark'><FaSignOutAlt className='me-1' /> Logout</Button>
+                <Button onClick={ () => logout() } className='btn-md border-0 bg-light text-dark'><FaSignOutAlt className='me-1' /> Logout</Button>
             </header>
             <section>
                 <Row className='d-flex justify-content-around'>
-                    <Card className='col-3 shadow-lg p-3'>
+                    <Card className='col-8 col-md-3 m-3 shadow-lg p-3'>
                         <span className='fs-1'>5</span>
                         <span className='fs-5'>Loker</span>
                     </Card>
-                    <Card className='col-3 shadow-lg p-3'>
+                    <Card className='col-8 col-md-3 m-3 shadow-lg p-3'>
                         <span className='fs-1'>5</span>
                         <span className='fs-5'>Beasiswa</span>
                     </Card>
@@ -105,33 +106,37 @@ const logout = () => {
                 <FormCompany handleAdd={handleAdd} addDisability={addDisability} handleEditVisibility={editVisibility} currentProgram={currentProgram} />
                 <Row className='card table-responsive mt-3 p-3'>
                     <h5 className='text-dark fw-semibold'>Tracking Information</h5>
-                <Table responsive striped bordered hover>
-                    <thead>
-                        <tr>
-                        <th>No.</th>
-                        <th>Bantuan</th>
-                        <th>Kualifikasi</th>
-                        <th>Jenis Pekerjaan</th>
-                        <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        { companyProgram.map( (item, index) => {
-                              return  (
-                                <tr key={index}>
-                                    <td>{index + 1}</td>
-                                    <td>{item.nama}</td>
-                                    <td>{item.kualifikasi}</td>
-                                    <td>{item.jenisPekerjaan}</td>
-                                    <td className='d-flex py-4'>
-                                        <Button onClick={ () => handleEditVisibility(item) } variant='warning' className=' me-2'><FaEdit/></Button>
-                                        <Button onClick={() => handleDelete(item.id)} variant='danger'><FaTrash/></Button>
-                                    </td>
-                                </tr>
-                            )
-                        } ) }
-                    </tbody>
-                    </Table>
+                    { isLoading ? (
+                        <Loading/>
+                    ) : (
+                        <Table responsive striped bordered hover>
+                        <thead>
+                            <tr>
+                            <th>No.</th>
+                            <th>Bantuan</th>
+                            <th>Kualifikasi</th>
+                            <th>Jenis Pekerjaan</th>
+                            <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            { companyProgram.map( (item, index) => {
+                                return  (
+                                    <tr key={index}>
+                                        <td>{index + 1}</td>
+                                        <td>{item.nama}</td>
+                                        <td>{item.kualifikasi}</td>
+                                        <td>{item.jenisPekerjaan}</td>
+                                        <td className='d-flex py-4'>
+                                            <Button onClick={ () => handleEditVisibility(item) } variant='warning' className=' me-2'><FaEdit/></Button>
+                                            <Button onClick={() => handleDelete(item.id)} variant='danger'><FaTrash/></Button>
+                                        </td>
+                                    </tr>
+                                )
+                            } ) }
+                        </tbody>
+                        </Table>
+                    ) }
                 </Row>
             </section>
         </Row>

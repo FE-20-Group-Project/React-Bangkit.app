@@ -60,10 +60,10 @@ function Login() {
                 <Row>
                     <Card className='col-10 mx-auto rounded shadow-lg' >
                         <Row className='d-flex justify-content-start'>
-                            <Col xs={6} className='d-flex justify-content-center flex-column' >
+                            <Col xs={6} md={5}  className='d-flex mx-auto justify-content-center flex-column' >
                                 <img className='img-fluid w-100' src={LogoLogin} />
                             </Col>
-                            <Col xs={5} className='p-3 mx-auto'>
+                            <Col xs={10} md={5} className='p-3 mx-auto'>
                                 <div className='text-center my-3'>
                                     <img src={Logo} width='150' />
                                     <h1 className='fw-bolder text-dark mt-2'>SIGN-UP</h1>

@@ -51,13 +51,11 @@ function DetailScolarship() {
 
   return (
     <>
-        <Navigation/>
         { isLoading ? (
             <Loading/>
         ) : (
             <>
                 <SectionDetailScholarship beasiswa={beasiswa} detailBeasiswa={detailBeasiswa} />
-                <Footer/>
             </>
         ) }
     </>

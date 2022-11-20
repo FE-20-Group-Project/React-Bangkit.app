@@ -6,19 +6,25 @@ import { FaCopyright, FaFacebook, FaInstagram, FaWhatsapp } from 'react-icons/fa
 function Footer() {
   return (
     <footer className='container-fluid text-light'>
-        <Row className='bg-dark p-3 d-flex justify-content-between'>
-            <Col xs='5' className='ms-3'>
+        <Row className='bg-dark p-3 d-flex justify-content-between f-wrap'>
+            <Col xs='10' md='5' className='ms-3'>
                 <img className='rounded my-3' src={LogoBangkit} width='100px' />
                 <h6>
                 Group 20 Front-End , Challange Partner : National University of Singapore, Skilvul Tech4Impact Cycle 3 MSIB Kampus Merdeka.
                 </h6>
                 <Row className='d-flex justify-content-start'>
-                    <FaFacebook className='fs-3 m-3 col-1' />
-                    <FaInstagram className='fs-3 m-3 col-1' />
-                    <FaWhatsapp className='fs-3 m-3 col-1' />
+                    <Col xs='2'>
+                        <FaFacebook className='fs-3 m-3' />
+                    </Col>
+                    <Col xs='2'>
+                        <FaInstagram className='fs-3 m-3' />
+                    </Col>
+                    <Col xs='2'>
+                        <FaWhatsapp className='fs-3 m-3' />
+                    </Col>
                 </Row>
             </Col>
-            <Col xs='3'>
+            <Col xs='8' md='4'>
             <ul>
                 <ListGroup.Item className='fw-semibold my-3'>Information</ListGroup.Item>
                 <ListGroup.Item>Cras justo odio</ListGroup.Item>
