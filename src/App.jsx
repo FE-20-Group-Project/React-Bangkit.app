@@ -11,6 +11,9 @@ import Article from './page/information/pandemic/Article'
 import Jobs from './page/information/jobs/Jobs'
 import Scholarship from './page/information/scholarship/Scholarship'
 import Dashboard from './page/company/Dashboard'
+import Footer from './components/Footer'
+import Aboutpage from './page/about/Aboutpage'
+import DetailJobs from './page/information/jobs/DetailJobs'
 
 function App() {
 
@@ -24,8 +27,10 @@ function App() {
               <Route path='/login' element={<Login/>} />
               <Route path='/register' element={<Register/>} />
               <Route path='/register-company' element={<RegisterCompany/>} />
+              <Route path='/about-us' element={<Aboutpage/>} />
               <Route path='/article' element={<Article/>} />
               <Route path='/jobs' element={<Jobs/>} />
+              <Route path='/jobs/:id' element={<DetailJobs/>} />
               <Route path='/scholarship' element={<Scholarship/>} />
           </Routes>
     </div>

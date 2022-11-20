@@ -5,7 +5,7 @@ import { API_KEY_USER, API_KEY_COMPANY, KEY_SESSION  } from '../../env/env'
 import { loginSession } from '../../redux/action/userSession'
 import { Container, Row, Card, Col, Form, Button } from 'react-bootstrap'
 import Logo from '../../assets/image/bangkit.png'
-import LogoLogin from '../../assets/png/login2.png'
+import LogoLogin from '../../assets/png/login1.jpg'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
@@ -60,18 +60,17 @@ function Login() {
 
     console.log(state);
   return (
-
         <Container fluid className='authenticate py-5' >
                 <Row>
-                    <Card className='col-9 mx-auto rounded shadow-lg' >
-                        <Row className='d-flex justify-content-between'>
-                            <Col xs={6} className='bg-danger d-flex justify-content-center flex-column' >
+                    <Card className='col-10 mx-auto rounded shadow-lg' >
+                        <Row className='d-flex justify-content-start'>
+                            <Col xs={6} className='d-flex justify-content-center flex-column' >
                                 <img className='img-fluid w-100' src={LogoLogin} />
                             </Col>
                             <Col xs={5} className='p-3 mx-auto'>
                                 <div className='text-center my-3'>
                                     <img src={Logo} width='150' />
-                                    <h2 className='fw-semibold text-warning mt-2'>WELCOME!</h2>
+                                    <h1 className='fw-bolder text-dark mt-2'>SIGN-UP</h1>
                                 </div>
                                 <Form onSubmit={ handleLogin } >
                                     <Form.Group className='mb-5'>
@@ -91,7 +90,10 @@ function Login() {
                                         </div>
                                     </Form.Group>
                                     <Form.Group className='mb-5'>
-                                        <Button variant='danger' type='submit' className='w-100 mb-2'>Sign-in</Button>
+                                        <Link>
+                                        <p className='text-danger'>Lupa Password?</p>
+                                        </Link>
+                                        <Button variant='danger' type='submit' className='w-100 mb-2'>Log in</Button>
                                         {/* <Link to='/' className='btn btn-danger w-100 mb-2'>Sign-in</Link> */}
                                         <p className='text-dark'>Belum punya akun ? <Link to='/register' className='text-danger text-decoration-none'>Daftar sekarang</Link></p>
                                     </Form.Group>
