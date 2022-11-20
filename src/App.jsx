@@ -14,6 +14,7 @@ import Dashboard from './page/company/Dashboard'
 import Footer from './components/Footer'
 import Aboutpage from './page/about/Aboutpage'
 import DetailJobs from './page/information/jobs/DetailJobs'
+import DetailScolarship from './page/information/scholarship/DetailScolarship'
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
               <Route path='/jobs' element={<Jobs/>} />
               <Route path='/jobs/:id' element={<DetailJobs/>} />
               <Route path='/scholarship' element={<Scholarship/>} />
+              <Route path='/scholarship/:id' element={<DetailScolarship/>} />
           </Routes>
     </div>
   )

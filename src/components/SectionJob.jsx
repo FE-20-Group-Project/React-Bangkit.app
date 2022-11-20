@@ -6,21 +6,8 @@ import Jobs from '../assets/png/perusahaan1.jpg'
 import axios from 'axios'
 import JobList from './JobList'
 
-function SectionJob() {
+function SectionJob({jobs}) {
 
-  const [ jobs, setJobs ] = useState([]);
-
-  useEffect( () => {
-        getApiJobs(API_KEY_INFORMATION).then( data => {
-              setJobs(data);
-        } )
-  },[] )
-
-  const getApiJobs = async (api) => {
-    const response = await axios.get(api);
-    const result = response.data;
-    return result;
-  }
 
   return (
     <>

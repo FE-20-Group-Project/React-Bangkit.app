@@ -1,34 +1,37 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import { API_KEY_INFORMATION } from '../../../env/env'
 import Navigation from '../../../components/Navigation'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import Loading from '../../../components/loader/Loading';
 import SectionScholarship from '../../../components/SectionScholarship'
 import Footer from '../../../components/Footer'
+import axios from 'axios'
+import ScholarshipList from '../../../components/ScholarshipList'
 
 const MySwal = withReactContent(Swal)
 
 function Scholarship() {
   const [ isLoading, setIsLoading ] = useState(true);
-  const { isLogin } = useSelector( state => state.userSession );
+  const [ beasiswa, setBeasiswa ] = useState([]);
   const navigate = useNavigate();
 
   useEffect( () => {
-      if(!isLogin) {
-            MySwal.fire({
-              icon: 'error',
-              title: 'Maaf...',
-              text: 'Untuk masuk ke halaman ini anda harus login terlebih dahulu!',
-          })
-            navigate('/login');
-      }else {
-          setTimeout( () => {
-              setIsLoading(false);
-          }, 1500 )
-      }
-  }, [] )
+  
+          getAPiScholarship(`${API_KEY_INFORMATION}?type=Beasiswa`).then( data => {
+                setBeasiswa(data);
+                setIsLoading(false);
+          } )
+  
+  }, [] );
+
+  const getAPiScholarship = async (api) => {
+      const response = await axios.get(api);
+      const result = response.data;
+      return result;
+  }
 
   return (
     <>
@@ -37,7 +40,7 @@ function Scholarship() {
           <Loading/>
         ) : (
             <>
-              <SectionScholarship/>
+              <SectionScholarship scholarship={beasiswa} />
               <Footer/>
             </>
         ) }

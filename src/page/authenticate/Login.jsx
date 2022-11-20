@@ -19,7 +19,6 @@ function Login() {
     const [ email, setEmail ] = useState();
     const [ password, setPassword ] = useState();
 
-    console.log(state)
     const createSessionObj = async (email, password, form) => {
         const resUser = await axios.get(API_KEY_USER);
         const users = resUser.data;
@@ -35,13 +34,11 @@ function Login() {
         
             localStorage.setItem(KEY_SESSION, JSON.stringify(findUserSession));
             dispatch(loginSession(findUserSession));
-            console.log(state)
             navigate('/');
         }else if(findCompany !== -1) {
             const findCompanySession = companies.find( index => index.company_email == email && index.company_password == password );
             localStorage.setItem(KEY_SESSION, JSON.stringify(findCompanySession));
             dispatch(loginSession(findCompanySession));
-            console.log(state)
             navigate('/dashboard');
         }else {
            return MySwal.fire({
@@ -58,7 +55,6 @@ function Login() {
         createSessionObj(email, password, e.target);
     }
 
-    console.log(state);
   return (
         <Container fluid className='authenticate py-5' >
                 <Row>
