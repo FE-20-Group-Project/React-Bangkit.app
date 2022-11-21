@@ -20,6 +20,7 @@ function DetailJobs() {
     const [ jobs, setJobs ] = useState([]);
     const { id } = useParams();
     useEffect( () => {
+        window.scrollTo(0, 0);
         if(!isLogin) {
             MySwal.fire({
                 icon: 'error',
@@ -28,7 +29,6 @@ function DetailJobs() {
             })
             navigate('/login');
           }else {
-          
             getApiJobs(`${API_KEY_INFORMATION}/${id}`).then( data => {
                 setDetailJobs(data);
             } )
