@@ -16,6 +16,7 @@ function Homepage() {
   const [ isLoading, setIsLoading ] = useState(true);
 
   useEffect( () => {
+    window.scrollTo(0, 0);
       setTimeout( () => {
         setIsLoading(false);
       }, 1500 )

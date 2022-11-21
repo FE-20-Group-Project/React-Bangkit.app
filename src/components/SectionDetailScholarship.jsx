@@ -4,7 +4,7 @@ import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Navigation from './Navigation'
-import { FaInfoCircle, FaPhoneSquare } from 'react-icons/fa';
+import { FaInfoCircle, FaPhoneSquare, FaRegAddressBook } from 'react-icons/fa';
 
 function SectionDetailScholarship({beasiswa, detailBeasiswa}) {
     const {isLogin} = useSelector( state => state.userSession );
@@ -28,7 +28,7 @@ function SectionDetailScholarship({beasiswa, detailBeasiswa}) {
                                 </Col>
                                 <Col xs='3' className='d-flex justify-content-center flex-column' >
                                     <Link to={'/scholarship/' + item.id} className='btn btn-warning w-100 rounded-0 mb-3'><FaInfoCircle className='ms-2'/> Detail</Link>
-                                    <Button variant='success' className='w-100 rounded-0 mb-3'><FaPhoneSquare className='ms-2'/> Daftar</Button>
+                                    <a href='https://forms.gle/3xNCiHQd5jMtRGTa7' target='_blank' className='btn btn-success text-light w-100 rounded-0 mb-3'><FaRegAddressBook className='ms-2'/> Daftar</a>
                                 </Col>
                             </Row>
                         </Card>

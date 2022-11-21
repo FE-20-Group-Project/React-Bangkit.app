@@ -2,12 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getScholarship } from '../../../redux/action/scholarshipAction'
-import Navigation from '../../../components/Navigation'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import Loading from '../../../components/loader/Loading';
 import SectionScholarship from '../../../components/SectionScholarship'
-import Footer from '../../../components/Footer'
 import axios from 'axios'
 import ScholarshipList from '../../../components/ScholarshipList'
 
@@ -19,6 +17,7 @@ function Scholarship() {
   const { scholarship, isLoading } = useSelector( state => state.scholarshipList );
 
   useEffect( () => {
+      window.scrollTo(0, 0);
         dispatch(getScholarship());
   }, [] );
 
