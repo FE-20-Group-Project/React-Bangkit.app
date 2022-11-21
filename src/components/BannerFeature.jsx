@@ -28,7 +28,7 @@ function BannerFeature() {
                         </div>
                         <div className="col-7">
                             <h3 className='fw-semibold border-bottom border-3 border-danger'>Job Seeker</h3>
-                            <p className=''>Lowongan terbuka untuk para pekerja yang kesulitan dalam mencari pekerjaan di masa pandemi yang kian meluas.</p>
+                            <p className='text-card'>Lowongan terbuka untuk para pekerja yang kesulitan dalam mencari pekerjaan di masa pandemi yang kian meluas.</p>
                         </div>
                     </div>
                     <Link to='/jobs' className="card-neu-button text-center text-light">Info Selengkapnya</Link>
@@ -42,7 +42,7 @@ function BannerFeature() {
                         </div>
                         <div className="col-7">
                             <h3 className='fw-semibold border-bottom border-3 border-danger'>Beasiswa</h3>
-                            <p>Bantuan bagi para pelajar atau mahasiswa yang kesulitan dalam melanjutkan pendidikan dikarenakan keterbatasan ekonomi.</p>
+                            <p className='text-card'>Bantuan bagi para pelajar atau mahasiswa yang kesulitan dalam melanjutkan pendidikan dikarenakan keterbatasan ekonomi.</p>
                         </div>
                     </div>
                     <Link to='/scholarship' className="card-neu-button text-center text-light">Info Selengkapnya</Link>
