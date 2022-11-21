@@ -11,7 +11,7 @@ import withReactContent from 'sweetalert2-react-content'
 
 const MySwal = withReactContent(Swal)
 
-function FormCompany({handleAdd, addDisability,handleEditVisibility, currentProgram}) {
+function FormCompany({handleAdd, addDisability,handleEditVisibility, currentProgram, setCurrentProgram}) {
     const dispatch = useDispatch();
     const { isLogin } = useSelector( state => state.userSession );
 
@@ -40,14 +40,14 @@ function FormCompany({handleAdd, addDisability,handleEditVisibility, currentProg
 
     const handleUpdate = (e) => {
         e.preventDefault();
-            const formulir = createForm(company_id, namaPerusahaan, nama, logo, lokasi, type, gaji, kualifikasi, deskripsi, kontak);
+            const formulir = createForm(currentProgram.company_id, currentProgram.namaPerusahaan, currentProgram.nama, currentProgram.logo, currentProgram.lokasi, currentProgram.type, currentProgram.gaji, currentProgram.kualifikasi, currentProgram.deskripsi, currentProgram.kontak);
             MySwal.fire({
-                title: 'Yakin ingin keluar?',
+                title: 'Yakin ingin update?',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Ya, keluar!'
+                confirmButtonText: 'Ya!'
             }).then((result) => {
                 if (result.isConfirmed) {
                     dispatch(updateProgram(formulir, currentProgram.id));
@@ -121,22 +121,22 @@ function FormCompany({handleAdd, addDisability,handleEditVisibility, currentProg
                         </Form.Group>
                     </Form>
                     ) : (
-                        <Form  className={ addDisability ? 'd-block' : 'd-none' }>
+                        <Form onSubmit={ handleUpdate }  className={ addDisability ? 'd-block' : 'd-none' }>
                         <Form.Group className='mb-3'>
                             <Form.Label className='fw-semibold'>Nama Bantuan</Form.Label>
-                            <Form.Control value={currentProgram.nama || ''} onChange={(e) => setNama(e.target.value)} type='text' />
+                            <Form.Control value={currentProgram.nama} onChange={(e) => setCurrentProgram(e.target.value)} type='text' />
                         </Form.Group>
                         <Form.Group className='mb-3'>
                             <Form.Label className='fw-semibold'>URL Image</Form.Label>
-                            <Form.Control value={currentProgram.logo} onChange={(e) => setLogo(e.target.value)} type='url' />
+                            <Form.Control value={currentProgram.logo} onChange={(e) => setCurrentProgram(e.target.value)} type='url' />
                         </Form.Group>
                         <Form.Group className='mb-3'>
                             <Form.Label className='fw-semibold'>Lokasi</Form.Label>
-                            <Form.Control value={currentProgram.lokasi} onChange={(e) => setLokasi(e.target.value)} type='text' />
+                            <Form.Control value={currentProgram.lokasi} onChange={(e) => setCurrentProgram(e.target.value)} type='text' />
                         </Form.Group>
                         <Form.Group className='mb-3'>
                             <Form.Label className='fw-semibold'>Kualifikasi</Form.Label>
-                            <Form.Control value={currentProgram.kualifikasi} onChange={(e) => setKualifikasi(e.target.value)} type='text' />
+                            <Form.Control value={currentProgram.kualifikasi} onChange={(e) => setCurrentProgram(e.target.value)} type='text' />
                         </Form.Group>
                         { currentProgram.type=='Job Seeker' &&(
                         <Form.Group className='mb-3'>
@@ -146,7 +146,7 @@ function FormCompany({handleAdd, addDisability,handleEditVisibility, currentProg
                         }
                         <Form.Group className='mb-3'>
                             <Form.Label className='fw-semibold'>Kategori</Form.Label>
-                            <Form.Select value={currentProgram.type} onChange={(e) => setType(e.target.value)} >
+                            <Form.Select value={currentProgram.type} onChange={(e) => setCurrentProgram(e.target.value)} >
                                 <option>Job Seeker</option>
                                 <option>Beasiswa</option>
                             </Form.Select>

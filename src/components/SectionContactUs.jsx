@@ -1,6 +1,6 @@
 import React from 'react'
 import { Col, Row, Form, FloatingLabel } from 'react-bootstrap'
-import Contact from '../assets/png/contact.jpg'
+import Contact from '../assets/png/conyact.png'
 
 function SectionContactUs() {
   return (

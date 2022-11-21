@@ -5,7 +5,7 @@ import { API_KEY_USER, API_KEY_COMPANY, KEY_SESSION  } from '../../env/env'
 import { loginSession } from '../../redux/action/userSession'
 import { Container, Row, Card, Col, Form, Button } from 'react-bootstrap'
 import Logo from '../../assets/image/bangkit.png'
-import LogoLogin from '../../assets/png/login1.jpg'
+import LogoLogin from '../../assets/png/login.png'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
@@ -58,9 +58,9 @@ function Login() {
   return (
         <Container fluid className='authenticate py-5' >
                 <Row>
-                    <Card className='col-10 mx-auto rounded shadow-lg' >
+                    <Card className='col-12 col-sm-10 mx-auto rounded shadow-lg' >
                         <Row className='d-flex justify-content-start'>
-                            <Col xs={6} md={5}  className='d-flex mx-auto justify-content-center flex-column' >
+                            <Col xs={12} md={5}  className='d-flex bg-danger justify-content-center flex-column' >
                                 <img className='img-fluid w-100' src={LogoLogin} />
                             </Col>
                             <Col xs={10} md={5} className='p-3 mx-auto'>

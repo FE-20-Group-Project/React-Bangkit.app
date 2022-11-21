@@ -18,6 +18,7 @@ function Jobs() {
   const { jobs, isLoading } = useSelector( state => state.jobsList );
 
   useEffect( () => {
+      window.scrollTo(0, 0);
       dispatch(getJobs());
   },[] )
 

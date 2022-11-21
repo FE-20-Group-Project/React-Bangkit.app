@@ -7,6 +7,7 @@ import { Nav, Navbar, NavDropdown, Container,  Form, Button } from 'react-bootst
 import Logo from '../assets/image/bangkit.png'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import { FaSignInAlt, FaSignOutAlt } from 'react-icons/fa'
 
 const MySwal = withReactContent(Swal)
 
@@ -15,7 +16,7 @@ function Navigation() {
 
  const navigate = useNavigate()
  const dispatch = useDispatch();
- const state = useSelector( state => state.userSession );
+ const {isLogin} = useSelector( state => state.userSession );
 
   const logout = () => {
     MySwal.fire({
@@ -29,12 +30,12 @@ function Navigation() {
       if (result.isConfirmed) {
         dispatch(logOut());
         localStorage.removeItem(KEY_SESSION);
-        MySwal.fire(
-          'Berhasil Logout!',
-          'success'
+        MySwal.fire({
+          icon: 'success',
+          title: 'Berhasil Logout!'
+        }
         )
         navigate('/login');
-        console.log(state);
       }
     })
 
@@ -51,16 +52,19 @@ function Navigation() {
         <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="d-flex w-100 justify-content-end">
                 <NavLink to="/" style={({isActive}) => (isActive ? linkStyle : undefined)} className='nav-item p-2 me-3' >Beranda</NavLink>
-                <NavDropdown className='nav-links text-dark me-3' title='Informasi Bantuan' id="collasible-nav-dropdown">
-                    <NavLink to='/jobs' style={({isActive}) => (isActive ? linkStyle : undefined)} className='dropdown-item'>Lowongan Pekerjaan</NavLink>
-                    <NavLink to='/scholarship' style={({isActive}) => (isActive ? linkStyle : undefined)} className='dropdown-item'>Beasiswa Gratis</NavLink>
-                </NavDropdown>
+                <NavLink to="/about-us" style={({isActive}) => (isActive ? linkStyle : undefined)} className='nav-item p-2 me-3' >About</NavLink>
+                { !isLogin.company_id && (
+                  <NavDropdown className='nav-links text-dark me-3' title='Informasi Bantuan' id="collasible-nav-dropdown">
+                      <NavLink to='/jobs' style={({isActive}) => (isActive ? linkStyle : undefined)} className='dropdown-item'>Lowongan Pekerjaan</NavLink>
+                      <NavLink to='/scholarship' style={({isActive}) => (isActive ? linkStyle : undefined)} className='dropdown-item'>Beasiswa Gratis</NavLink>
+                  </NavDropdown>
+                ) }
                 <NavLink to="/article" style={({isActive}) => (isActive ? linkStyle : undefined)} className='nav-item p-2 me-3' >Article</NavLink>
                 {/* <NavLink className='nav-item text-dark p-2 me-3' to="#pricing">Profile</NavLink> */}
-                { state.isLogin==false ? (
-                <NavLink to='/login' className='btn btn-danger'>Login</NavLink>
+                { isLogin==false ? (
+                <NavLink to='/login' className='btn btn-danger'><FaSignInAlt className='me-2'/>Login</NavLink>
                 ): (
-                <Nav.Link onClick={ () => logout() } className='btn btn-danger text-light'>Logout</Nav.Link>
+                <Nav.Link onClick={ () => logout() } className='btn btn-danger text-light'><FaSignOutAlt className='me-2'/>Logout</Nav.Link>
                 ) }
                 
             </Nav>
