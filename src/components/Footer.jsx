@@ -2,6 +2,7 @@ import React from 'react'
 import LogoBangkit from '../assets/image/bangkit.png'
 import { Row, Col, ListGroup } from 'react-bootstrap'
 import { FaCopyright, FaFacebook, FaInstagram, FaWhatsapp } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
 function Footer() {
   return (
@@ -27,10 +28,18 @@ function Footer() {
             <Col xs='8' md='4'>
             <ul>
                 <ListGroup.Item className='fw-semibold my-3'>Information</ListGroup.Item>
-                <ListGroup.Item>Cras justo odio</ListGroup.Item>
-                <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-                <ListGroup.Item>Morbi leo risus</ListGroup.Item>
-                <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
+                <Link className='text-light' to='/'>
+                    <ListGroup.Item>Home</ListGroup.Item>
+                </Link>
+                <Link className='text-light' to='/about-us'>
+                    <ListGroup.Item>About</ListGroup.Item>
+                </Link>
+                <a className='text-light' href={`mailto:fazrlu9575@gmail.com,`}>
+                    <ListGroup.Item>Contact</ListGroup.Item>
+                </a>
+                <Link className='text-light' to='/article'>
+                    <ListGroup.Item>Article</ListGroup.Item>
+                </Link>
             </ul>
             </Col>
         </Row>
