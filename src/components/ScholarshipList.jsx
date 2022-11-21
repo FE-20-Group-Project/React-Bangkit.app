@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom'
 import { Card, Row, Col } from 'react-bootstrap'
 import { FaInfoCircle, FaRegAddressBook } from 'react-icons/fa';
 
-function ScholarshipList({scholarship}) {
-    
+function ScholarshipList({isLogin, scholarship}) {
   return (
     <>
         { scholarship.map( item => (
@@ -20,7 +19,9 @@ function ScholarshipList({scholarship}) {
                             </Col>
                             <Col xs='10' sm='3' className='d-flex justify-content-center flex-column' >
                                 <Link to={'/scholarship/' + item.id} className='btn btn-warning w-100 rounded-0 mb-3'><FaInfoCircle className='ms-2'/> Detail</Link>
+                                { isLogin && (
                                 <a href='https://forms.gle/3xNCiHQd5jMtRGTa7' target='_blank' className='btn btn-success w-100 rounded-0 mb-3'><FaRegAddressBook className='ms-2'/> Daftar</a>
+                                ) }
                             </Col>
                         </Row>
                     </Card>
