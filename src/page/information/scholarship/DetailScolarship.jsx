@@ -22,6 +22,7 @@ function DetailScolarship() {
     const [ beasiswa, setBeasiswa ] = useState([]);
     const { id } = useParams();
     useEffect( () => {
+        window.scrollTo(0, 0);
         if(!isLogin) {
             MySwal.fire({
                 icon: 'error',
