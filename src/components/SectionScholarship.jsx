@@ -4,9 +4,10 @@ import { Card, Row, Col, Form, Button } from 'react-bootstrap'
 import { FaFilter } from 'react-icons/fa'
 import { getFilterScholarship } from '../redux/action/scholarshipAction'
 import ScholarshipList from './ScholarshipList'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 function SectionScholarship({scholarship}) {
+  const {isLogin} = useSelector( state => state.userSession );
   const dispatch = useDispatch();
   const [ namaPerusahaan, setNamaPerusahaan ] = useState('');
   const [ namaBeasiswa, setNamaBeasiswa] = useState('');
@@ -52,7 +53,7 @@ function SectionScholarship({scholarship}) {
                 </Col>
                 <Col xs='12' xl='8' className='p-3' style={{ height: '100vh', overflow:'scroll' }}>
                     <h2 className='text-center fw-bold text-light'>Beasiswa List</h2>
-                    <ScholarshipList scholarship={scholarship}/>
+                    <ScholarshipList isLogin={isLogin} scholarship={scholarship}/>
                 </Col>
             </Row>
       </section>
