@@ -8,23 +8,24 @@ function SectionContactUs() {
         <Row className='d-flex justify-content-around f-wrap'>
             <Col xs='10' md='5' className='p-3'>
                 <h3 className='fw-bold text-light text-center'>CONTACT US</h3>
-                <Form>
+                <Form action="https://formspree.io/f/xaykynly" method="POST">
                     <Form.Group className='mb-3'>
                         <Form.Label className='text-light fw-semibold'>Nama Lengkap</Form.Label>
-                        <Form.Control type='text' />
+                        <Form.Control required type='text' />
                     </Form.Group>
                     <Form.Group className='mb-3'>
                     <Form.Label className='text-light fw-semibold'>Alamat Email</Form.Label>
-                        <Form.Control type='email' />
+                        <Form.Control required type='email' />
                     </Form.Group>
                     <Form.Group className='mb-3'>
                     <Form.Label className='text-light fw-semibold'>Pesan</Form.Label>
                             <Form.Control
+                            required
                             as="textarea"
                             style={{ height: '100px' }}/>
                     </Form.Group>
                     <Form.Group>
-                    <button className='contact'>
+                    <button type='submit' className='contact'>
                         <div className="svg-wrapper-1">
                             <div className="svg-wrapper">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">

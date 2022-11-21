@@ -14,3 +14,9 @@ body {
     }
 
 }
+
+@media screen and (max-width: 1120px) {
+    .text-card {
+        font-size: 14px;
+    }
+}
