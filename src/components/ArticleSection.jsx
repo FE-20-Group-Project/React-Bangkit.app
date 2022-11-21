@@ -30,7 +30,7 @@ function ArticleSection() {
       ) : (
         <>
           <section className='article-first my-5 p-3'>
-            <h1 className='text-center fw-bold text-header-2'>Article <span className='text-danger mb-3'>COVID-19</span></h1>
+            <h1 className='text-center fw-bold text-header-2'>Article Perkembangan terbaru <span className='text-danger mb-3'>COVID-19</span></h1>
             <Row className='d-flex justify-content-center'>
             <Col xs="10" className='m-3'>
                 <Row className='d-flex justify-content-center p-0'>
