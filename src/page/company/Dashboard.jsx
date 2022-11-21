@@ -24,7 +24,16 @@ const {isLogin} = useSelector( state => state.userSession );
 const {companyProgram, isLoading} = useSelector( state => state.companyProgram );
 const [ addDisability, setAddDisability ] = useState(false);
 const [ editVisibility, setEditVisibility ] = useState(false);
-const [ currentProgram, setCurrentProgram ] = useState({});
+const [ currentProgram, setCurrentProgram ] = useState({
+    nama: '',
+    logo: '',
+    lokasi: '',
+    kualifikasi: '',
+    kategori: '',
+    type:'',
+    gaji: '',
+    deskripsi: '',
+});
 
 useEffect( () => {
     dispatch(getProgram(isLogin.company_id));
@@ -89,21 +98,16 @@ const logout = () => {
         <Container className='p-3'>
         <Row className='d-flex justify-content-between'>
             <header className='d-flex justify-content-between mb-3'>
-                <h1>Dashboard</h1>
-                <Button onClick={ () => logout() } className='btn-md border-0 bg-light text-dark'><FaSignOutAlt className='me-1' /> Logout</Button>
+                <h1>Dashboard - Company</h1>
             </header>
             <section>
                 <Row className='d-flex justify-content-around'>
                     <Card className='col-8 col-md-3 m-3 shadow-lg p-3'>
-                        <span className='fs-1'>5</span>
-                        <span className='fs-5'>Loker</span>
-                    </Card>
-                    <Card className='col-8 col-md-3 m-3 shadow-lg p-3'>
-                        <span className='fs-1'>5</span>
-                        <span className='fs-5'>Beasiswa</span>
+                        <span className='fs-1'>{companyProgram.length}</span>
+                        <span className='fs-5'>Program</span>
                     </Card>
                 </Row>
-                <FormCompany handleAdd={handleAdd} addDisability={addDisability} handleEditVisibility={editVisibility} currentProgram={currentProgram} />
+                <FormCompany handleAdd={handleAdd} addDisability={addDisability} handleEditVisibility={editVisibility} currentProgram={currentProgram} setCurrentProgram={setCurrentProgram} />
                 <Row className='card table-responsive mt-3 p-3'>
                     <h5 className='text-dark fw-semibold'>Tracking Information</h5>
                     { isLoading ? (

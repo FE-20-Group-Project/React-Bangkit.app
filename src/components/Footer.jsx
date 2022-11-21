@@ -1,5 +1,6 @@
 import React from 'react'
 import LogoBangkit from '../assets/image/bangkit.png'
+import NUS from '../assets/png/nus.png'
 import { Row, Col, ListGroup } from 'react-bootstrap'
 import { FaCopyright, FaFacebook, FaInstagram, FaWhatsapp } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
@@ -25,7 +26,7 @@ function Footer() {
                     </Col>
                 </Row>
             </Col>
-            <Col xs='8' md='4'>
+            <Col xs='8' md='3'>
             <ul>
                 <ListGroup.Item className='fw-semibold my-3'>Information</ListGroup.Item>
                 <Link className='text-light' to='/'>
@@ -42,9 +43,13 @@ function Footer() {
                 </Link>
             </ul>
             </Col>
+            <Col xs='5' md='3'>
+                <p className='my-3 fw-semibold'>Challange Partner kami</p>
+                <img src={NUS} width='200' />
+            </Col>
         </Row>
         <Row className='p-3 bg-transparant-dark'>
-                <p className='text-light text-center'><FaCopyright className='me-2'/> Copyright Group Front-End 20, Challenge Partner : National University of Singapore</p>
+                <p className='text-light text-center'>Copyright <FaCopyright/> Group Front-End 20 - NUS #Tech4Impact 2022 | All Right Reserved</p>
         </Row>
     </footer>
   )
