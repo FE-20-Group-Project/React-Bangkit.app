@@ -16,6 +16,7 @@ import Aboutpage from './page/about/Aboutpage'
 import DetailJobs from './page/information/jobs/DetailJobs'
 import DetailScolarship from './page/information/scholarship/DetailScolarship'
 import Navigation from './components/Navigation'
+import Forum from './components/Forum'
 
 function App() {
 
@@ -35,6 +36,7 @@ function App() {
               <Route path='/jobs/:id' element={<DetailJobs/>} />
               <Route path='/scholarship' element={<Scholarship/>} />
               <Route path='/scholarship/:id' element={<DetailScolarship/>} />
+              <Route path='forum' element={<Forum/>}/>
           </Routes>
           <Footer/>
     </div>

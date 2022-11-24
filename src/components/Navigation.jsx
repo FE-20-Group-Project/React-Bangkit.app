@@ -59,6 +59,7 @@ function Navigation() {
                       <NavLink to='/scholarship' style={({isActive}) => (isActive ? linkStyle : undefined)} className='dropdown-item'>Beasiswa Gratis</NavLink>
                   </NavDropdown>
                 ) }
+                <NavLink to="/forum" style={({isActive}) => (isActive ? linkStyle : undefined)} className='nav-item p-2 me-3' >Forum</NavLink>
                 <NavLink to="/article" style={({isActive}) => (isActive ? linkStyle : undefined)} className='nav-item p-2 me-3' >Article</NavLink>
                 {/* <NavLink className='nav-item text-dark p-2 me-3' to="#pricing">Profile</NavLink> */}
                 { isLogin==false ? (
