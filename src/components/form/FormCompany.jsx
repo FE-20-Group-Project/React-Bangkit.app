@@ -1,10 +1,10 @@
 import axios from 'axios';
 import React, {useEffect, useState} from 'react'
-import { API_KEY_INFORMATION } from '../env/env';
+import { API_KEY_INFORMATION } from '../../env/env';
 import { Row, Form, Button } from 'react-bootstrap'
 import { FaPlus, FaWindowClose } from 'react-icons/fa'
 import { useSelector, useDispatch } from 'react-redux';
-import { addProgram, updateProgram } from '../redux/action/programAction';
+import { addProgram, updateProgram } from '../../redux/action/programAction';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 

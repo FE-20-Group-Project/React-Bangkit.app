@@ -19,6 +19,7 @@
     --third-color : #457B9D;
     /* Light Color */
     --light-color : #FFFFFF;
+    --light-soft-color : #f4f7f9;
     /* Hover Color */
     --hover-color : #F1FAEE;
     --danger-color: #dc3545;
@@ -81,6 +82,9 @@ Timpa Class bootstrap atau buat Class baru jika dibutuhkan... */
 .bg-light {
     background-color: var(--light-color) !important;
 }
+.bg-soft-light {
+    background-color: var(--light-soft-color) !important;
+}
 .bg-transparant-dark {
     background-color: rgba(0, 0, 0, 0.8);
 }
@@ -97,7 +101,10 @@ Timpa Class bootstrap atau buat Class baru jika dibutuhkan... */
 
 /* Border */
 .border-third {
-    border-color: #457B9D !important;
+    border-color: var(--third-color) !important;
+}
+.border-soft-light {
+    border-color: var(--light-soft-color);
 }
 
 /* Text-color */

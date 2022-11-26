@@ -2,7 +2,6 @@ const LOGIN = 'login';
 const LOGOUT = 'logout';
 
 const loginSession = (data) => {
-    console.log(data);
     return {
         type : LOGIN,
         payload : data

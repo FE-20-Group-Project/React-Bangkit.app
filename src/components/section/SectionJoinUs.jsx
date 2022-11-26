@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Button, Col, Row } from 'react-bootstrap'
-import Join from '../assets/png/join.png'
+import { Col, Row } from 'react-bootstrap'
+import Join from '../../assets/png/join.png'
 
 function SectionJoinUs() {
   return (
-    <section className='container-fluid bg-light bg-world  py-5'>
+    <section className='container-fluid bg-soft-light bg-world py-5'>
             <Row className='d-flex justify-content-around'>
                 <Col xs='8' md='4'>
                     <img src={Join} className='img-fluid' />

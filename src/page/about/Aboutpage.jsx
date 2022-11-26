@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Loading from '../../components/loader/Loading';
-import SectionAbout from '../../components/SectionAbout';
+import SectionAbout from '../../components/section/SectionAbout';
 
 function Aboutpage() {
     const [ isLoading, setIsLoading ] = useState(true);

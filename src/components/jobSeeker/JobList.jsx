@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Card, Button, Col } from 'react-bootstrap'
+import { Row, Card, Col } from 'react-bootstrap'
 import { FaInfoCircle, FaPhoneSquare } from 'react-icons/fa';
 import { Link } from 'react-router-dom'
 

@@ -1,12 +1,12 @@
 import React from 'react'
-import { Row, Col, Button, Card } from 'react-bootstrap'
-import Bangkit from '../assets/png/bangkit2.png'
-import {FcFactory, FcBusiness, FcGraduationCap, FcPlus} from 'react-icons/fc'
+import { Row, Col, Card } from 'react-bootstrap'
+import Bangkit from '../../assets/png/bangkit2.png'
+import {FcFactory, FcGraduationCap, FcPlus} from 'react-icons/fc'
 
 function SectionAbout() {
   return (
     <>
-    <section className='about-section container-fluid bg-primary mb-5 p-5'>
+    <section className='about-section container-fluid bg-primary p-5'>
         <Row className='d-flex justify-content-between f-wrap'>
             <Col xs='12' xl='5' className='d-flex justify-content-center flex-column'>
               <Row>
@@ -25,7 +25,7 @@ function SectionAbout() {
             </Col>  
         </Row>
     </section>
-    <section className='visi-misi-section container-fluid mb-5 bg-light'>
+    <section className='visi-misi-section container-fluid py-5 bg-soft-light'>
         <Row className='d-flex justify-content-around'>
           <Col xs='10' md='5' className='p-3'>
             <h5 className='text-danger'>Visi Bangkit</h5>
@@ -39,7 +39,7 @@ function SectionAbout() {
           </Col>
         </Row>
     </section>
-    <section className='why-section container-fluid bg-light mb-5'>
+    <section className='why-section container-fluid bg-soft-light pb-5'>
       <h1 className='text-center text-dark fw-bold'>Kenapa Bangkit?</h1>
         <Row className='d-flex justify-content-around'>
             <Card className='col-10 col-md-5 m-3 p-3'>

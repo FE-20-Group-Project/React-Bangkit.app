@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { API_KEY_USER, API_KEY_COMPANY, KEY_SESSION, API_KEY_LOGIN  } from '../../env/env'
+import { KEY_SESSION, API_KEY_LOGIN  } from '../../env/env'
 import { loginSession } from '../../redux/action/userSession'
-import { Container, Row, Card, Col, Form, Button } from 'react-bootstrap'
+import { Container, Row, Card, Col, Form, Button, Spinner } from 'react-bootstrap'
 import Logo from '../../assets/image/bangkit.png'
 import LogoLogin from '../../assets/png/login.png'
 import axios from 'axios'
@@ -15,20 +15,44 @@ const MySwal = withReactContent(Swal)
 function Login() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const [ loading, setLoading ] = useState(false);
     const [ email, setEmail ] = useState();
     const [ password, setPassword ] = useState();
 
     const createSessionObj = async (email, password, form) => {
        try{
+            setLoading(true);
             const response = await axios.post(API_KEY_LOGIN, {
                 "email": email,
                 "password": password
             })
+            const session = createSession(response.data);
             console.log(response);
+            dispatch(loginSession(session));
+            setLoading(false);
+            localStorage.setItem(KEY_SESSION, JSON.stringify(session));
+
+            MySwal.fire({
+                icon: 'success',
+                title: 'Berhasil Login!',
+              })
+              navigate('/');
        } catch(error) {
             console.log(error.response.data.message);
        }
         
+    }
+
+    const createSession = (obj) => {
+        return {
+            token: obj.token,
+            message: obj.message,
+            id: obj.data._id,
+            email: obj.data.email,
+            name: obj.data.name,
+            image: obj.data.image,
+            password: obj.data.password
+        }
     }
 
     const handleLogin = (e) => {
@@ -70,7 +94,18 @@ function Login() {
                                         <Link>
                                         <p className='text-danger'>Lupa Password?</p>
                                         </Link>
-                                        <Button variant='danger' type='submit' className='w-100 mb-2'>Log in</Button>
+                                        <Button variant='danger' type='submit' className='w-100 mb-2'>
+                                        { loading? (
+                                            <Spinner
+                                                as="span"
+                                                animation="border"
+                                                size="sm"
+                                                role="status"
+                                                />
+                                        ): (
+                                            <>Log in</>
+                                        ) }
+                                        </Button>
                                         {/* <Link to='/' className='btn btn-danger w-100 mb-2'>Sign-in</Link> */}
                                         <p className='text-dark'>Belum punya akun ? <Link to='/register' className='text-danger text-decoration-none'>Daftar sekarang</Link></p>
                                     </Form.Group>

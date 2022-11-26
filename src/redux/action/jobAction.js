@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import { API_KEY_JOBS } from "../../env/env";
 const FETCH_START = "fetch_start";
 const SUCCESS_GET_JOBS = "success_get_jobs";
 
@@ -17,10 +17,14 @@ const successGetJobs = (data) => {
     }
 }
 
-const getJobs = () => {
+const getJobs = (token) => {
     return async (dispatch) => {
         dispatch(fetchStart());
-        const response = await axios.get('https://6350c3703e9fa1244e4c9abd.mockapi.io/bangkit/company_help_information?type=Job%20Seeker');
+        const response = await axios.get('https://api-bangkit.up.railway.app/api/user/loker', {
+            'headers': { 'Authorization': `Bearer ${token}` }
+        });
+        console.log(response);
+        die();
         const result = response.data;
         dispatch(successGetJobs(result));
     }

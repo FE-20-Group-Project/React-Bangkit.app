@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { Container, Row, Col, Button } from 'react-bootstrap'
-import Protocol from '../assets/png/protocol.jpg'
-import { API_KEY_NEWS } from '../env/env'
+import { Row, Col } from 'react-bootstrap'
+import Protocol from '../../assets/png/protocol.jpg'
+import { API_KEY_NEWS } from '../../env/env'
 
 function SectionCovidInfo() {
 
@@ -52,7 +52,7 @@ function SectionCovidInfo() {
                     <h3>{sembuh}</h3>
             </Col>
         </Row>
-        <Row className='container mx-auto d-flex justify-content-around'>
+        <Row className='container-fluid mx-auto d-flex justify-content-around'>
             <Col xs='10' sm='6' className='d-flex p-3 justify-content-center flex-column'>
                 <h1 className='text-header-2 text-light'>Ayo cegah terjadinya <span className='text-primary'>COVID-19</span> dengan menerapkan protocol berikut</h1>
             </Col>

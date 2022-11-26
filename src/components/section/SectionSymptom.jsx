@@ -1,10 +1,10 @@
 import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
-import Symptom from '../assets/png/pandemic5.jpg'
+import Symptom from '../../assets/png/pandemic5.jpg'
 
 function SectionSymptom() {
   return (
-    <section className='container my-5 p-3'>
+    <section className='container-fluid py-5 bg-soft-light'>
         <Row className='d-flex justify-content-around'>
             <Col xs='10' md='5' className='p-3'>
                 <img src={Symptom} className='img-fluid w-100' />    

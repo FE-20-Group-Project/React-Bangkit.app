@@ -5,9 +5,9 @@ import { getScholarship } from '../../../redux/action/scholarshipAction'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import Loading from '../../../components/loader/Loading';
-import SectionScholarship from '../../../components/SectionScholarship'
+import SectionScholarship from '../../../components/scholarship/SectionScholarship'
 import axios from 'axios'
-import ScholarshipList from '../../../components/ScholarshipList'
+import ScholarshipList from '../../../components/scholarship/ScholarshipList'
 
 const MySwal = withReactContent(Swal)
 

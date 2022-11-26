@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { KEY_SESSION, API_KEY_INFORMATION } from '../../env/env'
+import { KEY_SESSION } from '../../env/env'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProgram, removeProgram } from '../../redux/action/programAction'
 import { logOut } from '../../redux/action/userSession'
-import { Container, Row, Card, Table, Button, Badge, ToggleButton, FormGroup, Form } from 'react-bootstrap'
-import { BsFillBriefcaseFill } from 'react-icons/bs'
-import { FaBars, FaEdit, FaPlus, FaSignOutAlt, FaTrash, FaWindowClose } from 'react-icons/fa'
-import Navigation from '../../components/Navigation'
+import { Container, Row, Card, Table, Button } from 'react-bootstrap'
+import { FaEdit, FaTrash, } from 'react-icons/fa'
 
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-import axios from 'axios'
-import FormCompany from '../../components/FormCompany'
+import FormCompany from '../../components/form/FormCompany'
 import Loading from '../../components/loader/Loading'
 
 const MySwal = withReactContent(Swal)

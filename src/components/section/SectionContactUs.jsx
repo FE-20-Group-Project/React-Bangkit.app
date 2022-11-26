@@ -1,10 +1,10 @@
 import React from 'react'
-import { Col, Row, Form, FloatingLabel } from 'react-bootstrap'
-import Contact from '../assets/png/conyact.png'
+import { Col, Row, Form } from 'react-bootstrap'
+import Contact from '../../assets/png/conyact.png'
 
 function SectionContactUs() {
   return (
-    <section className='container-fluid bg-danger mt-5 py-5'>
+    <section className='container-fluid bg-danger py-5'>
         <Row className='d-flex justify-content-around f-wrap'>
             <Col xs='10' md='5' className='p-3'>
                 <h3 className='fw-bold text-light text-center'>CONTACT US</h3>

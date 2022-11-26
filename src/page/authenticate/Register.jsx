@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap'
@@ -17,6 +17,10 @@ const [ name, setName ] = useState('');
 const [ contact, setContact ] = useState('');
 const [ password, setPassword ] = useState('');
 const [ confirmPassword, setConfirmPassword ] = useState('');
+
+useEffect( () => {
+    window.scrollTo(0, 0);
+}, [] );
 
 const register = async (data, form) => {
     try {

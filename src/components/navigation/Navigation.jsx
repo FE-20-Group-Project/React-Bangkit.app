@@ -1,13 +1,13 @@
 import React from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { KEY_SESSION } from '../env/env'
-import { logOut } from '../redux/action/userSession'
-import { Nav, Navbar, NavDropdown, Container,  Form, Button } from 'react-bootstrap'
-import Logo from '../assets/image/bangkit.png'
+import { KEY_SESSION } from '../../env/env'
+import { logOut } from '../../redux/action/userSession'
+import { Nav, Navbar, NavDropdown, Container,  Form, Button, Dropdown } from 'react-bootstrap'
+import Logo from '../../assets/image/bangkit.png'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-import { FaSignInAlt, FaSignOutAlt } from 'react-icons/fa'
+import { FaSignInAlt, FaSignOutAlt, FaUser } from 'react-icons/fa'
 
 const MySwal = withReactContent(Swal)
 
@@ -53,18 +53,28 @@ function Navigation() {
             <Nav className="d-flex w-100 justify-content-end">
                 <NavLink to="/" style={({isActive}) => (isActive ? linkStyle : undefined)} className='nav-item p-2 me-3' >Beranda</NavLink>
                 <NavLink to="/about-us" style={({isActive}) => (isActive ? linkStyle : undefined)} className='nav-item p-2 me-3' >About</NavLink>
-                { !isLogin.company_id && (
-                  <NavDropdown className='nav-links text-dark me-3' title='Informasi Bantuan' id="collasible-nav-dropdown">
+                <NavLink to="/report" style={({isActive}) => (isActive ? linkStyle : undefined)} className='nav-item p-2 me-3' >Pelaporan</NavLink>
+                  <NavDropdown className='nav-links text-dark me-3' title='Informasi' id="collasible-nav-dropdown">
                       <NavLink to='/jobs' style={({isActive}) => (isActive ? linkStyle : undefined)} className='dropdown-item'>Lowongan Pekerjaan</NavLink>
                       <NavLink to='/scholarship' style={({isActive}) => (isActive ? linkStyle : undefined)} className='dropdown-item'>Beasiswa Gratis</NavLink>
+                      <NavLink to="/article" style={({isActive}) => (isActive ? linkStyle : undefined)} className='dropdown-item' >Article</NavLink>
                   </NavDropdown>
-                ) }
-                <NavLink to="/article" style={({isActive}) => (isActive ? linkStyle : undefined)} className='nav-item p-2 me-3' >Article</NavLink>
                 {/* <NavLink className='nav-item text-dark p-2 me-3' to="#pricing">Profile</NavLink> */}
                 { isLogin==false ? (
                 <NavLink to='/login' className='btn btn-danger'><FaSignInAlt className='me-2'/>Login</NavLink>
                 ): (
-                <Nav.Link onClick={ () => logout() } className='btn btn-danger text-light'><FaSignOutAlt className='me-2'/>Logout</Nav.Link>
+                      <Dropdown drop="start">
+                        <Dropdown.Toggle id="dropdown-button-dark-example1" className='bg-light border-0'>
+                        <img src={`https://api-bangkit.up.railway.app/${isLogin.image}`} width='30' />
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu variant="light" >
+                          <NavLink to='/user/profile' style={({isActive}) => (isActive ? linkStyle : undefined)} className='dropdown-item'><FaUser/> Profile</NavLink>
+                          <Dropdown.Divider />
+                          <Dropdown.Item href="#/action-4" onClick={ () => logout() }><FaSignOutAlt/> Logout</Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+
                 ) }
                 
             </Nav>
