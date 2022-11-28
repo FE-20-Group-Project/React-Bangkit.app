@@ -1,9 +1,9 @@
 import React from 'react'
-import DetailScolarship from '../page/information/scholarship/DetailScolarship'
+import DetailScolarship from '../../page/information/scholarship/DetailScolarship'
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import Navigation from './Navigation'
+import Navigation from '../navigation/Navigation'
 import { FaInfoCircle, FaPhoneSquare, FaRegAddressBook } from 'react-icons/fa';
 
 function SectionDetailScholarship({beasiswa, detailBeasiswa}) {

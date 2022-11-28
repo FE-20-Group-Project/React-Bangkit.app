@@ -1,6 +1,6 @@
 import React from 'react'
-import LogoBangkit from '../assets/image/bangkit.png'
-import NUS from '../assets/png/nus.png'
+import LogoBangkit from '../../assets/image/bangkit.png'
+import NUS from '../../assets/png/nus.png'
 import { Row, Col, ListGroup } from 'react-bootstrap'
 import { FaCopyright, FaFacebook, FaInstagram, FaWhatsapp } from 'react-icons/fa'
 import { Link } from 'react-router-dom'

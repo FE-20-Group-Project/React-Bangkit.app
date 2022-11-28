@@ -1,21 +1,20 @@
 import { KEY_SESSION } from '../../../env/env';
-import { LOGIN, LOGOUT } from '../../action/userSession';
+import { ADD_SESSION, CLEAR_SESSION, UPDATE_SESSION} from '../../action/userSession';
 
-let isLogin = localStorage.getItem(KEY_SESSION);
+let sessionData = localStorage.getItem(KEY_SESSION);
 const initialState = {
-    isLogin : JSON.parse(isLogin) || false
+    session : JSON.parse(sessionData) || false,
 }
 
 const userSession = (state = initialState, action) => {
         switch(action.type) {
-            case LOGIN :
-                console.log(action.payload)
+            case ADD_SESSION :
                 return {
-                    isLogin : action.payload
+                    session : action.payload
                 }
-            case LOGOUT : 
+            case CLEAR_SESSION : 
                 return {
-                    isLogin : false
+                    session : false,
                 }
             default : return state;
         }

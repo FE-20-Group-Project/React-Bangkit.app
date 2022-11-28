@@ -1,13 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { Row, Col, Button } from 'react-bootstrap'
-import Beasiswa from '../assets/png/beasiswa4.png'
-import Loker from '../assets/png/section.png'
-import Bangkit from '../assets/png/bangkit2.png'
+import Beasiswa from '../../assets/png/beasiswa4.png'
+import Loker from '../../assets/png/section.png'
+import Bangkit from '../../assets/png/bangkit2.png'
 
 function BannerFeature() {
   return (
-    <section className='container-fluid bg-danger bg-rain banner-feature py-3 mb-3'>
+    <section className='container-fluid bg-danger bg-rain banner-feature py-5'>
       <Row className='d-flex justify-content-center col-10 mx-auto py-3 f-wrap'>
             <Col xs='12' md='6'>
                 <h3 className='text-light fw-bold my-3'>Apa itu Bangkit ?</h3>

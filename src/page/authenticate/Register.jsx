@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap'
-import { API_KEY_USER } from '../../env/env'
+import { API_KEY_REGISTER } from '../../env/env'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import axios from 'axios'
@@ -12,66 +12,40 @@ const MySwal = withReactContent(Swal)
 function Register() {
 
 const navigate = useNavigate();
-const [ username, setUsername ] = useState();
-const [ name, setName ] = useState();
-const [ email, setEmail ] = useState();
-const [ password, setPassword ] = useState();
-const [ confirmPassword, setConfirmPassword ] = useState();
+const [ email, setEmail ] = useState('');
+const [ name, setName ] = useState('');
+const [ contact, setContact ] = useState('');
+const [ password, setPassword ] = useState('');
+const [ confirmPassword, setConfirmPassword ] = useState('');
 
-const register = async (api, data, form) => {
-    const res = await axios.get(api);
-    const users = res.data;
-    const findEmail = users.findIndex( index => index.email == data.email );
-    const findUsername = users.findIndex( index => index.username == data.username );
-    if( findEmail !== -1 ) {
-        form.reset();
-        return MySwal.fire({
-            icon: 'error',
-            title: 'Gagal Registrasi',
-            text: 'Maaf email yang anda masukan sudah ada!',
-        })
-    }else if ( findUsername !== -1 ) {
-        form.reset();
-        return MySwal.fire({
-            icon: 'error',
-            title: 'Gagal Registrasi',
-            text: 'Maaf username yang anda masukan sudah ada!',
-        })
-    }else {
-        const response = await axios.post(api, data);
-            return MySwal.fire({
-                icon: 'success',
-                title: 'Registrasi Berhasil',
-                text: 'Akunmu sudah berhasil didaftarkan, silahkan login terlebih dahulu!',
-            })
+useEffect( () => {
+    window.scrollTo(0, 0);
+}, [] );
+
+const register = async (data, form) => {
+    try {
+        const response = await axios.post(API_KEY_REGISTER, data);
+        console.log(response);
+    } catch(error) {
+        console.log(error.response.message);
     }
 }
 
-const createFormulir = (username, email, name, password) => {
+const createFormulir = (email, name, contact, password, confirmPassword) => {
     return {
-        username,
         email,
         name,
-        password
+        contact,
+        password,
+        confirmPassword
     }
 }
 
 const handleSubmit = (e) => {
     e.preventDefault();
 
-    if( password === confirmPassword ) {
-            const formulir = createFormulir(username, email, name, password);
-            register(API_KEY_USER, formulir, e.target);
-            e.target.reset();
-            navigate('/login');
-
-    }else {
-       return MySwal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'password dan konfirmasi password harus sesuai!',
-          })
-    }
+    const formulir = createFormulir(email, name, contact, password, confirmPassword);
+    register(formulir, e.target);
 
 }
 
@@ -94,14 +68,6 @@ const handleSubmit = (e) => {
                                 <Form onSubmit={ handleSubmit }>
                                     <Form.Group className='mb-4'>
                                         <div className='group'>
-                                            <input required onChange={ (e) => setUsername(e.target.value) } type='text' className='input w-100' />
-                                            <span className='highlight'></span>
-                                            <span className='bar w-100'></span>
-                                            <label className='label-input'>Username</label>
-                                        </div>
-                                    </Form.Group>
-                                    <Form.Group className='mb-4'>
-                                        <div className='group'>
                                             <input required onChange={ (e) => setEmail(e.target.value) } type='email' className='input w-100' />
                                             <span className='highlight'></span>
                                             <span className='bar w-100'></span>
@@ -114,6 +80,14 @@ const handleSubmit = (e) => {
                                             <span className='highlight'></span>
                                             <span className='bar w-100'></span>
                                             <label className='label-input'>Nama Lengkap</label>
+                                        </div>
+                                    </Form.Group>
+                                    <Form.Group className='mb-4'>
+                                        <div className='group'>
+                                            <input required onChange={ (e) => setContact(e.target.value) } type='telp' className='input w-100' />
+                                            <span className='highlight'></span>
+                                            <span className='bar w-100'></span>
+                                            <label className='label-input'>Contact</label>
                                         </div>
                                     </Form.Group>
                                     <Form.Group className='mb-4'>

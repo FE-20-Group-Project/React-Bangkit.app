@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux';
-import { Container, Row, Form, Col, Card, Button } from 'react-bootstrap'
+import { Row, Form, Col, Card } from 'react-bootstrap'
 import { FaInfoCircle, FaPhoneSquare } from 'react-icons/fa';
 
 function SectionDetailJobs({jobs, detailJobs}) {

@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import Beasiswa from '../assets/png/beasiswa3.png'
+import Beasiswa from '../../assets/png/beasiswa3.png'
 import { Card, Row, Col, Form, Button } from 'react-bootstrap'
 import { FaFilter } from 'react-icons/fa'
-import { getFilterScholarship } from '../redux/action/scholarshipAction'
+import { getFilterScholarship } from '../../redux/action/scholarshipAction'
 import ScholarshipList from './ScholarshipList'
 import { useDispatch, useSelector } from 'react-redux'
 

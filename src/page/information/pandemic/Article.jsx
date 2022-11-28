@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import ArticleSection from '../../../components/ArticleSection'
+import ArticleSection from '../../../components/article/ArticleSection'
 import { API_KEY_ARTICLE } from '../../../env/env'
 import Loading from '../../../components/loader/Loading'
 import axios from 'axios'
@@ -23,7 +23,7 @@ function Article() {
       return result;
   }
   return (
-    <div className='bg-virus'>
+    <div className='bg-virus bg-soft-light'>
         { isLoading ? (
           <Loading/>
         ) : (

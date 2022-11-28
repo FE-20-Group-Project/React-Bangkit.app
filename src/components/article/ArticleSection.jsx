@@ -6,11 +6,11 @@ function ArticleSection({article}) {
 
   return (
     <>
-        <section className='article-first my-5 p-3'>
+        <section className='article-first py-5'>
           <h1 className='text-center fw-bold text-header-2'>Article Perkembangan terbaru <span className='text-danger mb-3'>COVID-19</span></h1>
-          <Row className='d-flex justify-content-center'>
+          <Row className='d-flex justify-content-center p-0 m-0'>
           <Col xs="10" className='m-3'>
-              <Row className='d-flex justify-content-center p-0'>
+              <Row className='d-flex justify-content-center p-0 m-0'>
                   <Col xs='12' md='6' className='p-3'>
                       <img src={article[5].image} className='img-fluid w-100' />
                   </Col>
@@ -23,8 +23,8 @@ function ArticleSection({article}) {
           </Col>
           </Row>
         </section>
-        <section className='article-section mb-5 p-3' >
-            <Row className='d-flex justify-content-center f-wrap'>
+        <section className='article-section pb-5' >
+            <Row className='d-flex justify-content-center f-wrap p-0 m-0'>
                 { article.map( (item, index) => {
                     return (
                           <Col key={index} xs="10" sm='5' className='m-3'>

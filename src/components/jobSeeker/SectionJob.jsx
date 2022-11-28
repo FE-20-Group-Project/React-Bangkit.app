@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Card, Col, Row, Form, Button } from 'react-bootstrap'
 import { FaFilter } from 'react-icons/fa'
-import { getFIlterJobs } from '../redux/action/jobAction'
-import Jobs from '../assets/png/kerja.png'
-import axios from 'axios'
+import { getFIlterJobs } from '../../redux/action/jobAction'
+import Jobs from '../../assets/png/kerja.png'
 import JobList from './JobList'
 import { useDispatch, useSelector } from 'react-redux'
 

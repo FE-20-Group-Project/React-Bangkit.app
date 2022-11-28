@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Register from '../../assets/png/regis3.jpg'
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap'
-import { API_KEY_COMPANY } from '../../env/env'
+import { API_KEY_REGISTER_COMPANY } from '../../env/env'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import axios from 'axios'
@@ -15,51 +15,37 @@ function RegisterCompany() {
     const [ company_name, setCompany_name ] = useState();
     const [ company_password, setCompany_password ] = useState();
     const [ confirmPassword, setConfirmPassword ] = useState();
+    const [ document, setDocument ] = useState();
 
-    const register = async (api, data, form) => {
-        const res = await axios.get(api);
-        const companies = res.data;
-        const findEmail = companies.findIndex( index => index.company_email == data.company_email );
-
-        if( findEmail !== -1 ) {
-            form.reset();
-            return MySwal.fire({
-                icon: 'error',
-                title: 'Gagal Registrasi',
-                text: 'Maaf email perusahaan yang anda masukan sudah pernah terdaftar!',
-              })
-        }else {
-            const response = await axios.post(api, data);
-            return  MySwal.fire({
-                icon: 'success',
-                title: 'Registrasi Berhasil',
-                text: 'Akunmu Perusahaan sudah berhasil didaftarkan, silahkan login terlebih dahulu!',
-            })
-        }
-    }
-
-    const createFormulir = (company_email, company_name, company_password) => {
-        return {
-            company_id : +new Date(),
-            company_email,
-            company_name,
-            company_password
+    const register = async (dataForm, form) => {
+        try {
+            axios({
+                url : API_KEY_REGISTER_COMPANY,
+                method : "POST",
+                data : dataForm
+            }).then( data => {
+                console.log(data)
+            } )
+        } catch(error) {
+            console.log(error);
         }
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
         
-        if( company_password === confirmPassword ) {
-            const formulir = createFormulir(company_email, company_name, company_password);
-            register(API_KEY_COMPANY, formulir, e.target);
-        }else {
-            return MySwal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'password dan konfirmasi password harus sesuai!',
-              })
-        }
+        const formulir = createFormulir(company_email, company_name, company_password, confirmPassword, document);
+        register(formulir, e.target);
+    }
+
+    const createFormulir = (email, name, password, confirmPassword, document) => {
+        const form = new FormData();
+        form.append('email', email);
+        form.append('name', name);
+        form.append('password', password);
+        form.append('confirmPassword', confirmPassword);
+        form.append('dokumen', document);
+        return form;
     }
 
   return (
@@ -109,6 +95,9 @@ function RegisterCompany() {
                                         <span className='bar w-100'></span>
                                         <label className='label-input'>Konfirmasi Password</label>
                                     </div>
+                                </Form.Group>
+                                <Form.Group className='mb-4'>
+                                    <Form.Control onChange={ (e) => setDocument(e.target.files[0]) } type='file' />
                                 </Form.Group>
                                 <Form.Group className='mb-5'>
                                     <Button variant='danger' type='submit' className='w-100 mb-2'>Daftar</Button>
