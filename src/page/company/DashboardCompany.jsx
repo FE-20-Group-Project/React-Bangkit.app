@@ -25,17 +25,14 @@ function DashboardCompany() {
                     <nav>
                       <Row className='d-flex justify-content-around'>
                           <Col xs='3' className='p-3 text-center'>
-                              <NavLink>Data User</NavLink>
+                              <NavLink>Data Loker</NavLink>
                           </Col>
                           <Col xs='3' className='p-3 text-center'>
-                              <NavLink>Data Instansi</NavLink>
+                            <NavLink>Data Beasiswa</NavLink>
                           </Col>
                           <Col xs='3' className='p-3 text-center'>
                               <NavLink>Laporan</NavLink>
                           </Col>
-                          <Col xs='3' className='p-3 text-center'>
-                            <NavLink>Article</NavLink>
-                        </Col>
                       </Row>
                     </nav>
                     <main>

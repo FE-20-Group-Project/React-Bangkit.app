@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { editProfile } from '../../redux/action/userSession';
 import { getCookie } from '../../cookie/cookie';
 import axios from 'axios'
+import Navigation from '../../components/navigation/Navigation';
+import Footer from '../../components/footer/Footer';
 
 function EditProfile() {
     const { editOption } = useParams();
@@ -96,6 +98,7 @@ function EditProfile() {
 
   return (
     <>
+        <Navigation/>
         <section className='my-5 container-fluid'>
             <Row className='d-flex justify-content-center'>
                 <aside className='card col-3 me-3 py-3 px-0'>
@@ -151,6 +154,7 @@ function EditProfile() {
                 ) }
             </Row>
         </section>
+        <Footer/>
     </>
   )
 }

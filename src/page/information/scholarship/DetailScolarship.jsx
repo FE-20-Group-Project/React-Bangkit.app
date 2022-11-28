@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { API_KEY_INFORMATION } from '../../../env/env';
-import Navigation from '../../../components/navigation/Navigation';
 import SectionDetailJobs from '../../../components/jobSeeker/SectionDetailJobs';
 import { useSelector } from 'react-redux';
 import Swal from 'sweetalert2'
@@ -9,6 +8,7 @@ import withReactContent from 'sweetalert2-react-content'
 import axios from 'axios';
 import SectionDetailScholarship from '../../../components/scholarship/SectionDetailScholarship';
 import Loading from '../../../components/loader/Loading';
+import Navigation from '../../../components/navigation/Navigation';
 import Footer from '../../../components/footer/Footer';
 
 const MySwal = withReactContent(Swal)
@@ -44,6 +44,7 @@ function DetailScolarship() {
 
   return (
     <>
+        <Navigation/>
         { isLoading ? (
             <Loading/>
         ) : (
@@ -51,6 +52,7 @@ function DetailScolarship() {
                 <SectionDetailScholarship beasiswa={beasiswa} detailBeasiswa={detailBeasiswa} />
             </>
         ) }
+        <Footer/>
     </>
   )
 }

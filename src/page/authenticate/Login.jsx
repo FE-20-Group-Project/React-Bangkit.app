@@ -10,6 +10,8 @@ import LogoLogin from '../../assets/png/login.png'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import Navigation from '../../components/navigation/Navigation'
+import Footer from '../../components/footer/Footer'
 
 const MySwal = withReactContent(Swal)
 
@@ -38,9 +40,9 @@ function Login() {
                 title: 'Berhasil Login!',
               })
             if(data.data.type==='instansi') {
-                navigate('/dashboard');
+                navigate('/dashboard-company');
             }else if(data.data.type==='admin') {
-                navigate('/dashboard')
+                navigate('/dashboard-admin')
             }else {
                 navigate('/')
             }
@@ -57,6 +59,8 @@ function Login() {
     }
 
   return (
+    <>
+        <Navigation/>
         <Container fluid className='authenticate py-5' >
                 <Row>
                     <Card className='col-12 col-sm-10 mx-auto rounded shadow-lg' >
@@ -111,6 +115,9 @@ function Login() {
                     </Card>
                 </Row>
         </Container>
+        <Footer/>
+
+    </>
 )
 }
 

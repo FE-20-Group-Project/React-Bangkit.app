@@ -3,6 +3,7 @@ import ArticleSection from '../../../components/article/ArticleSection'
 import { API_KEY_ARTICLE } from '../../../env/env'
 import Loading from '../../../components/loader/Loading'
 import axios from 'axios'
+import Footer from '../../../components/footer/Footer'
 
 function Article() {
 
@@ -23,13 +24,17 @@ function Article() {
       return result;
   }
   return (
-    <div className='bg-virus bg-soft-light'>
-        { isLoading ? (
-          <Loading/>
-        ) : (
-        <ArticleSection article={article}/>
-        ) }
-    </div>
+    <>
+      <Navigation/>
+        <div className='bg-virus bg-soft-light'>
+            { isLoading ? (
+              <Loading/>
+            ) : (
+            <ArticleSection article={article}/>
+            ) }
+        </div>
+      <Footer/>
+    </>
   )
 }
 

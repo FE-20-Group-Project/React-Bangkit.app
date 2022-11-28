@@ -6,6 +6,8 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import Loading from '../../../components/loader/Loading';
 import SectionJob from '../../../components/jobSeeker/SectionJob';
+import Navigation from '../../../components/navigation/Navigation';
+import Footer from '../../../components/footer/Footer';
 
 const MySwal = withReactContent(Swal)
 
@@ -23,6 +25,7 @@ function Jobs() {
 
   return (
     <>
+      <Navigation/>
       { isLoading ? (
         <Loading/>
       ) : (
@@ -30,6 +33,7 @@ function Jobs() {
               <SectionJob jobs={jobs} />
           </>
       ) }
+      <Footer/>
     </>
   )
 }

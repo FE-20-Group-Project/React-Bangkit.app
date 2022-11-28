@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import Loading from '../../components/loader/Loading';
 import { useSelector } from 'react-redux';
 import UserProfile from '../../components/profile/UserProfile';
+import Navigation from '../../components/navigation/Navigation';
+import Footer from '../../components/footer/Footer';
 
 function ProfileUser() {
     const {session} = useSelector( state => state.userSession );
@@ -15,6 +17,7 @@ function ProfileUser() {
 
   return (
     <>
+        <Navigation/>
         { isLoading ? (
             <Loading/>
         ) : (
@@ -22,6 +25,7 @@ function ProfileUser() {
                 <UserProfile profile={session} />
             </>
         ) }
+        <Footer/>
     </>
   )
 }
