@@ -2,7 +2,8 @@ import React from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { KEY_SESSION } from '../../env/env'
-import { logOut } from '../../redux/action/userSession'
+import { getCookie } from '../../cookie/cookie'
+import { clearSession } from '../../redux/action/userSession'
 import { Nav, Navbar, NavDropdown, Container,  Form, Button, Dropdown } from 'react-bootstrap'
 import Logo from '../../assets/image/bangkit.png'
 import Swal from 'sweetalert2'
@@ -16,7 +17,7 @@ function Navigation() {
 
  const navigate = useNavigate()
  const dispatch = useDispatch();
- const {isLogin} = useSelector( state => state.userSession );
+ const {session} = useSelector( state => state.userSession );
 
   const logout = () => {
     MySwal.fire({
@@ -28,7 +29,8 @@ function Navigation() {
       confirmButtonText: 'Ya, keluar!'
     }).then((result) => {
       if (result.isConfirmed) {
-        dispatch(logOut());
+        dispatch(clearSession(getCookie('token')));
+        document.cookie = "token=; expires=passedDate";
         localStorage.removeItem(KEY_SESSION);
         MySwal.fire({
           icon: 'success',
@@ -59,13 +61,12 @@ function Navigation() {
                       <NavLink to='/scholarship' style={({isActive}) => (isActive ? linkStyle : undefined)} className='dropdown-item'>Beasiswa Gratis</NavLink>
                       <NavLink to="/article" style={({isActive}) => (isActive ? linkStyle : undefined)} className='dropdown-item' >Article</NavLink>
                   </NavDropdown>
-                {/* <NavLink className='nav-item text-dark p-2 me-3' to="#pricing">Profile</NavLink> */}
-                { isLogin==false ? (
+                { session==false ? (
                 <NavLink to='/login' className='btn btn-danger'><FaSignInAlt className='me-2'/>Login</NavLink>
                 ): (
                       <Dropdown drop="start">
                         <Dropdown.Toggle id="dropdown-button-dark-example1" className='bg-light border-0'>
-                        <img src={`https://api-bangkit.up.railway.app/${isLogin.image}`} width='30' />
+                        <img src={`https://api-bangkit.up.railway.app/${session.image}`} width='30' />
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu variant="light" >

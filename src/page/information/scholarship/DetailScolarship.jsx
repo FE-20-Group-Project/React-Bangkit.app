@@ -16,7 +16,7 @@ const MySwal = withReactContent(Swal)
 function DetailScolarship() {
 
     const navigate= useNavigate();
-    const {isLogin} = useSelector( state => state.userSession );
+    const {session} = useSelector( state => state.userSession );
     const [ isLoading, setIsLoading ] = useState(true);
     const [ detailBeasiswa, setDetailBeasiswa ] = useState([]);
     const [ beasiswa, setBeasiswa ] = useState([]);

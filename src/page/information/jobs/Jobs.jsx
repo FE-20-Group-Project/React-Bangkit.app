@@ -12,7 +12,7 @@ const MySwal = withReactContent(Swal)
 function Jobs() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isLogin } = useSelector( state => state.userSession );
+  const { session } = useSelector( state => state.userSession );
   const { jobs, isLoading } = useSelector( state => state.jobsList );
 
   useEffect( () => {

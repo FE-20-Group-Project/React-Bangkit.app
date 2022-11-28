@@ -9,15 +9,15 @@ import CarouselBS from '../carousel/CarouselBS'
 
 function Header() {
 
-  const {isLogin} = useSelector( state => state.userSession );
+  const {session} = useSelector( state => state.userSession );
   
   return (
     <header className='container p-3 mt-5 mb-3'>
         <Row className='header-section d-flex justify-content-around f-wrap'>
             <Col xs='10' xl='7' className='mx-auto d-flex justify-content-center flex-column'>
-            { isLogin ? (
+            { session ? (
               <aside>
-                  <h1 className='text-header-2'>Selamat Datang Kembali, <span className='text-danger'>{isLogin.name}</span></h1>
+                  <h1 className='text-header-2'>Selamat Datang Kembali, <span className='text-danger'>{session.name}</span></h1>
               </aside>
             ) : (
               <aside>

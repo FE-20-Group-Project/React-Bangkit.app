@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import UserProfile from '../../components/profile/UserProfile';
 
 function ProfileUser() {
-    const {isLogin} = useSelector( state => state.userSession );
+    const {session} = useSelector( state => state.userSession );
     const [ isLoading, setIsLoading ] = useState(true);
 
     useEffect( () => {
@@ -19,7 +19,7 @@ function ProfileUser() {
             <Loading/>
         ) : (
             <>
-                <UserProfile profile={isLogin} />
+                <UserProfile profile={session} />
             </>
         ) }
     </>

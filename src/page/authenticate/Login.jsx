@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { KEY_SESSION, API_KEY_LOGIN  } from '../../env/env'
-import { loginSession } from '../../redux/action/userSession'
+import { getCookie } from '../../cookie/cookie'
+import { addSession } from '../../redux/action/userSession'
 import { Container, Row, Card, Col, Form, Button, Spinner } from 'react-bootstrap'
 import Logo from '../../assets/image/bangkit.png'
 import LogoLogin from '../../assets/png/login.png'
@@ -26,34 +27,29 @@ function Login() {
                 "email": email,
                 "password": password
             })
-            const session = createSession(response.data);
-            console.log(response);
-            dispatch(loginSession(session));
+            const data = response.data;
+            dispatch(addSession(data));
             setLoading(false);
-            localStorage.setItem(KEY_SESSION, JSON.stringify(session));
-
+            localStorage.setItem(KEY_SESSION, JSON.stringify(data.data));
+            document.cookie = `token=${data.token}`;
+            console.log(getCookie('token'));
             MySwal.fire({
                 icon: 'success',
                 title: 'Berhasil Login!',
               })
-              navigate('/');
+            if(data.data.type==='instansi') {
+                navigate('/dashboard');
+            }else if(data.data.type==='admin') {
+                navigate('/dashboard')
+            }else {
+                navigate('/')
+            }
        } catch(error) {
-            console.log(error.response.data.message);
+            console.log(error);
        }
         
     }
 
-    const createSession = (obj) => {
-        return {
-            token: obj.token,
-            message: obj.message,
-            id: obj.data._id,
-            email: obj.data.email,
-            name: obj.data.name,
-            image: obj.data.image,
-            password: obj.data.password
-        }
-    }
 
     const handleLogin = (e) => {
         e.preventDefault();
