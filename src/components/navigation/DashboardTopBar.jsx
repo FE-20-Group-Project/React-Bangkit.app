@@ -56,8 +56,6 @@ function DashboardTopBar() {
                     </Dropdown.Toggle>
                     <Dropdown.Menu variant="light" >
                         <NavLink to='/' style={({isActive}) => (isActive ? linkStyle : undefined)} className='dropdown-item py-2'><FaUser/> Homepage</NavLink>
-                        <NavLink to='/user/profile' style={({isActive}) => (isActive ? linkStyle : undefined)} className='dropdown-item pb-2'><FaUser/> Profile</NavLink>
-                        <Dropdown.Divider />
                         <Dropdown.Item href="#/action-4" onClick={ () => logout() }><FaSignOutAlt/> Logout</Dropdown.Item>
                     </Dropdown.Menu>
                     </Dropdown>

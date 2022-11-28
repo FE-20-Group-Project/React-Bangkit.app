@@ -8,6 +8,8 @@ import Loading from '../../../components/loader/Loading';
 import SectionScholarship from '../../../components/scholarship/SectionScholarship'
 import axios from 'axios'
 import ScholarshipList from '../../../components/scholarship/ScholarshipList'
+import Navigation from '../../../components/navigation/Navigation'
+import Footer from '../../../components/footer/Footer'
 
 const MySwal = withReactContent(Swal)
 
@@ -29,6 +31,7 @@ function Scholarship() {
 
   return (
     <>
+      <Navigation/>
         { isLoading ? (
           <Loading/>
         ) : (
@@ -36,6 +39,7 @@ function Scholarship() {
               <SectionScholarship scholarship={scholarship} />
             </>
         ) }
+      <Footer/>
     </>
   )
 }

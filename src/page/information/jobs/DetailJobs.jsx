@@ -7,6 +7,8 @@ import { useSelector } from 'react-redux';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import Loading from '../../../components/loader/Loading';
+import Navigation from '../../../components/navigation/Navigation';
+import Footer from '../../../components/footer/Footer';
 
 
 const MySwal = withReactContent(Swal)
@@ -41,6 +43,7 @@ function DetailJobs() {
 
   return (
     <>
+        <Navigation/>
         { isLoading ? (
             <Loading/>
         ) : (
@@ -48,7 +51,7 @@ function DetailJobs() {
                 <SectionDetailJobs jobs={jobs} detailJobs={detailJobs} />
             </>
         ) }
-      
+        <Footer/>
     </>
   )
 }

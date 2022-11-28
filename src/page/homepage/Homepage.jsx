@@ -7,6 +7,8 @@ import SectionJoinUs from '../../components/section/SectionJoinUs'
 import SectionSymptom from '../../components/section/SectionSymptom'
 import SectionContactUs from '../../components/section/SectionContactUs'
 import { useSelector } from 'react-redux'
+import Navigation from '../../components/navigation/Navigation'
+import Footer from '../../components/footer/Footer'
 
 
 function Homepage() {
@@ -22,6 +24,7 @@ function Homepage() {
 
   return (
     <>
+        <Navigation/>
         { isLoading ? (
           <Loading/>
         ): (
@@ -34,6 +37,7 @@ function Homepage() {
             <SectionContactUs/>
           </>
         ) }
+        <Footer/>
     </>
   )
 }
