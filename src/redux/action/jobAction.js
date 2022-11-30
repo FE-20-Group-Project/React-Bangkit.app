@@ -20,7 +20,7 @@ const successGetJobs = (data) => {
 const getJobs = () => {
     return async (dispatch) => {
         dispatch(fetchStart());
-        const response = await axios.get('https://6350c3703e9fa1244e4c9abd.mockapi.io/bangkit/company_help_information?type=Job%20Seeker');
+        const response = await axios.get('https://api-bangkit.up.railway.app/api/user/loker');
         const result = response.data;
         dispatch(successGetJobs(result));
     }
@@ -29,7 +29,7 @@ const getJobs = () => {
 const getFIlterJobs = (name, location) => {
     return async (dispatch) => {
         dispatch(fetchStart());
-        const response = await axios.get('https://6350c3703e9fa1244e4c9abd.mockapi.io/bangkit/company_help_information?type=Job%20Seeker')
+        const response = await axios.get('https://api-bangkit.up.railway.app/api/user/loker')
         const filter = response.data.filter( item => item.namaPerusahaan == name || item.lokasi == location );
         console.log(filter);
         dispatch(successGetJobs(filter));
