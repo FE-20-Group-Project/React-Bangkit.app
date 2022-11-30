@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { KEY_SESSION, API_KEY_LOGIN  } from '../../env/env'
 import { getCookie } from '../../cookie/cookie'
-import { addSession } from '../../redux/action/userSession'
+import { addSession, getSession } from '../../redux/action/userSession'
 import { Container, Row, Card, Col, Form, Button, Spinner } from 'react-bootstrap'
 import Logo from '../../assets/image/bangkit.png'
 import LogoLogin from '../../assets/png/login.png'
@@ -30,11 +30,9 @@ function Login() {
                 "password": password
             })
             const data = response.data;
-            dispatch(addSession(data));
-            setLoading(false);
-            localStorage.setItem(KEY_SESSION, JSON.stringify(data.data));
             document.cookie = `token=${data.token}`;
-            console.log(getCookie('token'));
+            const token = getCookie('token');
+            dispatch(getSession(token));
             MySwal.fire({
                 icon: 'success',
                 title: 'Berhasil Login!',
@@ -94,18 +92,7 @@ function Login() {
                                         <Link>
                                         <p className='text-danger'>Lupa Password?</p>
                                         </Link>
-                                        <Button variant='danger' type='submit' className='w-100 mb-2'>
-                                        { loading? (
-                                            <Spinner
-                                                as="span"
-                                                animation="border"
-                                                size="sm"
-                                                role="status"
-                                                />
-                                        ): (
-                                            <>Log in</>
-                                        ) }
-                                        </Button>
+                                        <Button variant='danger' type='submit' className='w-100 mb-2'>Log in</Button>
                                         {/* <Link to='/' className='btn btn-danger w-100 mb-2'>Sign-in</Link> */}
                                         <p className='text-dark'>Belum punya akun ? <Link to='/register' className='text-danger text-decoration-none'>Daftar sekarang</Link></p>
                                     </Form.Group>

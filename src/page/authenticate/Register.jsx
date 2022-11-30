@@ -6,6 +6,7 @@ import { API_KEY_REGISTER } from '../../env/env'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import axios from 'axios'
+import Navigation from '../../components/navigation/Navigation'
 import Footer from '../../components/footer/Footer'
 
 const MySwal = withReactContent(Swal)

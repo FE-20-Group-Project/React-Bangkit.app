@@ -2,11 +2,15 @@ import React, { useEffect, useState } from 'react'
 import { Button, Form, Row } from 'react-bootstrap'
 import { useParams, NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { editProfile } from '../../redux/action/userSession';
+import { editProfile, getSession } from '../../redux/action/userSession';
 import { getCookie } from '../../cookie/cookie';
 import axios from 'axios'
 import Navigation from '../../components/navigation/Navigation';
 import Footer from '../../components/footer/Footer';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+const MySwal = withReactContent(Swal)
 
 function EditProfile() {
     const { editOption } = useParams();
@@ -40,10 +44,8 @@ function EditProfile() {
         const inputImage = document.getElementById('edit-upload-image');
         const form = new FormData();
         const token = getCookie('token');
-        if( inputImage.files[0] ){
-            setEditImage(inputImage.files[0]);
-            form.append("file", editImage);
-        }
+        form.append("file", editImage);
+        console.log(editImage);
         console.log("id :" + session._id, "token :" + token);
         form.append("name", editName);
         form.append("email", editEmail);
@@ -55,13 +57,19 @@ function EditProfile() {
             },
             data: form
         }).then( data => {
-          console.log(data);
+            if(data){
+                dispatch(getSession(token));
+                MySwal.fire({
+                    icon: 'success',
+                    title: 'Data Berhasil Diupdate!',
+                  })
+            }
         } )
     }
 
     const handleForgetPassword = (e) => {
         e.preventDefault();
-
+        const token = getCookie('token');
         const formPassword = new FormData();
         formPassword.append("oldPassword", editOldPassword);
         formPassword.append("newPassword", editNewPassword);
@@ -71,20 +79,25 @@ function EditProfile() {
             url: `https://api-bangkit.up.railway.app/api/user/edit/${session._id}`,
             method: "PUT",
             headers: {
-                authorization: `Bearer ${getCookie('token')}`
+                authorization: `Bearer ${token}`
             },
             data: formPassword
         }).then( data => {
-            console.log(data);
-        } )
-        
-
+            if(data){
+                dispatch(getSession(token));
+                MySwal.fire({
+                    icon: 'success',
+                    title: 'Data Berhasil Diupdate!',
+                  })
+            }
+        } )        
     }
 
     const previewFile = () => {
         const preview = document.getElementById('preview-img');
         const file = document.getElementById('edit-upload-image').files[0];
         const reader = new FileReader();
+        setEditImage(file);
         console.log(file)
         reader.onloadend = () => {
             preview.src = reader.result;

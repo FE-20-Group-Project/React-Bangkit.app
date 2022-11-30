@@ -1,19 +1,26 @@
-import { KEY_SESSION } from '../../../env/env';
-import { ADD_SESSION, CLEAR_SESSION, UPDATE_SESSION} from '../../action/userSession';
+import { FETCH_START, ADD_SESSION, CLEAR_SESSION, UPDATE_SESSION} from '../../action/userSession';
 
-let sessionData = localStorage.getItem(KEY_SESSION);
 const initialState = {
-    session : JSON.parse(sessionData) || false,
+    session : false,
+    isLoading : false
 }
 
 const userSession = (state = initialState, action) => {
         switch(action.type) {
-            case ADD_SESSION :
+            case FETCH_START : 
                 return {
-                    session : action.payload
+                    ...state,
+                    isLoading: true
+                }
+            case ADD_SESSION :
+                // console.log(action.payload)
+                return {
+                    session : action.payload,
+                    isLoading : false
                 }
             case CLEAR_SESSION : 
                 return {
+                    ...state,
                     session : false,
                 }
             default : return state;

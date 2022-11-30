@@ -1,91 +1,53 @@
 import React from 'react'
 import { Row, Col, Table, Pagination, Card, Button } from 'react-bootstrap'
+import { FaReplyAll, FaUserTag } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import Profil from '../../assets/png/section.png'
 
-function SectionReportList() {
-    let active = 2;
-    let items = [];
-    for (let number = 1; number <= 5; number++) {
-    items.push(
-        <Pagination.Item key={number} active={number === active}>
-        {number}
-        </Pagination.Item>,
-    );
-}
+function SectionReportList({subcategory, laporan}) {
+    console.log(laporan);
+    console.log(subcategory);
+   
   return (
     <>
         <section className='report-list container-fluid bg-soft-light p-5'>
             <Row className='p-0 m-0 d-flex justify-content-between'>
                 <aside className='col-9'>
                     <Row className='mb-3'>
-                        <Pagination size="sm">{items}</Pagination>
+
                     </Row>
                 <Row>
-                    <Table>
-                        <thead>
-                            <tr>
-                                <th colSpan={2}>Topic</th>
-                                <th className='text-center'>Total Reply & Total View / User</th>
-                                <th className='text-center'>Latest Reply</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr className='border border-danger'>
-                                <td>
-                                    <img src={Profil} width='60'/>
-                                </td>
-                                <td >
-                                    <h5 className='p-3'>Judul Laporan</h5>
-                                </td>
-                                <td className='text-center'>
-                                    <div className='p-3'>
-                                        <Button variant='danger' className='btn-sm rounded-0 mx-2'>Total Reply</Button>
-                                        <Button variant='danger' className='btn-sm rounded-0'>Total View / User</Button>
-                                    </div>
-                                </td>
-                                <td className='text-center'>
-                                    <p className='p-3'>Tanggal, hari, nama</p>
-                                </td>
-                            </tr>
-                            <tr className='border border-danger'>
-                                <td>
-                                    <img src={Profil} width='60'/>
-                                </td>
-                                <td >
-                                    <h5 className='p-3'>Judul Laporan</h5>
-                                </td>
-                                <td className='text-center'>
-                                    <div className='p-3'>
-                                        <Button variant='danger' className='btn-sm rounded-0 mx-2'>Total Reply</Button>
-                                        <Button variant='danger' className='btn-sm rounded-0'>Total View / User</Button>
-                                    </div>
-                                </td>
-                                <td className='text-center'>
-                                    <p className='p-3'>Tanggal, hari, nama</p>
-                                </td>
-                            </tr>
-                            <tr className='border border-danger'>
-                                <td>
-                                    <img src={Profil} width='60'/>
-                                </td>
-                                <td >
-                                    <h5 className='p-3'>Judul Laporan</h5>
-                                </td>
-                                <td className='text-center'>
-                                    <div className='p-3'>
-                                        <Button variant='danger' className='btn-sm rounded-0 mx-2'>Total Reply</Button>
-                                        <Button variant='danger' className='btn-sm rounded-0'>Total View / User</Button>
-                                    </div>
-                                </td>
-                                <td className='text-center'>
-                                    <p className='p-3'>Tanggal, hari, nama</p>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </Table>
-                </Row>
-                <Row className='mb-3'>
-                    <Pagination size="sm">{items}</Pagination>
+                    { laporan.map( item => {
+                        if(item.laporan.subcategory === subcategory){
+                            return (
+                                <article className='col-12'>
+                                    <Row className='d-flex justify-content-between border p-3'>
+                                        <Col xs='1'>
+                                            <img src={`https://api-bangkit.up.railway.app/${item.laporan.user.image}`} width='30px' />
+                                        </Col>
+                                        <Col xs='5'>
+                                            <Link to={'/report/detail-report/' + item.laporan._id}>{item.laporan.title}</Link>
+                                        </Col>
+                                        <Col xs='2'>
+                                            <span>
+                                            <FaReplyAll className='fs-5 me-2'/>
+                                            100
+                                            </span>
+                                        </Col>
+                                        <Col xs='2'>
+                                            <span>
+                                            <FaUserTag className='fs-5 me-2' />
+                                            30
+                                            </span>
+                                        </Col>
+                                        <Col xs='2'>
+                                            <small>{item.laporan.date}</small>
+                                        </Col>
+                                    </Row>
+                                </article>
+                            )
+                        }
+                    } ) }
                 </Row>
                 </aside>
                 <aside className='col-3'>
