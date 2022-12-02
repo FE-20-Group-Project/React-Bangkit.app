@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API_KEY_SCHOLARSHIP } from '../../env/env'
 
 const FETCH_START = "fetch_start";
 const SUCCESS_GET_SCHOLARSHIP = "success_get_scholarship";
@@ -19,8 +20,8 @@ const successGetScholarship = (data) => {
 const getScholarship = () => {
     return async (dispatch) => {
         dispatch(fetchStart());
-        const response = await axios.get('https://6350c3703e9fa1244e4c9abd.mockapi.io/bangkit/company_help_information?type=Beasiswa');
-        const result = response.data;
+        const response = await axios.get(API_KEY_SCHOLARSHIP);
+        const result = response.data.data;
         dispatch(successGetScholarship(result));
     }
 }

@@ -1,38 +1,41 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Row } from 'react-bootstrap'
-import BannerFeature from '../../components/BannerFeature'
-import Footer from '../../components/Footer'
-import Header from '../../components/Header'
+import BannerFeature from '../../components/banner/BannerFeature'
+import Header from '../../components/header/Header'
 import Loading from '../../components/loader/Loading'
-import Navigation from '../../components/Navigation'
-import SectionAbout from '../../components/SectionAbout'
-import SectionContactUs from '../../components/SectionContactUs'
-import SectionCovidInfo from '../../components/SectionCovidInfo'
-import SectionJoinUs from '../../components/SectionJoinUs'
-import SectionSymptom from '../../components/SectionSymptom'
+import SectionCovidInfo from '../../components/section/SectionCovidInfo'
+import SectionJoinUs from '../../components/section/SectionJoinUs'
+import SectionSymptom from '../../components/section/SectionSymptom'
+import SectionContactUs from '../../components/section/SectionContactUs'
+import { useSelector } from 'react-redux'
+import Navigation from '../../components/navigation/Navigation'
+import Footer from '../../components/footer/Footer'
 
 
 function Homepage() {
   const [ isLoading, setIsLoading ] = useState(true);
-
+  const {session} = useSelector( state => state.userSession );
+  
   useEffect( () => {
     window.scrollTo(0, 0);
       setTimeout( () => {
         setIsLoading(false);
       }, 1500 )
   }, [] )
+
   return (
     <>
         { isLoading ? (
           <Loading/>
         ): (
           <>
+        <Navigation/>
             <Header/>
             <BannerFeature/>
             <SectionSymptom/>
             <SectionCovidInfo/>
             <SectionJoinUs/>
             <SectionContactUs/>
+        <Footer/>
           </>
         ) }
     </>

@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import { API_KEY_JOBS } from "../../env/env";
 const FETCH_START = "fetch_start";
 const SUCCESS_GET_JOBS = "success_get_jobs";
 
@@ -20,8 +20,8 @@ const successGetJobs = (data) => {
 const getJobs = () => {
     return async (dispatch) => {
         dispatch(fetchStart());
-        const response = await axios.get('https://6350c3703e9fa1244e4c9abd.mockapi.io/bangkit/company_help_information?type=Job%20Seeker');
-        const result = response.data;
+        const response = await axios.get(API_KEY_JOBS);
+        const result = response.data.data;
         dispatch(successGetJobs(result));
     }
 }

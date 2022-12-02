@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
-import Navigation from '../../../components/Navigation'
 import { getJobs } from '../../../redux/action/jobAction';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import Loading from '../../../components/loader/Loading';
-import SectionJob from '../../../components/SectionJob';
-import Footer from '../../../components/Footer'
-import axios from 'axios'
+import SectionJob from '../../../components/jobSeeker/SectionJob';
+import Navigation from '../../../components/navigation/Navigation';
+import Footer from '../../../components/footer/Footer';
 
 const MySwal = withReactContent(Swal)
 
@@ -22,14 +21,16 @@ function Jobs() {
       dispatch(getJobs());
   },[] )
 
-
+console.log(jobs, isLoading);
   return (
     <>
       { isLoading ? (
         <Loading/>
       ) : (
           <>
+      <Navigation/>
               <SectionJob jobs={jobs} />
+      <Footer/>
           </>
       ) }
     </>
