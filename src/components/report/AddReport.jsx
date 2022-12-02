@@ -14,6 +14,7 @@ function AddReport() {
     const dispatch = useDispatch();
     const {session} = useSelector( state => state.userSession );
 
+    const [ image, setImage ] = useState('');
     const [ title, setTitle ] = useState('');
     const [ category, setCategory ] = useState('');
     const [ subCategory, setSubCategory ] = useState('');
@@ -32,15 +33,44 @@ function AddReport() {
         dispatch(postDataReport(token, form, MySwal, navigate));
     }
 
+    
+  const handleEditUploadImage = () => {
+    document.getElementById('edit-upload-image').click();
+  }
+
+     const previewImage = () => {
+        const preview = document.getElementById('preview-img');
+        const file = document.getElementById('edit-upload-image').files[0];
+        const reader = new FileReader();
+        setImage(file);
+        reader.onloadend = () => {
+            preview.src = reader.result;
+        }
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+  }
+
 
   return (
-    <section className='add-report container-fluid p-5 bg-soft-light'>
+    <section className='add-report container-fluid p-5 bg-danger'>
         <Row className='d-flex justify-content-between'>
             <aside className='col-8'>
                 <Card className='shadow-lg'>
                 <Card.Header className='p-3'><h5>Buat Topik Baru</h5></Card.Header>
                 <Card.Body className='p-3'>
                     <Form onSubmit={ handleSubmit }>
+                    <Form.Group className='col-3 my-3'>
+                        <img src='' id='preview-img' className='img-fluid' />
+                    </Form.Group>
+                    <Form.Group className='mb-3'>
+                        <Form.Label className='d-block'>Image</Form.Label>
+                        <button class="icon-btn add-btn" onClick={ () => handleEditUploadImage() }>
+                            <div class="add-icon"></div>
+                            <div class="btn-txt text-gray"> Add Photo </div>
+                        </button>
+                        <Form.Control type='file' id='edit-upload-image' onChange={ () => previewImage() } className='d-none' />
+                    </Form.Group>
                         <Form.Group className='mb-3'>
                             <Form.Label>Judul Topik</Form.Label>
                             <Form.Control type='text' className='rounded-0 border-danger' onChange={ (e) => setTitle(e.target.value) } placeholder='Ketik disini...' />

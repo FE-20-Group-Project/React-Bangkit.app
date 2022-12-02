@@ -16,7 +16,6 @@ function Article() {
       getApiArticle(API_KEY_ARTICLE).then( data => {
           setArticle(data);
           setIsLoading(false);
-          console.log(data);
       } )
   }, [] );
 

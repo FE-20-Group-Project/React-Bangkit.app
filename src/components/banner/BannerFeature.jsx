@@ -2,7 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { Row, Col, Button } from 'react-bootstrap'
 import Beasiswa from '../../assets/png/beasiswa4.png'
+import Pandemic from '../../assets/png/pandemic.png'
 import Loker from '../../assets/png/section.png'
+import Report from '../../assets/png/reporrt.png'
 import Bangkit from '../../assets/png/bangkit2.png'
 
 function BannerFeature() {
@@ -27,8 +29,8 @@ function BannerFeature() {
                             <img src={Loker} className='img-fluid' />
                         </div>
                         <div className="col-7">
-                            <h3 className='fw-semibold border-bottom border-3 border-danger'>Job Seeker</h3>
-                            <p className='text-card'>Lowongan terbuka untuk para pekerja yang kesulitan dalam mencari pekerjaan di masa pandemi yang kian meluas.</p>
+                            <h5 className='fw-semibold border-bottom border-3 border-danger'>Penyedia Loker</h5>
+                            <small className='text-card'>Fitur yang menyediakan Lowongan Pekerjaan yang di sediakan langsung dari Instansi yang sudah terdaftar di Aplikasi bangkit.</small>
                         </div>
                     </div>
                     <Link to='/jobs' className="card-neu-button text-center text-light">Info Selengkapnya</Link>
@@ -41,11 +43,39 @@ function BannerFeature() {
                             <img src={Beasiswa} className='img-fluid' />
                         </div>
                         <div className="col-7">
-                            <h3 className='fw-semibold border-bottom border-3 border-danger'>Beasiswa</h3>
-                            <p className='text-card'>Bantuan bagi para pelajar atau mahasiswa yang kesulitan dalam melanjutkan pendidikan dikarenakan keterbatasan ekonomi.</p>
+                            <h5 className='fw-semibold border-bottom border-3 border-danger'>Beasiswa</h5>
+                            <small className='text-card'>Menyediakan informasi mengenai Beasiswa yang disediakan oleh Instansi terpercaya yang sudah terdaftar di Aplikasi Bangkit.</small>
                         </div>
                     </div>
                     <Link to='/scholarship' className="card-neu-button text-center text-light">Info Selengkapnya</Link>
+                </div>
+            </Col>
+            <Col xs='12' md='5' className='m-3 p-0'>
+                <div className='card-neu rounded-0 shadow-lg w-100'>
+                <div className="card-neu-details d-flex justify-content-between">
+                        <div className='img-wrap col-5'>
+                            <img src={Pandemic} className='img-fluid' />
+                        </div>
+                        <div className="col-7">
+                            <h5 className='fw-semibold border-bottom border-3 border-danger'>Portal Berita</h5>
+                            <small className='text-card'>Fitur pelaporan masalah adalah forum dimana user dapat membuat laporan dan saling berdiskusi untuk membantu satu sama lain.</small>
+                        </div>
+                    </div>
+                    <Link to='/article' className="card-neu-button text-center text-light">Info Selengkapnya</Link>
+                </div>
+            </Col>
+            <Col xs='12' md='5' className='m-3 p-0'>
+                <div className='card-neu rounded-0 shadow-lg w-100'>
+                <div className="card-neu-details d-flex justify-content-between">
+                        <div className='img-wrap col-5'>
+                            <img src={Report} className='img-fluid' />
+                        </div>
+                        <div className="col-7">
+                            <h5 className='fw-semibold border-bottom border-3 border-danger'>Pelaporan Masalah</h5>
+                            <small className='text-card'>Bantuan bagi para pelajar atau mahasiswa yang kesulitan dalam melanjutkan pendidikan dikarenakan keterbatasan ekonomi.</small>
+                        </div>
+                    </div>
+                    <Link to='/report' className="card-neu-button text-center text-light">Info Selengkapnya</Link>
                 </div>
             </Col>
    

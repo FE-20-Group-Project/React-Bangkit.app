@@ -45,15 +45,15 @@ function DashboardTopBar() {
     <header className='topbar container-fluid border-bottom border-3 border-danger w-100 p-3'>
             <Row className='d-flex justify-content-between'>
                 <Col xs='3' className='d-flex'>
-                    <Button className='bg-light text-dark border-0'><FaBars className='fs-4'/></Button>
-                    <h3 className='fw-bold'>{}</h3>
+                    <Button className='bg-soft-light text-dark border-0'><FaBars className='fs-4'/></Button>
+                    <h3 className='fw-bold'>Dashboard</h3>
                 </Col>
                 <Col xs='1'>
                 <Dropdown drop="center">
-                    <Dropdown.Toggle id="dropdown-button-dark-example1" className='bg-light border-0'>
+                    <Dropdown.Toggle id="dropdown-button-dark-example1" className='bg-soft-light border-0'>
                     <img src={`https://api-bangkit.up.railway.app/${session.image}`} width='30' />
                     </Dropdown.Toggle>
-                    <Dropdown.Menu variant="light" >
+                    <Dropdown.Menu className='bg-soft-light' >
                         <NavLink to='/' style={({isActive}) => (isActive ? linkStyle : undefined)} className='dropdown-item py-2'><FaUser/> Homepage</NavLink>
                         <Dropdown.Item href="#/action-4" onClick={ () => logout() }><FaSignOutAlt/> Logout</Dropdown.Item>
                     </Dropdown.Menu>

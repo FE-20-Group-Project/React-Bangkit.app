@@ -112,7 +112,7 @@ function EditProfile() {
   return (
     <>
         <Navigation/>
-        <section className='my-5 container-fluid'>
+        <section className='py-5 container-fluid bg-danger'>
             <Row className='d-flex justify-content-center'>
                 <aside className='card col-3 me-3 py-3 px-0'>
                     <NavLink to='/user/edit/editProfile' style={({isActive}) => isActive ? editNavStyle : undefined} className='p-3 text-dark'>Edit Profile</NavLink>

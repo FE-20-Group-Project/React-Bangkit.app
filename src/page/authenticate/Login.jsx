@@ -68,7 +68,7 @@ function Login() {
                             <Col xs={10} md={5} className='p-3 mx-auto'>
                                 <div className='text-center my-3'>
                                     <img src={Logo} width='150' />
-                                    <h1 className='fw-bolder text-dark mt-2'>SIGN-UP</h1>
+                                    <h1 className='fw-bolder text-dark mt-2'>SIGN-IN</h1>
                                 </div>
                                 <Form onSubmit={ handleLogin } >
                                     <Form.Group className='mb-5'>

@@ -33,10 +33,15 @@ function SectionReportCategory({laporan, refreshApi}) {
 
     useEffect( () => {
         setBahanPokok(laporan.filter( item => item.laporan.subcategory === 'bahan-pokok' ));
+        setKeuangan(laporan.filter( item => item.laporan.subcategory === 'Keuangan' ));
+
         setKuota(laporan.filter( item => item.laporan.subcategory === 'kuota-internet' ));
-        setObat(laporan.filter( item => item.laporan.subcategory === 'obat-obatan' ));
         setBantuanPendidikan(laporan.filter( item => item.laporan.subcategory === 'bantuan-biaya' ));
+
+        setObat(laporan.filter( item => item.laporan.subcategory === 'obat-obatan' ));
         setMasker(laporan.filter( item => item.laporan.subcategory === 'masker' ));
+        setTabungOksigen(laporan.filter( item => item.laporan.subcategory === 'tabung-oksigen' ));
+        
         setTrending(laporan.sort((a, b) => (a.total_view < b.total_view ? 1 : -1)));
     },[refreshApi] )
 
@@ -49,15 +54,17 @@ function SectionReportCategory({laporan, refreshApi}) {
                     <Col xs='5' className='p-3 text-center border border-danger border-bottom-0'>
                         <Link to='/report' className='fs-5 fw-semibold text-danger p-3'>Lihat kategori Laporan</Link>
                     </Col>
-                    <Col xs='5' className='p-3 text-center border-bottom border-danger rounded-0 rounded-0 '>
-                        <Link to='/report/my-report' className='fs-5 fw-semibold text-danger p-3'>Lihat Laporanku</Link>
-                    </Col>
+                    { session.type==='user' && (
+                        <Col xs='5' className='p-3 text-center border-bottom border-danger rounded-0 rounded-0 '>
+                            <Link to='/report/my-report' className='fs-5 fw-semibold text-danger p-3'>Lihat Laporanku</Link>
+                        </Col>
+                    ) }
                 </Row>
-              </nav>
+            </nav>
             <Row className='d-flex justify-content-between'>
-                <aside className='col-8 border'>
+                <aside className='col-8 bg-danger border'>
                     <Row className='mb-3'>
-                        <h3 className='fw-semibold my-3'>Ekonomi</h3>
+                        <h3 className='fw-semibold my-3 text-light'>Ekonomi</h3>
                         <Link to='/report/bahan-pokok'>
                             <Card className='mb-3 rounded-0 border-soft-color bg-soft-light shadow-md'>
                                 <Row className='d-flex justify-content-around'>
@@ -76,7 +83,7 @@ function SectionReportCategory({laporan, refreshApi}) {
                                 </Row>
                             </Card>
                         </Link>
-                        <Link to='/report/keuangan'>
+                        <Link to='/report/Keuangan'>
                             <Card className='mb-3  rounded-0 border-soft-color bg-soft-light shadow-md'>
                                 <Row className='d-flex justify-content-around'>
                                 <Col xs='2' className='p-3'>
@@ -96,7 +103,7 @@ function SectionReportCategory({laporan, refreshApi}) {
                         </Link>
                     </Row>
                     <Row className='mb-3'>
-                        <h3 className='fw-semibold my-3'>Pendidikan</h3>
+                        <h3 className='fw-semibold my-3 text-light'>Pendidikan</h3>
                         <Link to='/report/bantuan-biaya'>
                             <Card className=' mb-3 rounded-0 border-soft-color bg-soft-light shadow-md'>
                                 <Row className='d-flex justify-content-around'>
@@ -135,7 +142,7 @@ function SectionReportCategory({laporan, refreshApi}) {
                         </Link>
                     </Row>
                     <Row className='mb-3'>
-                        <h3 className='fw-semibold my-3'>Kesehatan</h3>
+                        <h3 className='fw-semibold my-3 text-light'>Kesehatan</h3>
                         <Link to='/report/obat-obatan'>
                             <Card className=' mb-3 rounded-0 border-soft-color bg-soft-light shadow-md'>
                                 <Row className='d-flex justify-content-around'>
@@ -194,7 +201,7 @@ function SectionReportCategory({laporan, refreshApi}) {
                 </aside>
                 <aside className='col-4'>
                     <Row className='p-0 m-0 position-sticky' style={{ top:'40px' }}>
-                        { session && (
+                        { !session && (
                             <Card className='bg-danger mx-auto text-center py-5 px-3 mb-3 position-sticky'>
                                 <Card.Title className='fw-bold text-light'>Selamat datang di Bangkit</Card.Title>
                                 <Card.Body className='fw-light text-light'>Join sekarang di forum bantuan kami dengan mendaftarkan akun</Card.Body>
@@ -211,6 +218,7 @@ function SectionReportCategory({laporan, refreshApi}) {
                                             </Col>
                                             <Col xs='9'>
                                                 <Link to={'/report/detail-report/' + item.laporan._id} className='text-danger text-decoration-underline fw-500'>{item.laporan.title}</Link>
+                                                <small className='text-danger fw-500 d-block mt-2'>{item.laporan.date}</small>
                                             </Col>
                                         </Row>
                                     </Card.Body>

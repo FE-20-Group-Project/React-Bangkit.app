@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Row, Col, Card, Badge, Button } from 'react-bootstrap'
+import { Row, Col, Card, Badge, Button, Breadcrumb } from 'react-bootstrap'
 import Reply from './Reply';
 import CarouselBS from '../../components/carousel/CarouselBS'
 import { Link } from 'react-router-dom';
@@ -7,7 +7,7 @@ import io from 'socket.io-client'
 import axios from 'axios';
 import { getCookie } from '../../cookie/cookie';
 import { API_KEY_REPLY, API_KEY_REPORT } from '../../env/env';
-import { FaTrash, FaClock, FaUserAlt, FaEdit, FaClipboard, FaClipboardList, FaCheck, FaMailBulk } from 'react-icons/fa';
+import { FaTrash, FaClock, FaUserAlt, FaEdit, FaClipboard, FaClipboardList, FaCheck, FaMailBulk, FaCheckCircle } from 'react-icons/fa';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import { useSelector } from 'react-redux';
@@ -15,7 +15,7 @@ import { useSelector } from 'react-redux';
 const socket = io.connect("https://api-bangkit.up.railway.app");
 const MySwal = withReactContent(Swal)
 
-function SectionDetailReport({id, detailLaporan}) {
+function SectionDetailReport({id, detailLaporan, setIsLoading}) {
     const {session} = useSelector( state => state.userSession );
     const [ data, setData ] = useState([]);
     const [ trending, setTrending ] = useState([]);
@@ -25,12 +25,6 @@ function SectionDetailReport({id, detailLaporan}) {
             console.log(event);
         })
     }, [socket, session] )
-
-    useEffect( () => {
-        getAPI(API_KEY_REPORT).then( data => {
-            setTrending(data);
-        } )
-    }, [] );
 
     const getAPI = async (api) => {
         const response = await axios(api);
@@ -59,8 +53,8 @@ function SectionDetailReport({id, detailLaporan}) {
                     },
                     data: form
                 }).then( data => {
-                    console.log(data);
                     if(data.data) {
+                        setIsLoading(true);
                         Swal.fire(
                         'Selesai!',
                         'Laporan berhasil ditutup.',
@@ -138,8 +132,14 @@ function SectionDetailReport({id, detailLaporan}) {
   return (
     <>
     <CarouselBS/>
-    <section className='section-report container border mt-5 mb-3'>
-        <Row className='d-flex justify-content-around p-3'>
+    <Breadcrumb className='p-5'>        
+            <Link to='/' className='text-danger breadcrumb-item'>Beranda</Link>
+            <Link to='/report' className='text-danger breadcrumb-item'>Pelaporan</Link>
+            <Link to={'/report/' + detailLaporan.laporan.subcategory} className='text-danger breadcrumb-item'>List kategori pelaporan</Link>
+            <Breadcrumb.Item active>{detailLaporan.laporan.title}</Breadcrumb.Item>
+    </Breadcrumb>
+    <section className='section-report container border my-3'>
+        <Row className='d-flex justify-content-start p-3'>
             <Col xs='2'>
                 <img src={`https://api-bangkit.up.railway.app/${detailLaporan.laporan.user.image}`} className='img-fluid' />
             </Col>
@@ -160,21 +160,23 @@ function SectionDetailReport({id, detailLaporan}) {
                     </Col>
                 </Row>
             </Col>
-            <Col xs='3'>
-            { detailLaporan.laporan.status !== 'solved' && (
-                <>
-                <Button className='bg-success btn-sm border-0 text-light m-2' onClick={() => handleSolveReport(detailLaporan.laporan._id)}><FaCheck/> Tandai sudah selesai</Button>
-                <Button className='bg-primary btn-sm border-0 text-light m-2'><FaEdit/> Edit</Button>
-                </>
+            { session.name === detailLaporan.laporan.user.name && (
+                <Col xs='3'>
+                { detailLaporan.laporan.status === 'posted' && (
+                    <>
+                    <Button className='bg-success btn-sm border-0 text-light m-2' onClick={() => handleSolveReport(detailLaporan.laporan._id)}><FaCheck/> Tandai sudah selesai</Button>
+                    <Button className='bg-primary btn-sm border-0 text-light m-2'><FaEdit/> Edit</Button>
+                    </>
+                ) }
+                { detailLaporan.laporan.status === 'solved' && (
+                    <Button className='bg-success btn-sm border-0 text-light m-2'><FaCheck/> Laporan Selesai</Button>
+                ) }
+                    <Button className='bg-danger btn-sm border-0 text-light m-2' onClick={ () => handleDeleteLaporan(detailLaporan.laporan._id) }><FaTrash/> Hapus</Button>
+                </Col>
             ) }
-            { detailLaporan.laporan.status === 'solved' && (
-                <Button className='bg-success btn-sm border-0 text-light m-2'><FaCheck/> Solved</Button>
-            ) }
-                <Button className='bg-danger btn-sm border-0 text-light m-2' onClick={ () => handleDeleteLaporan(detailLaporan.laporan._id) }><FaTrash/> Hapus</Button>
-            </Col>
         </Row>
     </section>
-    <section className='section-reply'>
+    <section className='section-reply my-5'>
         <Row className='col-10 mx-auto'>
             { data?.data?.reply?.map( (item, index)  =>(
                 <Card key={index} className='border-0 shadow-md border-top bg-soft-light border-bottom rounded-0'>
@@ -185,13 +187,8 @@ function SectionDetailReport({id, detailLaporan}) {
                     }
                         <Card.Header className={item.data_user.name === session.name ? 'col-3 border-0' : 'col-3 border-0'}>
                             <img src={`https://api-bangkit.up.railway.app/${item.data_user.image}`} className='mb-3' width='100' />
-                            <p><FaUserAlt className='me-2'/> {item.data_user.name}</p>
-                            <p><FaMailBulk  className='me-2'/> {item.data_user.email}</p>
-                            { item.data_user.type==='Instansi' ? (
-                            <span className='badge badge-pill bg-danger'>Role : Instansi</span>
-                            ): (
-                            <span className='badge badge-pill bg-success'>Role : Masyarakat</span>
-                            ) }
+                            <p className='fw-semibold'>{item.data_user.name} <FaCheckCircle className='text-third'/></p>
+                            <p className='fw-semibold'>{item.data_user.email}</p>
                         </Card.Header>
                         <Card.Body className={ item.data_user.name === session.name ? 'col-9' : 'col-9 text-end'}>
                             <small className='mb-3'>{item.data_reply.date}</small>
@@ -203,27 +200,9 @@ function SectionDetailReport({id, detailLaporan}) {
                     </Row>
                 </Card>
             ) ) }
-            { detailLaporan.laporan !== 'solved' && (
-            <Reply id={id}/>
+            { detailLaporan.laporan.status === 'posted' && (
+                    <Reply id={id} setIsLoading={setIsLoading}/>
             ) }
-            <Card className='bg-soft-light my-5 col-7 p-3'>
-                <Card.Title className='fw-semibold border-bottom py-3'>Trending Post</Card.Title>
-                        { trending.map( item => (
-                            <Card.Body key={item.laporan._id} className='bg-soft-light'>
-                                <Row className='d-flex justify-content-around'>
-                                    <Col xs='3'>
-                                        <img src={`https://api-bangkit.up.railway.app/${item.laporan.user.image}`} className='img-fluid' />
-                                    </Col>
-                                    <Col xs='9'>
-                                        <Link to={'/report/detail-report/' + item.laporan._id} className='text-danger text-decoration-underline fw-500'>{item.laporan.title}</Link>
-                                        <p className='text-dark my-3'><FaClock className='fs-5 ms-2'/> {detailLaporan.laporan.date}</p>
-                                        <p className='text-dark my-3'><FaClipboard className='fs-5 ms-2'/> {detailLaporan.laporan.category}</p>
-                                        <p className='text-dark my-3'><FaClipboardList className='fs-5 ms-2'/> {detailLaporan.laporan.subcategory}</p>
-                                    </Col>
-                                </Row>
-                            </Card.Body>
-                        ) ) }
-                </Card>
         </Row>
     </section>
     </>
