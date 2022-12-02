@@ -3,7 +3,6 @@ import { NavLink, useNavigate, Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { Container, Row, Table, Card } from 'react-bootstrap'
 import { FaUserTie, FaPlus } from 'react-icons/fa'
-import Sidebar from '../../components/navigation/sidebar'
 import DashboardTopBar from '../../components/navigation/DashboardTopBar'
 import Footer from '../../components/footer/Footer'
 import Chart from '../../components/chart/Chart'
@@ -19,7 +18,6 @@ function DataScholarship() {
     <>
         <Container fluid>
             <Row className='d-flex justify-content-center'>
-                <Sidebar/>
                 <section className='col-10  p-0'>
                     <DashboardTopBar/>
               

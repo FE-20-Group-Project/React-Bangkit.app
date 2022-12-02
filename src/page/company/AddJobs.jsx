@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Container, Row, Card, Form, Button } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
-import Sidebar from '../../components/navigation/sidebar'
 import DashboardTopBar from '../../components/navigation/DashboardTopBar'
 import RichTextEditor from '../../components/editors/RichTextEditor'
 import { FaArrowLeft } from 'react-icons/fa'
@@ -82,7 +81,6 @@ function AddJobs() {
   return (
     <Container fluid>
     <Row>
-        <Sidebar/>
         <section className='col-10'>
             <DashboardTopBar/>
                     <main>

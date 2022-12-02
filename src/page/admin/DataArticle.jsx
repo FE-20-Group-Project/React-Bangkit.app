@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { Container, Row, Table, Card, Button } from 'react-bootstrap'
 import DashboardTopBar from '../../components/navigation/DashboardTopBar'
 import Loading from '../../components/loader/Loading'
-import SideBar from '../../components/navigation/SideBar'
 import { Link } from 'react-router-dom'
 import { FaEdit, FaPlus, FaTrash, FaUser } from 'react-icons/fa'
 import axios from 'axios'
@@ -69,7 +68,6 @@ function DataArticle() {
         ) : (
         <Container fluid>
             <Row>
-              <SideBar/>
               <section className='col-10'>
                   <DashboardTopBar/>
                         <main>
