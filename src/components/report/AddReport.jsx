@@ -37,16 +37,17 @@ function AddReport() {
     <section className='add-report container-fluid p-5 bg-soft-light'>
         <Row className='d-flex justify-content-between'>
             <aside className='col-8'>
-                <h5>Buat Topik Baru</h5>
-                <Card className='p-4 shadow-lg'>
+                <Card className='shadow-lg'>
+                <Card.Header className='p-3'><h5>Buat Topik Baru</h5></Card.Header>
+                <Card.Body className='p-3'>
                     <Form onSubmit={ handleSubmit }>
                         <Form.Group className='mb-3'>
                             <Form.Label>Judul Topik</Form.Label>
-                            <Form.Control type='text' className='rounded-0' onChange={ (e) => setTitle(e.target.value) } placeholder='Ketik disini...' />
+                            <Form.Control type='text' className='rounded-0 border-danger' onChange={ (e) => setTitle(e.target.value) } placeholder='Ketik disini...' />
                         </Form.Group>
                         <Form.Group className='mb-3'>
                             <Form.Label>Kategori</Form.Label>
-                            <Form.Select onChange={ (e) => setCategory(e.target.value) }>
+                            <Form.Select className='border-danger' onChange={ (e) => setCategory(e.target.value) }>
                                 <option></option>
                                 <option>Ekonomi</option>
                                 <option>Pendidikan</option>
@@ -55,16 +56,17 @@ function AddReport() {
                         </Form.Group>
                         <Form.Group className='mb-5'>
                             <Form.Label>Sub-Kategori</Form.Label>
-                        <Form.Select required defaultValue='Ekonomi1' onChange={ (e) => setSubCategory(e.target.value) } >
+                        <Form.Select required className='border-danger' defaultValue='Ekonomi1' onChange={ (e) => setSubCategory(e.target.value) } >
                             { category==='Ekonomi' && (
                                 <>
                                 <option></option>
+                                <option>Keuangan</option>
                                 <option>bahan-pokok</option>
-                                <option>kuota-internet</option>
                                 </>
                             ) }
                             { category==='Pendidikan' && (
                                 <>
+                                <option></option>
                                 <option></option>
                                 <option>bantuan-biaya</option>
                                 <option>kuota-internet</option>
@@ -84,6 +86,7 @@ function AddReport() {
                             <Form.Control
                                 onChange={ (e) => setContent(e.target.value) }
                                 required
+                                className='border-danger'
                                 placeholder='Apa yang ingin kamu sampaikan?'
                                 as="textarea"
                                 style={{ height: '200px' }}/>
@@ -94,13 +97,13 @@ function AddReport() {
                             <Button variant='primary' type='submit' className='rounded-pill w-50'>Submit</Button>
                         </Form.Group>
                     </Form>
+                </Card.Body>
                 </Card>
             </aside>
             <aside className='col-4'>
-                    <Card className='bg-soft-light mx-auto py-5 px-3 mb-3'>
-                        <Card.Title className='fw-bold text-dark'>Aturan Pelaporan</Card.Title>
-                        <Card.Body className='fw-light text-dark'>Join today and start discussing what you like.</Card.Body>
-                        <Button variant='light' className='w-50 mx-auto text-danger'>Daftar</Button>
+                    <Card className='bg-soft-light mx-auto pt-3 px-3 mb-3'>
+                        <Card.Title className='border-bottom py-3'>Aturan Pelaporan</Card.Title>
+                        <Card.Body className='fw-light text-dark'>User dapat membuat maksimal 3 laporan live/aktif dengan kategori yang tersedia yakni pendidikan, ekonomi, dan kesehatan</Card.Body>
                     </Card>
             </aside>
         </Row>

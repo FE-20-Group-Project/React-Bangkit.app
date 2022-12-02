@@ -24,7 +24,6 @@ function SectionDetailReport({id, detailLaporan}) {
                 setData(event);
             console.log(event);
         })
-        console.log('useEffect');
     }, [socket, session] )
 
     useEffect( () => {
@@ -40,6 +39,7 @@ function SectionDetailReport({id, detailLaporan}) {
     }
 
     const handleSolveReport = (id) => {
+        console.log(id);
         Swal.fire({
             title: 'Anda yakin ingin menutup laporan berikut?',
             icon: 'warning',
@@ -103,16 +103,14 @@ function SectionDetailReport({id, detailLaporan}) {
                 }
             })
     }
-
-    console.log(detailLaporan);
-    console.log(session.name);
+    console.log(detailLaporan)
 
   return (
     <>
     <CarouselBS/>
-    <section className='section-report container mt-5 mb-3'>
+    <section className='section-report container border mt-5 mb-3'>
         <Row className='d-flex justify-content-around p-3'>
-            <Col xs='1'>
+            <Col xs='2'>
                 <img src={`https://api-bangkit.up.railway.app/${detailLaporan.laporan.user.image}`} className='img-fluid' />
             </Col>
             <Col xs='5'>
@@ -132,10 +130,10 @@ function SectionDetailReport({id, detailLaporan}) {
                     </Col>
                 </Row>
             </Col>
-            <Col xs='5'>
-                <Button className='bg-success btn-sm border-0 text-light m-2' onClick={() => handleSolveReport(detailLaporan.id_laporan)}><FaCheck/> Tandai sudah selesai</Button>
+            <Col xs='3'>
+                <Button className='bg-success btn-sm border-0 text-light m-2'><FaCheck/> Tandai sudah selesai</Button>
                 <Button className='bg-primary btn-sm border-0 text-light m-2'><FaEdit/> Edit</Button>
-                <Button className='bg-danger btn-sm border-0 text-light m-2'><FaTrash/> Hapus</Button>
+                <Button className='bg-danger btn-sm border-0 text-light m-2' onClick={() => handleSolveReport(detailLaporan.laporan._id)}><FaTrash/> Hapus</Button>
             </Col>
         </Row>
     </section>

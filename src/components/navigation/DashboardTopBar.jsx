@@ -46,7 +46,7 @@ function DashboardTopBar() {
             <Row className='d-flex justify-content-between'>
                 <Col xs='3' className='d-flex'>
                     <Button className='bg-light text-dark border-0'><FaBars className='fs-4'/></Button>
-                    <h3 className='fw-bold'>Dashboard</h3>
+                    <h3 className='fw-bold'>{}</h3>
                 </Col>
                 <Col xs='1'>
                 <Dropdown drop="center">
