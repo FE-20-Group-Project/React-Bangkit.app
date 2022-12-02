@@ -170,7 +170,7 @@ function SectionDetailReport({id, detailLaporan}) {
             { detailLaporan.laporan.status === 'solved' && (
                 <Button className='bg-success btn-sm border-0 text-light m-2'><FaCheck/> Solved</Button>
             ) }
-                <Button className='bg-danger btn-sm border-0 text-light m-2'><FaTrash/> Hapus</Button>
+                <Button className='bg-danger btn-sm border-0 text-light m-2' onClick={ () => handleDeleteLaporan(detailLaporan.laporan._id) }><FaTrash/> Hapus</Button>
             </Col>
         </Row>
     </section>
