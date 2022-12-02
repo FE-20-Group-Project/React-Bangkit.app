@@ -16,15 +16,15 @@ function Aboutpage() {
 
   return (
     <>
-        <Navigation/>
         { isLoading ? (
             <Loading/>
         ) : (
             <>
+            <Navigation/>
                 <SectionAbout/>
+            <Footer/>
             </>
         ) }
-        <Footer/>
     </>
   )
 }

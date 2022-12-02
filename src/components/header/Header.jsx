@@ -2,7 +2,7 @@ import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import Homepage from '../../assets/png/homepage.jpg'
+import Homepage from '../../assets/png/homepage.png'
 import CarouselBS from '../carousel/CarouselBS'
 
 
