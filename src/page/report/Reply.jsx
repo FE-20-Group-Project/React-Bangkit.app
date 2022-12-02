@@ -54,7 +54,7 @@ function Reply({id}) {
                 <Form onSubmit={handleReply}>
                       <h5 className='fw-semibold'>Balasan</h5>
                     <Form.Group className='mb-2'>
-                      <Button onClick={ () => handleEditUploadImage() } className='btn-sm btn-danger border-0'>Upload Bukti Gambar <FaImage/></Button>
+                      <Button onClick={ () => handleEditUploadImage() } className='btn-sm bg-dark border-0 text-light border-0'>Upload Bukti Gambar <FaImage/></Button>
                       <Form.Control type='file' id='edit-upload-image' onChange={ () => previewImage() } className='d-none' />
                     </Form.Group>
                     <Form.Group>
@@ -66,7 +66,7 @@ function Reply({id}) {
                       style={{ height: '100px' }}/>
                     </Form.Group>
                     <Form.Group>
-                      <Button variant='primary' type='submit' className='w-100 mt-3'>Balas</Button>
+                      <Button variant='danger' type='submit' className='w-100 mt-3'>Balas</Button>
                     </Form.Group>
                 </Form>
             </Col>

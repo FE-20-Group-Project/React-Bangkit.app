@@ -15,12 +15,11 @@ function ReportList() {
 
   useEffect( () => {
       axios.get(API_KEY_REPORT).then( data => {
-                setSubCategory(data.data.data);
+                setSubCategory(data.data.data.filter( item => item.laporan.status === 'posted' ));
                 setIsLoading(setIsLoading(false));
           } )
     
   },[] )
-  console.log(subCategory)
   return (
         <>
         { isLoading ? (

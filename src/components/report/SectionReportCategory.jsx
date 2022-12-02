@@ -49,11 +49,13 @@ function SectionReportCategory({laporan, refreshApi}) {
                     <Col xs='5' className='p-3 text-center border border-danger border-bottom-0'>
                         <Link to='/report' className='fs-5 fw-semibold text-danger p-3'>Lihat kategori Laporan</Link>
                     </Col>
-                    <Col xs='5' className='p-3 text-center border-bottom border-danger rounded-0 rounded-0 '>
-                        <Link to='/report/my-report' className='fs-5 fw-semibold text-danger p-3'>Lihat Laporanku</Link>
-                    </Col>
+                    { session.type==='user' && (
+                        <Col xs='5' className='p-3 text-center border-bottom border-danger rounded-0 rounded-0 '>
+                            <Link to='/report/my-report' className='fs-5 fw-semibold text-danger p-3'>Lihat Laporanku</Link>
+                        </Col>
+                    ) }
                 </Row>
-              </nav>
+            </nav>
             <Row className='d-flex justify-content-between'>
                 <aside className='col-8 border'>
                     <Row className='mb-3'>
@@ -194,7 +196,7 @@ function SectionReportCategory({laporan, refreshApi}) {
                 </aside>
                 <aside className='col-4'>
                     <Row className='p-0 m-0 position-sticky' style={{ top:'40px' }}>
-                        { session && (
+                        { !session && (
                             <Card className='bg-danger mx-auto text-center py-5 px-3 mb-3 position-sticky'>
                                 <Card.Title className='fw-bold text-light'>Selamat datang di Bangkit</Card.Title>
                                 <Card.Body className='fw-light text-light'>Join sekarang di forum bantuan kami dengan mendaftarkan akun</Card.Body>

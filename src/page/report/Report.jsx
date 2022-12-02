@@ -14,12 +14,11 @@ function Report() {
 
   useEffect( () => {
     axios.get(API_KEY_REPORT).then( data => {
-          setLaporan(data.data.data);
+          setLaporan(data.data.data.filter( item => item.laporan.status === 'posted' ));
           setIsLoading(false);
       } )
       
   }, [])
-
   return (
     <>
       { isLoading ? (
