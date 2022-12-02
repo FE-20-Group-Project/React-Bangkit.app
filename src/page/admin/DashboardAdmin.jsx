@@ -4,7 +4,6 @@ import Chart from '../../components/chart/Chart'
 import { Link } from 'react-router-dom'
 import HeaderInfoDashboard from '../../components/header/HeaderInfoDashboard'
 import DashboardTopBar from '../../components/navigation/DashboardTopBar'
-import SideBar from '../../components/navigation/SideBar'
 import { getCookie } from '../../cookie/cookie'
 import { API_KEY_USERS, API_KEY_INSTANSI, API_KEY_REPORT } from '../../env/env'
 import { FaBuilding, FaUserAlt, FaBullhorn } from 'react-icons/fa'
@@ -51,7 +50,6 @@ function DashboardAdmin() {
       ) : (
         <Container fluid>
             <Row>
-              <SideBar/>
               <section className='col-10 p-0'>
                   <DashboardTopBar/>
                   <HeaderInfoDashboard favIcon={favIcon} users={users} instansi={instansi} laporan={laporan} />

@@ -20,8 +20,6 @@ function Report() {
       
   }, [])
 
-
-
   return (
     <>
       { isLoading ? (
