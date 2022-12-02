@@ -203,7 +203,7 @@ function SectionDetailReport({id, detailLaporan}) {
                     </Row>
                 </Card>
             ) ) }
-            { session & detailLaporan.laporan === 'solved' && (
+            { detailLaporan.laporan !== 'solved' && (
             <Reply id={id}/>
             ) }
             <Card className='bg-soft-light my-5 col-7 p-3'>
