@@ -7,7 +7,7 @@ import { Nav, Navbar, NavDropdown, Container,  Form, Button, Dropdown } from 're
 import Logo from '../../assets/image/bangkit.png'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-import { FaSignInAlt, FaSignOutAlt, FaUser } from 'react-icons/fa'
+import { FaSignInAlt, FaPenAlt, FaSignOutAlt, FaUser } from 'react-icons/fa'
 
 const MySwal = withReactContent(Swal)
 
@@ -62,7 +62,10 @@ function Navigation() {
                       <NavLink to="/article" style={({isActive}) => (isActive ? linkStyle : undefined)} className='dropdown-item' >Article</NavLink>
                   </NavDropdown>
                 { session==false ? (
-                <NavLink to='/login' className='btn btn-danger'><FaSignInAlt className='me-2'/>Login</NavLink>
+                  <>
+                    <NavLink to='/login' className='btn btn-outline-danger mx-2 rounded-pill p-2vpx-3'><FaSignInAlt className='mx-2'/>Login</NavLink>
+                    <NavLink to='/register' className='btn btn-danger rounded-pill p-2 px-3'><FaPenAlt className='mx-2'/>Register</NavLink>
+                  </>
                 ): (
                       <Dropdown drop="start">
                         <Dropdown.Toggle id="dropdown-button-dark-example1" className='bg-light border-0'>

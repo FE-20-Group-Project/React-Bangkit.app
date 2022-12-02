@@ -63,7 +63,7 @@ function RegisterCompany() {
                                     <h3 className='fw-bold'>Ayo bergabung bersama kami dan kirimkan bantuan untuk mereka yang membutuhkan!</h3>
                                 </aside>
                             </Col>
-                            <Col xs='10' md='5' className='bg-light mx-auto'>
+                            <Col xs='10' md='5' className='bg-soft-light mx-auto'>
                             <div className='text-center my-3'>
                                         <h2 className='fw-semibold text-dark mt-2'>REGISTER COMPANY</h2>
                                     </div>

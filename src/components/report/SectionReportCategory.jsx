@@ -1,12 +1,21 @@
 import React, { useState, useEffect } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { Row, Col, Card, Button, Form } from 'react-bootstrap'
-import Report from '../../assets/png/pandemic3.jpg'
+import Report from '../../assets/png/Report.png'
+import Sembako from '../../assets/png/Sembako.png'
+import Uang from '../../assets/png/Uang.png'
+import AlatTulis from '../../assets/png/AlatTulis.png'
+import Obat from '../../assets/png/Obat.png'
+import Tabung from '../../assets/png/Tabung.png'
+import Masker from '../../assets/png/Masker.png'
 import Profil from '../../assets/png/section.png'
 import HeroSectionReport from './HeroSectionReport'
 import { FaRegComments } from 'react-icons/fa'
+import { useSelector } from 'react-redux'
 
 function SectionReportCategory({laporan, refreshApi}) {
+
+    const {session} = useSelector( state => state.userSession );
 
     //Ekonomi
     const [ bahanPokok, setBahanPokok ] = useState([]);
@@ -54,7 +63,7 @@ function SectionReportCategory({laporan, refreshApi}) {
                             <Card className='mb-3 rounded-0 border-soft-color bg-soft-light shadow-md'>
                                 <Row className='d-flex justify-content-around'>
                                 <Col xs='2' className='p-3'>
-                                    <img src={Profil} width='50'/>
+                                    <img src={Sembako} width='50'/>
                                 </Col>
                                 <Col xs='3' className='p-3 d-flex justify-content-center flex-column'>
                                     <p className='text-danger fw-semibold'>Sembako dan bahan pokok</p>
@@ -69,10 +78,10 @@ function SectionReportCategory({laporan, refreshApi}) {
                             </Card>
                         </Link>
                         <Link to='/report/keuangan'>
-                            <Card className='mb-3  rounded-0 border-soft-color shadow-md'>
+                            <Card className='mb-3  rounded-0 border-soft-color bg-soft-light shadow-md'>
                                 <Row className='d-flex justify-content-around'>
                                 <Col xs='2' className='p-3'>
-                                    <img src={Profil} width='50'/>
+                                    <img src={Uang} width='50'/>
                                 </Col>
                                 <Col xs='3' className='p-3 d-flex justify-content-center flex-column'>
                                     <p className='text-danger fw-semibold'>Keuangan</p>
@@ -90,10 +99,10 @@ function SectionReportCategory({laporan, refreshApi}) {
                     <Row className='mb-3'>
                         <h3 className='fw-semibold my-3'>Pendidikan</h3>
                         <Link to='/report/bantuan-biaya'>
-                            <Card className=' mb-3 rounded-0 border-soft-color shadow-md'>
+                            <Card className=' mb-3 rounded-0 border-soft-color bg-soft-light shadow-md'>
                                 <Row className='d-flex justify-content-around'>
                                 <Col xs='2' className='p-3'>
-                                    <img src={Profil} width='50'/>
+                                    <img src={AlatTulis} width='50'/>
                                 </Col>
                                 <Col xs='3' className='p-3 text-danger d-flex justify-content-center flex-column'>
                                     <p className='text-danger fw-semibold'>Bantuan Biaya Sekolah</p>
@@ -108,7 +117,7 @@ function SectionReportCategory({laporan, refreshApi}) {
                             </Card>
                         </Link>
                         <Link to='/report/kuota-internet'>
-                            <Card className=' mb-3 rounded-0 border-soft-color shadow-md'>
+                            <Card className=' mb-3 rounded-0 border-soft-color bg-soft-light shadow-md'>
                                 <Row className='d-flex justify-content-around'>
                                 <Col xs='2' className='p-3'>
                                     <img src={Profil} width='50'/>
@@ -129,10 +138,10 @@ function SectionReportCategory({laporan, refreshApi}) {
                     <Row className='mb-3'>
                         <h3 className='fw-semibold my-3'>Kesehatan</h3>
                         <Link to='/report/obat-obatan'>
-                            <Card className=' mb-3 rounded-0 border-soft-color shadow-md'>
+                            <Card className=' mb-3 rounded-0 border-soft-color bg-soft-light shadow-md'>
                                 <Row className='d-flex justify-content-around'>
                                 <Col xs='2' className='p-3'>
-                                    <img src={Profil} width='50'/>
+                                    <img src={Obat} width='50'/>
                                 </Col>
                                 <Col xs='3' className='p-3 d-flex justify-content-center flex-column'>
                                     <p className='text-danger fw-semibold'>Obat-obatan</p>
@@ -147,10 +156,10 @@ function SectionReportCategory({laporan, refreshApi}) {
                             </Card>
                         </Link>
                         <Link to='/report/tabung-oksigen'>
-                            <Card className=' mb-3 rounded-0 border-soft-color shadow-md'>
+                            <Card className=' mb-3 rounded-0 border-soft-color bg-soft-light shadow-md'>
                                 <Row className='d-flex justify-content-around'>    
                                 <Col xs='2' className='p-3'>
-                                    <img src={Profil} width='50'/>
+                                    <img src={Tabung} width='50'/>
                                 </Col>
                                 <Col xs='3' className='p-3 d-flex justify-content-center flex-column'>
                                     <p className='text-danger fw-semibold'>Tabung Oksigen</p>
@@ -165,10 +174,10 @@ function SectionReportCategory({laporan, refreshApi}) {
                             </Card>
                         </Link>
                         <Link to='/report/masker'>
-                            <Card className=' mb-3 rounded-0 border-soft-color shadow-md'>
+                            <Card className=' mb-3 rounded-0 border-soft-color bg-soft-light shadow-md'>
                                 <Row className='d-flex justify-content-around'>    
                                 <Col xs='2' className='p-3'>
-                                    <img src={Profil} width='50'/>
+                                    <img src={Masker} width='50'/>
                                 </Col>
                                 <Col xs='3' className='p-3 d-flex justify-content-center flex-column'>
                                     <p className='text-danger fw-semibold'>Masker</p>
@@ -186,13 +195,15 @@ function SectionReportCategory({laporan, refreshApi}) {
                 </aside>
                 <aside className='col-4'>
                     <Row className='p-0 m-0 position-sticky' style={{ top:'40px' }}>
-                        <Card className='bg-danger mx-auto text-center py-5 px-3 mb-3 position-sticky'>
-                            <Card.Title className='fw-bold text-light'>Selamat datang di Bangkit</Card.Title>
-                            <Card.Body className='fw-light text-light'>Join today and start discussing what you like.</Card.Body>
-                            <Link to='/register' className='btn btn-light w-50 mx-auto text-danger'>Daftar</Link>
-                        </Card>
+                        { session && (
+                            <Card className='bg-danger mx-auto text-center py-5 px-3 mb-3 position-sticky'>
+                                <Card.Title className='fw-bold text-light'>Selamat datang di Bangkit</Card.Title>
+                                <Card.Body className='fw-light text-light'>Join sekarang di forum bantuan kami dengan mendaftarkan akun</Card.Body>
+                                <Link to='/register' className='btn btn-light w-50 mx-auto text-danger'>Daftar</Link>
+                            </Card>
+                        ) }
                         <Card className='bg-soft-light mx-auto p-3'>
-                            <Card.Title>Trending Post</Card.Title>
+                            <Card.Title className='border-bottom py-3'>Trending Post</Card.Title>
                                 { trending.map( item => (
                                     <Card.Body key={item.laporan._id} className='bg-soft-light'>
                                         <Row className='d-flex justify-content-around'>

@@ -27,7 +27,13 @@ useEffect( () => {
 const register = async (data, form) => {
     try {
         const response = await axios.post(API_KEY_REGISTER, data);
-        console.log(response);
+        if(response.data) {
+            MySwal.fire({
+                icon: 'success',
+                title: 'Berhasil Register!',
+              })
+              navigate('/login');
+        }
     } catch(error) {
         console.log(error.response.message);
     }
@@ -65,7 +71,7 @@ const handleSubmit = (e) => {
                                         <h5>Buat akun sekarang, ayo raih informasi bantuan dari berbagai instansi dan bangkit bersama</h5>
                                     </aside>
                                 </Col>
-                                <Col xs='10' md='5' className='bg-light mx-auto'>
+                                <Col xs='10' md='5' className='bg-soft-light mx-auto'>
                                         <div className='text-center my-3'>
                                             <h2 className='fw-semibold text-dark mt-2'>REGISTER USER</h2>
                                         </div>
