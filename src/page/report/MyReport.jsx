@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { API_KEY_REPORT } from '../../env/env'
 import { NavLink, Link, useNavigate } from 'react-router-dom'
 import { Row, Col, Card } from 'react-bootstrap'
-import { FaRocketchat, FaEye } from 'react-icons/fa'
+import { FaRocketchat, FaEye, FaCheck, FaRedoAlt } from 'react-icons/fa'
 import Navigation from '../../components/navigation/Navigation'
 import Footer from '../../components/footer/Footer'
 import Loading from '../../components/loader/Loading'
@@ -115,8 +115,15 @@ function MyReport() {
                             <Col xs='2'>
                                 <small>{item.laporan.date}</small>
                             </Col>
-                            <Col xs='2'>
-                                <span className='badge badge-pill bg-success w-100'>Edit</span>
+                            <Col xs='1'>
+                            { item.laporan.status === 'solved' && (
+                                <span className='badge badge-pill bg-success w-100'><FaCheck/></span>
+                            ) }
+                            { item.laporan.status === 'posted' && (
+                                <span className='badge badge-pill bg-primary w-100'><FaRedoAlt/></span>
+                            ) }
+                            </Col>
+                            <Col xs='1'>
                                 <span className='badge badge-pill bg-danger w-100' style={{ cursor: 'pointer' }} onClick={ () => handleEditLaporan(item.laporan._id)}>Hapus</span>
                             </Col>
                         </Row>

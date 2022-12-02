@@ -33,10 +33,15 @@ function SectionReportCategory({laporan, refreshApi}) {
 
     useEffect( () => {
         setBahanPokok(laporan.filter( item => item.laporan.subcategory === 'bahan-pokok' ));
+        setKeuangan(laporan.filter( item => item.laporan.subcategory === 'Keuangan' ));
+
         setKuota(laporan.filter( item => item.laporan.subcategory === 'kuota-internet' ));
-        setObat(laporan.filter( item => item.laporan.subcategory === 'obat-obatan' ));
         setBantuanPendidikan(laporan.filter( item => item.laporan.subcategory === 'bantuan-biaya' ));
+
+        setObat(laporan.filter( item => item.laporan.subcategory === 'obat-obatan' ));
         setMasker(laporan.filter( item => item.laporan.subcategory === 'masker' ));
+        setTabungOksigen(laporan.filter( item => item.laporan.subcategory === 'tabung-oksigen' ));
+        
         setTrending(laporan.sort((a, b) => (a.total_view < b.total_view ? 1 : -1)));
     },[refreshApi] )
 
@@ -57,9 +62,9 @@ function SectionReportCategory({laporan, refreshApi}) {
                 </Row>
             </nav>
             <Row className='d-flex justify-content-between'>
-                <aside className='col-8 border'>
+                <aside className='col-8 bg-danger border'>
                     <Row className='mb-3'>
-                        <h3 className='fw-semibold my-3'>Ekonomi</h3>
+                        <h3 className='fw-semibold my-3 text-light'>Ekonomi</h3>
                         <Link to='/report/bahan-pokok'>
                             <Card className='mb-3 rounded-0 border-soft-color bg-soft-light shadow-md'>
                                 <Row className='d-flex justify-content-around'>
@@ -78,7 +83,7 @@ function SectionReportCategory({laporan, refreshApi}) {
                                 </Row>
                             </Card>
                         </Link>
-                        <Link to='/report/keuangan'>
+                        <Link to='/report/Keuangan'>
                             <Card className='mb-3  rounded-0 border-soft-color bg-soft-light shadow-md'>
                                 <Row className='d-flex justify-content-around'>
                                 <Col xs='2' className='p-3'>
@@ -98,7 +103,7 @@ function SectionReportCategory({laporan, refreshApi}) {
                         </Link>
                     </Row>
                     <Row className='mb-3'>
-                        <h3 className='fw-semibold my-3'>Pendidikan</h3>
+                        <h3 className='fw-semibold my-3 text-light'>Pendidikan</h3>
                         <Link to='/report/bantuan-biaya'>
                             <Card className=' mb-3 rounded-0 border-soft-color bg-soft-light shadow-md'>
                                 <Row className='d-flex justify-content-around'>
@@ -137,7 +142,7 @@ function SectionReportCategory({laporan, refreshApi}) {
                         </Link>
                     </Row>
                     <Row className='mb-3'>
-                        <h3 className='fw-semibold my-3'>Kesehatan</h3>
+                        <h3 className='fw-semibold my-3 text-light'>Kesehatan</h3>
                         <Link to='/report/obat-obatan'>
                             <Card className=' mb-3 rounded-0 border-soft-color bg-soft-light shadow-md'>
                                 <Row className='d-flex justify-content-around'>
@@ -213,6 +218,7 @@ function SectionReportCategory({laporan, refreshApi}) {
                                             </Col>
                                             <Col xs='9'>
                                                 <Link to={'/report/detail-report/' + item.laporan._id} className='text-danger text-decoration-underline fw-500'>{item.laporan.title}</Link>
+                                                <small className='text-danger fw-500 d-block mt-2'>{item.laporan.date}</small>
                                             </Col>
                                         </Row>
                                     </Card.Body>

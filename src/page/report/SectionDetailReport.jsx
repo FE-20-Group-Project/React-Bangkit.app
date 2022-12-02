@@ -15,7 +15,7 @@ import { useSelector } from 'react-redux';
 const socket = io.connect("https://api-bangkit.up.railway.app");
 const MySwal = withReactContent(Swal)
 
-function SectionDetailReport({id, detailLaporan}) {
+function SectionDetailReport({id, detailLaporan, setIsLoading}) {
     const {session} = useSelector( state => state.userSession );
     const [ data, setData ] = useState([]);
     const [ trending, setTrending ] = useState([]);
@@ -53,8 +53,8 @@ function SectionDetailReport({id, detailLaporan}) {
                     },
                     data: form
                 }).then( data => {
-                    console.log(data);
                     if(data.data) {
+                        setIsLoading(true);
                         Swal.fire(
                         'Selesai!',
                         'Laporan berhasil ditutup.',
@@ -139,7 +139,7 @@ function SectionDetailReport({id, detailLaporan}) {
             <Breadcrumb.Item active>{detailLaporan.laporan.title}</Breadcrumb.Item>
     </Breadcrumb>
     <section className='section-report container border my-3'>
-        <Row className='d-flex justify-content-around p-3'>
+        <Row className='d-flex justify-content-start p-3'>
             <Col xs='2'>
                 <img src={`https://api-bangkit.up.railway.app/${detailLaporan.laporan.user.image}`} className='img-fluid' />
             </Col>
@@ -201,7 +201,7 @@ function SectionDetailReport({id, detailLaporan}) {
                 </Card>
             ) ) }
             { detailLaporan.laporan.status === 'posted' && (
-            <Reply id={id}/>
+                    <Reply id={id} setIsLoading={setIsLoading}/>
             ) }
         </Row>
     </section>

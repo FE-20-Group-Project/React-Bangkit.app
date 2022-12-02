@@ -18,7 +18,7 @@ function DetailReport() {
                     setDetailLaporan(data);
                     setIsLoading(false);
                 } )
-            }, [])
+            }, [isLoading])
             
             console.log(detailLaporan);
     const getAPi = async (api) => {
@@ -35,7 +35,7 @@ function DetailReport() {
                 ) : (
                     <>
                     <Navigation/>
-                        <SectionDetailReport id={id} detailLaporan={detailLaporan} />
+                        <SectionDetailReport id={id} detailLaporan={detailLaporan} setIsLoading={setIsLoading} />
                     <Footer/>
                     </>
                 ) }

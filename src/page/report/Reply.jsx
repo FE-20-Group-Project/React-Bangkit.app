@@ -12,6 +12,8 @@ function Reply({id}) {
 
   const handleReply = (e) => {
     e.preventDefault();
+    e.target.reset();
+    document.getElementById('preview-img').src = '';
       const form = new FormData();
       form.append('id_laporan', id);
       if(image) {
@@ -24,7 +26,11 @@ function Reply({id}) {
         headers: { authorization: `Bearer ${token}` },
         data: form
       }).then( data => {
-        console.log(data);
+        if(data.data) {
+          setIsLoading(true);
+          setImage('')
+          setContent('')
+        }
       } )
   }
 
@@ -54,7 +60,10 @@ function Reply({id}) {
                 <Form onSubmit={handleReply}>
                       <h5 className='fw-semibold'>Balasan</h5>
                     <Form.Group className='mb-2'>
-                      <Button onClick={ () => handleEditUploadImage() } className='btn-sm bg-dark border-0 text-light border-0'>Upload Bukti Gambar <FaImage/></Button>
+                        <button onClick={ () => handleEditUploadImage() } class="icon-btn add-btn">
+                            <div class="add-icon"></div>
+                            <div class="btn-txt text-gray"> Add Photo </div>
+                        </button>
                       <Form.Control type='file' id='edit-upload-image' onChange={ () => previewImage() } className='d-none' />
                     </Form.Group>
                     <Form.Group>
