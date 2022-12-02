@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { Row, Col, Card, Button, Form } from 'react-bootstrap'
-import Report from '../../assets/png/Report.png'
 import Sembako from '../../assets/png/Sembako.png'
 import Uang from '../../assets/png/Uang.png'
 import AlatTulis from '../../assets/png/AlatTulis.png'
