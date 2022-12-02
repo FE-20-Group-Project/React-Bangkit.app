@@ -28,13 +28,13 @@ const editProfile = (data) => {
     }
 }
 
-const getSession = (token) => {
+const getSession = (token, setIsLoading) => {
     return async (dispatch) => {
-        dispatch(fetchStart());
         const response = await axios.get(API_KEY_AUTH, {
             "headers": { "Authorization": `Bearer ${token}` }
         });
         dispatch(addSession(response.data.data));
+        setIsLoading(false);
     }
 }
 

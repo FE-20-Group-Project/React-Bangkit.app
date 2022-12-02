@@ -7,10 +7,11 @@ import ScholarshipList from './ScholarshipList'
 import { useDispatch, useSelector } from 'react-redux'
 
 function SectionScholarship({scholarship}) {
-  const {isLogin} = useSelector( state => state.userSession );
+  const {session} = useSelector( state => state.userSession );
   const dispatch = useDispatch();
   const [ namaPerusahaan, setNamaPerusahaan ] = useState('');
   const [ namaBeasiswa, setNamaBeasiswa] = useState('');
+
   const handleFilter = (e) => {
     e.preventDefault();
         dispatch(getFilterScholarship(namaPerusahaan, namaBeasiswa));
@@ -53,7 +54,7 @@ function SectionScholarship({scholarship}) {
                 </Col>
                 <Col xs='12' xl='8' className='p-3' style={{ height: '100vh', overflow:'scroll' }}>
                     <h2 className='text-center fw-bold text-light'>Beasiswa List</h2>
-                    <ScholarshipList isLogin={isLogin} scholarship={scholarship}/>
+                    <ScholarshipList session={session} scholarship={scholarship}/>
                 </Col>
             </Row>
       </section>

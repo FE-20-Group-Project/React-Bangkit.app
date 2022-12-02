@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { KEY_SESSION, API_KEY_LOGIN  } from '../../env/env'
+import { API_KEY_LOGIN  } from '../../env/env'
 import { getCookie } from '../../cookie/cookie'
-import { addSession, getSession } from '../../redux/action/userSession'
+import { getSession } from '../../redux/action/userSession'
 import { Container, Row, Card, Col, Form, Button, Spinner } from 'react-bootstrap'
 import Logo from '../../assets/image/bangkit.png'
 import LogoLogin from '../../assets/png/login.png'
@@ -31,8 +31,7 @@ function Login() {
             })
             const data = response.data;
             document.cookie = `token=${data.token}`;
-            const token = getCookie('token');
-            dispatch(getSession(token));
+            dispatch(getSession(data.token));
             MySwal.fire({
                 icon: 'success',
                 title: 'Berhasil Login!',

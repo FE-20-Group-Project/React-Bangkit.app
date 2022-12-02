@@ -2,7 +2,7 @@ import { FETCH_START, ADD_SESSION, CLEAR_SESSION, UPDATE_SESSION} from '../../ac
 
 const initialState = {
     session : false,
-    isLoading : false
+    sessionLoading : false
 }
 
 const userSession = (state = initialState, action) => {
@@ -10,13 +10,13 @@ const userSession = (state = initialState, action) => {
             case FETCH_START : 
                 return {
                     ...state,
-                    isLoading: true
+                    sessionLoading: true
                 }
             case ADD_SESSION :
                 // console.log(action.payload)
                 return {
                     session : action.payload,
-                    isLoading : false
+                    sessionLoading : false
                 }
             case CLEAR_SESSION : 
                 return {

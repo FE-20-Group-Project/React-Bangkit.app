@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { KEY_SESSION } from '../../env/env'
 import { getCookie } from '../../cookie/cookie'
 import { clearSession, getSession, } from '../../redux/action/userSession'
 import { Nav, Navbar, NavDropdown, Container,  Form, Button, Dropdown } from 'react-bootstrap'
@@ -33,7 +32,6 @@ function Navigation() {
         dispatch(clearSession(getCookie('token')));
         // document.cookie = "token=; expires=passedDate";
         document.cookie = "token=; Max-Age=0";
-        localStorage.removeItem(KEY_SESSION);
         MySwal.fire({
           icon: 'success',
           title: 'Berhasil Logout!'
@@ -47,7 +45,7 @@ function Navigation() {
 
 
   return (
-    <Navbar collapseOnSelect expand="md" variant="light" className='bg-light border-bottom border-5 shadow-md border-danger py-3 position-sticky top-0' style={{ zIndex: '9' }}>
+    <Navbar collapseOnSelect expand="md" variant="light" className='bg-light border-bottom border-5 shadow-lg border-danger py-3 position-sticky top-0' style={{ zIndex: '9' }}>
     <Container fluid className='px-5'>
       <NavLink to='/'>
             <img src={Logo} width='100px' />

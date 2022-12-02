@@ -1,13 +1,12 @@
 import React from 'react'
 import { Row, Col, Table, Pagination, Card, Button } from 'react-bootstrap'
-import { FaReplyAll, FaUserTag } from 'react-icons/fa';
+import { FaRocketchat, FaEye } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Profil from '../../assets/png/section.png'
 
 function SectionReportList({subcategory, laporan}) {
-    console.log(laporan);
-    console.log(subcategory);
-   
+    const {session} = useSelector( state => state.userSession );
   return (
     <>
         <section className='report-list container-fluid bg-soft-light p-5'>
@@ -20,24 +19,24 @@ function SectionReportList({subcategory, laporan}) {
                     { laporan.map( item => {
                         if(item.laporan.subcategory === subcategory){
                             return (
-                                <article className='col-12'>
-                                    <Row className='d-flex justify-content-between border p-3'>
-                                        <Col xs='1'>
+                                <article className='col-12 border-0 border-bottom border-top shadow-md'>
+                                    <Row className='d-flex justify-content-between p-3'>
+                                        <Col xs='1' className='d-flex justify-content-center flex-column'>
                                             <img src={`https://api-bangkit.up.railway.app/${item.laporan.user.image}`} width='30px' />
                                         </Col>
-                                        <Col xs='5'>
-                                            <Link to={'/report/detail-report/' + item.laporan._id}>{item.laporan.title}</Link>
+                                        <Col xs='3' className='d-flex justify-content-center flex-column'>
+                                            <Link className='text-danger' to={'/report/detail-report/' + item.laporan._id}>{item.laporan.title}</Link>
                                         </Col>
-                                        <Col xs='2'>
+                                        <Col xs='2' className='d-flex justify-content-center flex-column'>
                                             <span>
-                                            <FaReplyAll className='fs-5 me-2'/>
-                                            100
+                                            <FaRocketchat className='fs-5 me-2 text-danger'/>
+                                            {item.reply.length}
                                             </span>
                                         </Col>
-                                        <Col xs='2'>
+                                        <Col xs='2' className='d-flex justify-content-center flex-column'>
                                             <span>
-                                            <FaUserTag className='fs-5 me-2' />
-                                            30
+                                            <FaEye className='fs-5 me-2 text-danger' />
+                                            {item.laporan.total_view}
                                             </span>
                                         </Col>
                                         <Col xs='2'>

@@ -4,7 +4,6 @@ import { FaUser, FaBars, FaSignOutAlt } from 'react-icons/fa'
 import { NavLink } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { KEY_SESSION } from '../../env/env'
 import { getCookie } from '../../cookie/cookie'
 import { clearSession } from '../../redux/action/userSession'
 import Swal from 'sweetalert2'
@@ -26,24 +25,24 @@ function DashboardTopBar() {
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Ya, keluar!'
-        }).then((result) => {
-        if (result.isConfirmed) {
-            dispatch(clearSession(getCookie('token')));
-            document.cookie = "token=; expires=passedDate";
-            localStorage.removeItem(KEY_SESSION);
-            MySwal.fire({
+          }).then((result) => {
+            if (result.isConfirmed) {
+              dispatch(clearSession(getCookie('token')));
+              // document.cookie = "token=; expires=passedDate";
+              document.cookie = "token=; Max-Age=0";
+              MySwal.fire({
                 icon: 'success',
                 title: 'Berhasil Logout!'
+              }
+              )
+              navigate('/login');
             }
-            )
-            navigate('/login');
-          }
-        })
+          })
       }
     
 
   return (
-    <header className='topbar container-fluid border-bottom border-danger w-100 p-3'>
+    <header className='topbar container-fluid border-bottom border-3 border-danger w-100 p-3'>
             <Row className='d-flex justify-content-between'>
                 <Col xs='3' className='d-flex'>
                     <Button className='bg-light text-dark border-0'><FaBars className='fs-4'/></Button>

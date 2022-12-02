@@ -25,44 +25,65 @@ import DashboardAdmin from './page/admin/DashboardAdmin'
 import DetailReport from './page/report/DetailReport'
 import MyReport from './page/report/MyReport'
 import { getCookie } from './cookie/cookie'
+import DataArticle from './page/admin/DataArticle'
+import AddArticle from './page/admin/AddArticle'
+import Loading from './components/loader/Loading'
+import DataJobs from './page/company/DataJobs'
+import DataScholarship from './page/company/DataScholarship'
+import AddJobs from './page/company/AddJobs'
 
 function App() {
   const dispatch = useDispatch();
-const [apiRefresh, setApiRefresh] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
 useEffect( () => {
   const token = getCookie('token');
-  dispatch(getSession(token));
+  if(token) {
+    dispatch(getSession(token, setIsLoading));
+  }else {
+    setIsLoading(false);
+  }
 },[] )
 
    return (     
-   <div className="App">
-        <Routes>
-            <Route path='/login' element={<Login/>} />
-            <Route path='/register' element={<Register/>} />
-            <Route path='/register-company' element={<RegisterCompany/>} />
+    <>
+      { isLoading ? (
+        <Loading/>
+      ) : (
+        <div className="App bg-soft-light">
+              <Routes>
+                  <Route path='/login' element={<Login/>} />
+                  <Route path='/register' element={<Register/>} />
+                  <Route path='/register-company' element={<RegisterCompany/>} />
 
-            <Route path='/' element={<Homepage/>} />
-            <Route path='/about-us' element={<Aboutpage/>} />
-            <Route path='/jobs' element={<Jobs/>} />
-            <Route path='/jobs/:id' element={<DetailJobs/>} />
-            <Route path='/scholarship' element={<Scholarship/>} />
-            <Route path='/scholarship/:id' element={<DetailScolarship/>} />
-            <Route path='/article' element={<Article/>} />
-            <Route path='/report' element={<Report/>} />
-            <Route path='/report/my-report' element={<MyReport/>} />
-            <Route path='/report/:subcategory' element={<ReportList/>} />
-            <Route path='/report/detail-report/:id' element={<DetailReport/>} />
-            <Route path='/user/profile' element={<ProfileUser/>} />
-            <Route path='/user/edit/'>
-                  <Route path=':editOption' index element={<EditProfile/>} />
-            </Route>
+                  <Route path='/' element={<Homepage/>} />
+                  <Route path='/about-us' element={<Aboutpage/>} />
+                  <Route path='/jobs' element={<Jobs/>} />
+                  <Route path='/jobs/:id' element={<DetailJobs/>} />
+                  <Route path='/scholarship' element={<Scholarship/>} />
+                  <Route path='/scholarship/:id' element={<DetailScolarship/>} />
+                  <Route path='/article' element={<Article/>} />
+                  <Route path='/report' element={<Report/>} />
+                  <Route path='/report/my-report' element={<MyReport/>} />
+                  <Route path='/report/:subcategory' element={<ReportList/>} />
+                  <Route path='/report/detail-report/:id' element={<DetailReport/>} />
+                  <Route path='/user/profile' element={<ProfileUser/>} />
+                  <Route path='/user/edit/'>
+                        <Route path=':editOption' index element={<EditProfile/>} />
+                  </Route>
 
 
-            <Route path='/dashboard-company/' element={<DashboardCompany/>}/>
-            <Route path='/dashboard-admin/' element={<DashboardAdmin/>}/>
-        </Routes>
-   </div>
+                  <Route path='/dashboard-company/' element={<DashboardCompany/>}/>
+                  <Route path='/dashboard-company/jobs' element={<DataJobs/>}/>
+                  <Route path='/dashboard-company/jobs/add-jobs' element={<AddJobs/>} />
+                  <Route path='/dashboard-company/scholarship' element={<DataScholarship/>}/>
+                  <Route path='/dashboard-admin/' element={<DashboardAdmin/>}/>
+                  <Route path='/dashboard-admin/article' element={<DataArticle/>} />
+                  <Route path='/dashboard-admin/article/add-article' element={<AddArticle/>} />
+              </Routes>
+        </div>
+      ) }
+    </>
   )
             
         

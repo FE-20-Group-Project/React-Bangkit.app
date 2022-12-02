@@ -7,7 +7,7 @@ import JobList from './JobList'
 import { useDispatch, useSelector } from 'react-redux'
 
 function SectionJob({jobs}) {
-  const {isLogin} = useSelector( state => state.userSession );
+  const {session} = useSelector( state => state.userSession );
   const dispatch = useDispatch();
   const [ nameCompany, setNameCompany ] = useState('');
   const [ location, setLocation ] = useState('');
@@ -53,7 +53,7 @@ function SectionJob({jobs}) {
                 </Col>
                 <Col xs='12' xl='8' className='p-3'  style={{ height: '100vh', overflow:'scroll' }}>
                     <h2 className='text-center fw-bold text-light'>Job List</h2>
-                    <JobList isLogin={isLogin} data={jobs} />
+                    <JobList session={session} data={jobs} />
                 </Col>
             </Row>
       </section>

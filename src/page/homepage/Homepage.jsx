@@ -14,7 +14,7 @@ import Footer from '../../components/footer/Footer'
 function Homepage() {
   const [ isLoading, setIsLoading ] = useState(true);
   const {session} = useSelector( state => state.userSession );
-  console.log(session);
+  
   useEffect( () => {
     window.scrollTo(0, 0);
       setTimeout( () => {
