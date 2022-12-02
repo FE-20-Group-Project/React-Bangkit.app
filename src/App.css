@@ -7,6 +7,8 @@ body {
     background-position: center;
 }
 
+
+
 @media screen and (max-width: 850px) {
     .text-header-2, .text-header {
         font-size : 2rem !important;

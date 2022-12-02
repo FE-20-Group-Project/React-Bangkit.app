@@ -14,26 +14,25 @@ const MySwal = withReactContent(Swal)
 function Jobs() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { session } = useSelector( state => state.userSession );
   const { jobs, isLoading } = useSelector( state => state.jobsList );
 
   useEffect( () => {
       window.scrollTo(0, 0);
-      dispatch(getJobs(isLogin.token));
+      dispatch(getJobs());
   },[] )
 
-
+console.log(jobs, isLoading);
   return (
     <>
-      <Navigation/>
       { isLoading ? (
         <Loading/>
       ) : (
           <>
+      <Navigation/>
               <SectionJob jobs={jobs} />
+      <Footer/>
           </>
       ) }
-      <Footer/>
     </>
   )
 }

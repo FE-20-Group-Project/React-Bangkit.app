@@ -12,12 +12,12 @@ function ArticleSection({article}) {
           <Col xs="10" className='m-3'>
               <Row className='d-flex justify-content-center p-0 m-0'>
                   <Col xs='12' md='6' className='p-3'>
-                      <img src={article[5].image} className='img-fluid w-100' />
+                      <img src={article[5]?.image} className='img-fluid w-100' />
                   </Col>
                   <Col xs='12' md='6' className='p-3 d-flex justify-content-center flex-column'>
-                      <a href={article[5].link_url} className='h2 fw-bold mb-3 text-danger' >{article[5].title}</a>
-                      <p>{article[5].createdAt}</p>
-                      <p>{article[5].description}</p>
+                      <a href={article[5]?.link_url} className='h2 fw-bold mb-3 text-danger' >{article[5].title}</a>
+                      <p>{article[5]?.createdAt}</p>
+                      <p>{article[5]?.description}</p>
                   </Col>
               </Row>
           </Col>
@@ -25,7 +25,7 @@ function ArticleSection({article}) {
         </section>
         <section className='article-section pb-5' >
             <Row className='d-flex justify-content-center f-wrap p-0 m-0'>
-                { article.map( (item, index) => {
+                { article?.map( (item, index) => {
                     return (
                           <Col key={index} xs="10" sm='5' className='m-3'>
                               <Row className='d-flex justify-content-between p-0'>

@@ -17,15 +17,11 @@ const successGetJobs = (data) => {
     }
 }
 
-const getJobs = (token) => {
+const getJobs = () => {
     return async (dispatch) => {
         dispatch(fetchStart());
-        const response = await axios.get('https://api-bangkit.up.railway.app/api/user/loker', {
-            'headers': { 'Authorization': `Bearer ${token}` }
-        });
-        console.log(response);
-        die();
-        const result = response.data;
+        const response = await axios.get(API_KEY_JOBS);
+        const result = response.data.data;
         dispatch(successGetJobs(result));
     }
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { API_KEY_INFORMATION } from '../../../env/env';
+import { API_KEY_SCHOLARSHIP } from '../../../env/env';
 import SectionDetailJobs from '../../../components/jobSeeker/SectionDetailJobs';
 import { useSelector } from 'react-redux';
 import Swal from 'sweetalert2'
@@ -10,6 +10,7 @@ import SectionDetailScholarship from '../../../components/scholarship/SectionDet
 import Loading from '../../../components/loader/Loading';
 import Navigation from '../../../components/navigation/Navigation';
 import Footer from '../../../components/footer/Footer';
+import { getCookie } from '../../../cookie/cookie';
 
 const MySwal = withReactContent(Swal)
 
@@ -24,10 +25,10 @@ function DetailScolarship() {
     useEffect( () => {
         window.scrollTo(0, 0);
 
-            getAPiScholarship(`${API_KEY_INFORMATION}/${id}`).then( data => {
+            getAPi(`${API_KEY_SCHOLARSHIP}/${id}`).then( data => {
                 setDetailBeasiswa(data);
             } )
-            getAPiScholarship( `${API_KEY_INFORMATION}?type=Beasiswa` ).then( data => {
+            getAPi(API_KEY_SCHOLARSHIP).then( data => {
                 setBeasiswa(data);
                 setIsLoading(false);
             } )
@@ -35,9 +36,12 @@ function DetailScolarship() {
         
     }, [])
 
-    const getAPiScholarship = async (api) => {
-        const response = await axios.get(api);
-        const result = response.data;
+    const getAPi = async (api) => {
+        const token = getCookie('token');
+        const response = await axios.get(api, {
+            'headers': { 'Authorization': `Bearer ${token}` }
+        });
+        const result = response.data.data;
         return result;
     }
 

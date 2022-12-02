@@ -13,8 +13,8 @@ import Footer from '../../components/footer/Footer'
 
 function Homepage() {
   const [ isLoading, setIsLoading ] = useState(true);
-  const {isLogin} = useSelector( state => state.userSession );
-
+  const {session} = useSelector( state => state.userSession );
+  
   useEffect( () => {
     window.scrollTo(0, 0);
       setTimeout( () => {
@@ -24,20 +24,20 @@ function Homepage() {
 
   return (
     <>
-        <Navigation/>
         { isLoading ? (
           <Loading/>
         ): (
           <>
+        <Navigation/>
             <Header/>
             <BannerFeature/>
             <SectionSymptom/>
             <SectionCovidInfo/>
             <SectionJoinUs/>
             <SectionContactUs/>
+        <Footer/>
           </>
         ) }
-        <Footer/>
     </>
   )
 }

@@ -23,23 +23,20 @@ function Scholarship() {
         dispatch(getScholarship());
   }, [] );
 
-  const getAPiScholarship = async (api) => {
-      const response = await axios.get(api);
-      const result = response.data;
-      return result;
-  }
+
+  console.log(scholarship);
 
   return (
     <>
-      <Navigation/>
         { isLoading ? (
           <Loading/>
         ) : (
             <>
+            <Navigation/>
               <SectionScholarship scholarship={scholarship} />
+            <Footer/>
             </>
         ) }
-      <Footer/>
     </>
   )
 }

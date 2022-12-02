@@ -12,7 +12,7 @@ function Footer() {
             <Col xs='10' md='5' className='ms-3'>
                 <img className='rounded my-3' src={LogoBangkit} width='100px' />
                 <h6>
-                Group 20 Front-End , Challange Partner : National University of Singapore, Skilvul Tech4Impact Cycle 3 MSIB Kampus Merdeka.
+                Group 8 Front-End & Back-End , Challange Partner : National University of Singapore, Skilvul Tech4Impact Cycle 3 MSIB Kampus Merdeka.
                 </h6>
                 <Row className='d-flex justify-content-start'>
                     <Col xs='2'>
@@ -48,8 +48,8 @@ function Footer() {
                 <img src={NUS} width='200' />
             </Col>
         </Row>
-        <Row className='p-3 bg-transparant-dark'>
-                <p className='text-light text-center'>Copyright <FaCopyright/> Group Front-End 20 - NUS #Tech4Impact 2022 | All Right Reserved</p>
+        <Row className='py-3 bg-transparant-dark d-flex justify-content-center flex-column'>
+                <p className='text-light text-center'>Copyright <FaCopyright/> Group FEBE 8 - NUS #Tech4Impact 2022 | All Right Reserved</p>
         </Row>
     </footer>
   )
