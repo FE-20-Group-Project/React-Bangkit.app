@@ -17,7 +17,7 @@ function SectionReportList({subcategory, laporan}) {
                     </Row>
                 <Row>
                     { laporan.map( item => {
-                        if(item.laporan.subcategory === subcategory){
+                        if(item.laporan.subcategory === subcategory & item.laporan.status !== 'solved'){
                             return (
                                 <article className='col-12 border-0 border-bottom border-top shadow-md'>
                                     <Row className='d-flex justify-content-between p-3'>

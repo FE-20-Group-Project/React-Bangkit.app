@@ -39,7 +39,6 @@ function SectionDetailReport({id, detailLaporan}) {
     }
 
     const handleSolveReport = (id) => {
-        console.log(id);
         Swal.fire({
             title: 'Anda yakin ingin menutup laporan berikut?',
             icon: 'warning',
@@ -59,6 +58,37 @@ function SectionDetailReport({id, detailLaporan}) {
                         authorization: `Bearer ${token}`
                     },
                     data: form
+                }).then( data => {
+                    console.log(data);
+                    if(data.data) {
+                        Swal.fire(
+                        'Selesai!',
+                        'Laporan berhasil ditutup.',
+                        'success'
+                        )
+                    }
+                } )
+            }
+        })
+    }
+
+    const handleDeleteLaporan = (id) => {
+        Swal.fire({
+            title: 'Anda yakin ingin menghapus laporan berikut?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const token = getCookie('token');
+                axios({
+                    url: `${API_KEY_REPORT}/${id}`,
+                    method: "DELETE",
+                    headers: {  
+                        authorization: `Bearer ${token}`
+                    }
                 }).then( data => {
                     console.log(data);
                     if(data.data) {
@@ -131,9 +161,16 @@ function SectionDetailReport({id, detailLaporan}) {
                 </Row>
             </Col>
             <Col xs='3'>
-                <Button className='bg-success btn-sm border-0 text-light m-2'><FaCheck/> Tandai sudah selesai</Button>
+            { detailLaporan.laporan.status !== 'solved' && (
+                <>
+                <Button className='bg-success btn-sm border-0 text-light m-2' onClick={() => handleSolveReport(detailLaporan.laporan._id)}><FaCheck/> Tandai sudah selesai</Button>
                 <Button className='bg-primary btn-sm border-0 text-light m-2'><FaEdit/> Edit</Button>
-                <Button className='bg-danger btn-sm border-0 text-light m-2' onClick={() => handleSolveReport(detailLaporan.laporan._id)}><FaTrash/> Hapus</Button>
+                </>
+            ) }
+            { detailLaporan.laporan.status === 'solved' && (
+                <Button className='bg-success btn-sm border-0 text-light m-2'><FaCheck/> Solved</Button>
+            ) }
+                <Button className='bg-danger btn-sm border-0 text-light m-2'><FaTrash/> Hapus</Button>
             </Col>
         </Row>
     </section>
@@ -166,7 +203,7 @@ function SectionDetailReport({id, detailLaporan}) {
                     </Row>
                 </Card>
             ) ) }
-            { session && (
+            { session & detailLaporan.laporan === 'solved' && (
             <Reply id={id}/>
             ) }
             <Card className='bg-soft-light my-5 col-7 p-3'>
