@@ -3,13 +3,14 @@ import { Container, Row, Table, Card, Button } from 'react-bootstrap'
 import DashboardTopBar from '../../components/navigation/DashboardTopBar'
 import Loading from '../../components/loader/Loading'
 import { Link } from 'react-router-dom'
-import { FaEdit, FaPlus, FaTrash, FaUser } from 'react-icons/fa'
+import { FaBookOpen, FaCheck, FaEdit, FaTimes, FaTrash, FaUser } from 'react-icons/fa'
 import axios from 'axios'
 import { API_KEY_INSTANSI } from '../../env/env'
 import { getCookie } from '../../cookie/cookie'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import NavSide from '../../components/navigation/NavSide'
+import Footer from '../../components/footer/Footer'
 const MySwal = withReactContent(Swal)
 
 function DataCompany() {
@@ -19,7 +20,7 @@ function DataCompany() {
 
     useEffect( () => {
         getAPI(API_KEY_INSTANSI).then( data => {
-            console.log(data);
+            setCompany(data);
             setIsLoading(false);
         } )
     }, [isLoading] );
@@ -73,33 +74,35 @@ function DataCompany() {
         <Container fluid>
             <Row>
               <NavSide/>
-              <section className='col-10'>
+              <section className='col-10 px-0'>
                   <DashboardTopBar/>
-                        <main>
+                        <main className='my-3 p-3'>
                             <Card className='table-responsive'>
                                 <Card.Header>
-                                    <Link to='/dashboard-admin/article/add-article' className='btn btn-primary btn-sm'><FaPlus/> Tambah Article</Link>
                                 </Card.Header>
                             <Table className='table-bordered'>
                                 <thead>
                                     <tr>
                                         <th>No .</th>
-                                        <th>Gambar Artikel</th>
-                                        <th>Judul Artikel</th>
-                                        <th>Publisher</th>
+                                        <th>Profile</th>
+                                        <th>Nama Instansi</th>
+                                        <th>Email</th>
+                                        <th>Verifikasi</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {/* { article.map( (item, index) => {
+                                    { company.map( (item, index) => {
                                     return (  
                                         <tr key={item._id}>
                                             <td>{index + 1}</td>
                                             <td>
                                                 <img src={'https://api-bangkit.up.railway.app/'+item.image} width='80' />
                                             </td>
-                                            <td>{item.title}</td>
-                                            <td>{item.author}</td>
+                                            <td>{item.name}</td>
+                                            <td>{item.email}</td>
+                                            <td>{ item.status==='accept' ? 
+                                            <span className='badge bg-success'><FaCheck/> Accept</span> : <span className='badge bg-danger'><FaTimes/> Pending</span> }</td>
                                             <td>
                                                 <Link to='' className='btn btn-warning btn-sm mx-2'>
                                                     <FaEdit/>
@@ -110,11 +113,12 @@ function DataCompany() {
                                             </td>
                                         </tr>
                                         )
-                                     } ) } */}
+                                        } ) }
                                 </tbody>
                             </Table>
                             </Card>
                         </main>
+                        <Footer/>
               </section>
             </Row>
         </Container>

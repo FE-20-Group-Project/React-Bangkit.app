@@ -42,10 +42,10 @@ function DataReport() {
                 <Container fluid>
                     <Row className='d-flex justify-content-center'>
                         <NavSide/>
-                        <section className='col-10  p-0'>
+                        <section className='col-10 px-0'>
                             <DashboardTopBar/>
                     
-                            <main className='p-5'>
+                            <main className='my-3 p-3'>
                             <Card className='table-responsive'>
                                         <Card.Header>
                                         </Card.Header>
@@ -70,11 +70,11 @@ function DataReport() {
                                                     <td>{item.laporan.title}</td>
                                                     <td>{item.laporan.category}</td>
                                                     <td>{item.laporan.subcategory}</td>
-                                                    <td>
-                                                        <Link to={`/report/detail-report/${item.laporan._id}`} className='btn btn-sm btn-warning btn-sm mx-2'>
+                                                    <td className='d-flex flex-column'>
+                                                        <Link to={`/report/detail-report/${item.laporan._id}`} className='btn btn-sm btn-warning btn-sm w-50 mx-auto mb-3'>
                                                         <FaInfoCircle/>
                                                         </Link>
-                                                        <Button variant='danger' className='btn-sm'>
+                                                        <Button variant='danger' className='btn-sm mx-auto w-50'>
                                                             <FaTrash/>
                                                         </Button>
                                                     </td>

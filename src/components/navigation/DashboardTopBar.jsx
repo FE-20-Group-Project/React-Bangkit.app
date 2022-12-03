@@ -43,15 +43,15 @@ function DashboardTopBar() {
     
 
   return (
-    <header className='topbar container-fluid border-bottom border-3 border-danger w-100 p-3'>
+    <header className='topbar container-fluid bg-dark text-light w-100 p-3'>
             <Row className='d-flex justify-content-between'>
                 <Col xs='3' className='d-flex'>
-                    <Button className='bg-soft-light text-dark border-0'><FaBars className='fs-4'/></Button>
+                    <Button className='bg-dark text-light border-0'><FaBars className='fs-4'/></Button>
                     <h3 className='fw-bold'>Dashboard</h3>
                 </Col>
                 <Col xs='1'>
                 <Dropdown drop="center">
-                    <Dropdown.Toggle id="dropdown-button-dark-example1" className='bg-soft-light border-0'>
+                    <Dropdown.Toggle id="dropdown-button-dark-example1" className='bg-dark border-0'>
                     <img src={`https://api-bangkit.up.railway.app/${session.image}`} width='30' />
                     </Dropdown.Toggle>
                     <Dropdown.Menu className='bg-soft-light' >

@@ -70,9 +70,9 @@ function DataArticle() {
         <Container fluid>
             <Row>
               <NavSide/>
-              <section className='col-10'>
+              <section className='col-10 px-0'>
                   <DashboardTopBar/>
-                        <main>
+                        <main className='my-3 p-3'>
                             <Card className='table-responsive'>
                                 <Card.Header>
                                     <Link to='/dashboard-admin/article/add-article' className='btn btn-primary btn-sm'><FaPlus/> Tambah Article</Link>
@@ -98,10 +98,10 @@ function DataArticle() {
                                             <td>{item.title}</td>
                                             <td>{item.author}</td>
                                             <td>
-                                                <Link to='' className='btn btn-warning btn-sm mx-2'>
+                                                <Link to='' className='btn btn-warning btn-sm w-100 mb-3'>
                                                     <FaEdit/>
                                                 </Link>
-                                                <Button variant='danger' onClick={ () => handleDelete(item._id) } className='btn-sm'>
+                                                <Button variant='danger' onClick={ () => handleDelete(item._id) } className='btn-sm w-100'>
                                                     <FaTrash/>
                                                 </Button>
                                             </td>
