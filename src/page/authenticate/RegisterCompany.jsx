@@ -20,17 +20,27 @@ function RegisterCompany() {
     const [ document, setDocument ] = useState();
 
     const register = async (dataForm, form) => {
-        try {
+
             axios({
                 url : API_KEY_REGISTER_COMPANY,
                 method : "POST",
                 data : dataForm
             }).then( data => {
-                console.log(data)
-            } )
-        } catch(error) {
-            console.log(error);
-        }
+               if(data.data) {
+                MySwal.fire({
+                    icon: 'success',
+                    title: 'Berhasil Register!',
+                  })
+                  navigate('/login');
+               }
+            } ).catch( error => {
+                MySwal.fire({
+                    icon: 'warning',
+                    title: error.response.data.message || 'Mohon Periksa Kembali Data Anda!',
+                  })
+                  form.reset();
+            } ) 
+        
     }
 
     const handleSubmit = (e) => {

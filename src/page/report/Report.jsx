@@ -6,8 +6,10 @@ import Navigation from '../../components/navigation/Navigation';
 import Footer from '../../components/footer/Footer';
 import { API_KEY_REPORT } from '../../env/env';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 function Report() {
+  const {session} = useSelector( state => state.userSession );
   const [ laporan, setLaporan ] = useState([]);
   const [report, setReport] = useState([]);
   const [ isLoading, setIsLoading ] = useState(true);
@@ -19,6 +21,9 @@ function Report() {
       } )
       
   }, [])
+
+
+  console.log(session.type);
   return (
     <>
       { isLoading ? (
@@ -27,7 +32,9 @@ function Report() {
         <>
       <Navigation/>
           <SectionReportCategory laporan={laporan} />
-          <AddReport/>
+          { session.type === 'user' && (
+            <AddReport/>
+          ) }
       <Footer/>
         </>
       ) }

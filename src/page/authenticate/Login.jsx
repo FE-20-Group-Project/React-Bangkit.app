@@ -30,22 +30,37 @@ function Login() {
                 "password": password
             })
             const data = response.data;
-            document.cookie = `token=${data.token}`;
-            dispatch(getSession(data.token));
-            MySwal.fire({
-                icon: 'success',
-                title: 'Berhasil Login!',
-              })
-            if(data.data.type==='instansi') {
-                navigate('/dashboard-company');
-            }else if(data.data.type==='admin') {
-                navigate('/dashboard-admin')
-            }else {
-                navigate('/')
-            }
-       } catch(error) {
-            console.log(error);
-       }
+            if(data.data) {
+                document.cookie = `token=${data.token}`;
+                dispatch(getSession(data.token));
+                if(data.data.type==='instansi') {
+                            MySwal.fire({
+                                icon: 'success',
+                                title: 'Berhasil Login!',
+                            })
+                            navigate('/dashboard-company');
+                        }else if(data.data.type==='admin') {
+                            MySwal.fire({
+                                icon: 'success',
+                                title: 'Berhasil Login!',
+                            })
+                            navigate('/dashboard-admin')
+                        }else {
+                            MySwal.fire({
+                                icon: 'success',
+                                title: 'Berhasil Login!',
+                            })
+                            navigate('/')
+                        }
+                }else {
+                    return response;
+                }
+       } catch(error ){
+        MySwal.fire({
+            icon: 'warning',
+            title: error.response.data.message.msg || 'Akun tidak ditemukan, periksa kembali email dan passwordmu!',
+        })
+       } 
         
     }
 
