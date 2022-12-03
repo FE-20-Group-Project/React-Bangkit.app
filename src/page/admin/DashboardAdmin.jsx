@@ -9,6 +9,8 @@ import { API_KEY_USERS, API_KEY_INSTANSI, API_KEY_REPORT } from '../../env/env'
 import { FaBuilding, FaUserAlt, FaBullhorn } from 'react-icons/fa'
 import axios from 'axios'
 import Loading from '../../components/loader/Loading'
+import NavSide from '../../components/navigation/NavSide'
+import Footer from '../../components/footer/Footer'
 
 const favIcon = {
   FaBuilding,
@@ -50,12 +52,14 @@ function DashboardAdmin() {
       ) : (
         <Container fluid>
             <Row>
+              <NavSide/>
               <section className='col-10 p-0'>
                   <DashboardTopBar/>
                   <HeaderInfoDashboard favIcon={favIcon} users={users} instansi={instansi} laporan={laporan} />
-                        <main className='bg-soft-light p-3'>
+                        <main className='bg-soft-light p-5'>
                           <Chart/>
                         </main>
+                        <Footer/>
               </section>
             </Row>
         </Container>

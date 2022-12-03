@@ -9,6 +9,7 @@ import Chart from '../../components/chart/Chart'
 import axios from 'axios'
 import { API_KEY_JOBS } from '../../env/env'
 import { getCookie } from '../../cookie/cookie'
+import NavSide from '../../components/navigation/NavSide'
 
 
 function DataJobs() {
@@ -37,6 +38,7 @@ function DataJobs() {
     <>
         <Container fluid>
             <Row className='d-flex justify-content-center'>
+                <NavSide/>
                 <section className='col-10  p-0'>
                     <DashboardTopBar/>
                     <main className='p-5'>
@@ -46,7 +48,7 @@ function DataJobs() {
                                 </Card.Header>
                             <Table className='table-bordered'>
                                 <thead>
-                                    <tr>
+                                    <tr align='center'>
                                         <th>No .</th>
                                         <th>Nama Perusahaan</th>
                                         <th>Position yang dibutuhkan</th>
@@ -56,7 +58,7 @@ function DataJobs() {
                                 </thead>
                                 <tbody>
                                     { jobs.map( (item, index) => (
-                                        <tr>
+                                        <tr key={index} align='center'>
                                             <td>{index + 1}</td>
                                             <td>{item.companyName}</td>
                                             <td>{item.positionName}</td>

@@ -9,6 +9,7 @@ import { API_KEY_ARTICLE } from '../../env/env'
 import { getCookie } from '../../cookie/cookie'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import NavSide from '../../components/navigation/NavSide'
 const MySwal = withReactContent(Swal)
 
 function DataArticle() {
@@ -68,6 +69,7 @@ function DataArticle() {
         ) : (
         <Container fluid>
             <Row>
+              <NavSide/>
               <section className='col-10'>
                   <DashboardTopBar/>
                         <main>

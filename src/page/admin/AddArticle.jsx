@@ -10,6 +10,7 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 const MySwal = withReactContent(Swal)
 import { API_KEY_ARTICLE } from '../../env/env'
+import NavSide from '../../components/navigation/NavSide'
 
 function AddArticle() {
     const navigate = useNavigate();
@@ -47,7 +48,7 @@ function AddArticle() {
   return (
     <Container fluid>
     <Row>
-        <Sidebar/>
+        <NavSide/>
         <section className='col-10'>
             <DashboardTopBar/>
                     <main>

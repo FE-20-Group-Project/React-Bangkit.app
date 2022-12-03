@@ -27,7 +27,8 @@ function DashboardTopBar() {
             confirmButtonText: 'Ya, keluar!'
           }).then((result) => {
             if (result.isConfirmed) {
-              dispatch(clearSession(getCookie('token')));
+              const token = getCookie('token')
+              dispatch(clearSession(token));
               // document.cookie = "token=; expires=passedDate";
               document.cookie = "token=; Max-Age=0";
               MySwal.fire({
@@ -55,7 +56,7 @@ function DashboardTopBar() {
                     </Dropdown.Toggle>
                     <Dropdown.Menu className='bg-soft-light' >
                         <NavLink to='/' style={({isActive}) => (isActive ? linkStyle : undefined)} className='dropdown-item py-2'><FaUser/> Homepage</NavLink>
-                        <Dropdown.Item href="#/action-4" onClick={ () => logout() }><FaSignOutAlt/> Logout</Dropdown.Item>
+                        <Dropdown.Item onClick={ () => logout() }><FaSignOutAlt/> Logout</Dropdown.Item>
                     </Dropdown.Menu>
                     </Dropdown>
                 </Col>

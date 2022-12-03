@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Row, Col, Card, Badge, Button, Breadcrumb } from 'react-bootstrap'
 import Reply from './Reply';
 import CarouselBS from '../../components/carousel/CarouselBS'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import io from 'socket.io-client'
 import axios from 'axios';
 import { getCookie } from '../../cookie/cookie';
@@ -16,6 +16,7 @@ const socket = io.connect("https://api-bangkit.up.railway.app");
 const MySwal = withReactContent(Swal)
 
 function SectionDetailReport({id, detailLaporan, setIsLoading}) {
+    const navigate = useNavigate();
     const {session} = useSelector( state => state.userSession );
     const [ data, setData ] = useState([]);
     const [ trending, setTrending ] = useState([]);
@@ -110,7 +111,7 @@ function SectionDetailReport({id, detailLaporan, setIsLoading}) {
                 if (result.isConfirmed) {
                     const token = getCookie('token');
                     axios({
-                        url: `${API_KEY_REPLY}/${id}`,
+                        url: `${API_KEY_REPLY}/${id}/${detailLaporan.id_laporan}`,
                         method: "DELETE",
                         headers: {  
                             authorization: `Bearer ${token}`

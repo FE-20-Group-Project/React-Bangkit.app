@@ -31,6 +31,10 @@ import Loading from './components/loader/Loading'
 import DataJobs from './page/company/DataJobs'
 import DataScholarship from './page/company/DataScholarship'
 import AddJobs from './page/company/AddJobs'
+import AddScholarship from './page/company/AddScholarship'
+import DataReport from './page/company/DataReport'
+import DataCompany from './page/admin/DataCompany'
+import DataUser from './page/admin/DataUser'
 
 function App() {
   const dispatch = useDispatch();
@@ -77,9 +81,15 @@ useEffect( () => {
                   <Route path='/dashboard-company/jobs' element={<DataJobs/>}/>
                   <Route path='/dashboard-company/jobs/add-jobs' element={<AddJobs/>} />
                   <Route path='/dashboard-company/scholarship' element={<DataScholarship/>}/>
+                  <Route path='/dashboard-company/scholarship/add-scholarship' element={<AddScholarship/>}/>
+                  <Route path='/dashboard-company/report' element={<DataReport/>}/>
+
                   <Route path='/dashboard-admin/' element={<DashboardAdmin/>}/>
                   <Route path='/dashboard-admin/article' element={<DataArticle/>} />
                   <Route path='/dashboard-admin/article/add-article' element={<AddArticle/>} />
+                  <Route path='/dashboard-admin/report' element={<DataReport/>}/>
+                  <Route path='/dashboard-admin/data-company' element={<DataCompany/>}/>
+                  <Route path='/dashboard-admin/data-user' element={<DataUser/>}/>
               </Routes>
         </div>
       ) }
