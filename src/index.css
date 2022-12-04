@@ -8,6 +8,10 @@
     text-decoration: none !important;
 }
 
+p {
+  font-weight: 500;
+}
+
 
 /* Root Style */
 :root {

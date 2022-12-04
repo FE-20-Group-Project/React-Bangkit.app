@@ -35,7 +35,11 @@ const register = async (data, form) => {
               navigate('/login');
         }
     } catch(error) {
-        console.log(error.response.message);
+        MySwal.fire({
+            icon: 'warning',
+            title: error.response.data.message || 'Mohon periksa kembali data anda!',
+          })
+          return false;
     }
 }
 

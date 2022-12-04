@@ -58,9 +58,9 @@ function MyReport() {
                     console.log(data);
                     if(data.data) {
                         Swal.fire(
-                          'Terhapus!',
-                          'Artikel berhasil dihapus.',
-                          'success'
+                            'Terhapus!',
+                            'Laporan berhasil dihapus.',
+                            'success'
                         )
                         setIsLoading(true);
                     }
@@ -95,7 +95,7 @@ function MyReport() {
                     <article key={item.id} className='border-top border-bottom shadow-md'>
                         <Row className='p-3'>
                             <Col xs='1'>
-                                <img src={`https://api-bangkit.up.railway.app/${item.laporan.user.image}`} width='30px' />
+                                <img src={ item.laporan.image[0] ? `https://api-bangkit.up.railway.app/${item.laporan.image[0]}`: `https://api-bangkit.up.railway.app/${item.laporan.user.image}`} width='30px' />
                             </Col>
                             <Col xs='3'>
                                 <Link className='text-danger' to={'/report/detail-report/' + item.laporan._id}>{item.laporan.title}</Link>

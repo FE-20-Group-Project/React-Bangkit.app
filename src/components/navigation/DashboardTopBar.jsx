@@ -27,7 +27,8 @@ function DashboardTopBar() {
             confirmButtonText: 'Ya, keluar!'
           }).then((result) => {
             if (result.isConfirmed) {
-              dispatch(clearSession(getCookie('token')));
+              const token = getCookie('token')
+              dispatch(clearSession(token));
               // document.cookie = "token=; expires=passedDate";
               document.cookie = "token=; Max-Age=0";
               MySwal.fire({
@@ -42,20 +43,20 @@ function DashboardTopBar() {
     
 
   return (
-    <header className='topbar container-fluid border-bottom border-3 border-danger w-100 p-3'>
+    <header className='topbar container-fluid bg-dark text-light w-100 p-3'>
             <Row className='d-flex justify-content-between'>
                 <Col xs='3' className='d-flex'>
-                    <Button className='bg-soft-light text-dark border-0'><FaBars className='fs-4'/></Button>
+                    <Button className='bg-dark text-light border-0'><FaBars className='fs-4'/></Button>
                     <h3 className='fw-bold'>Dashboard</h3>
                 </Col>
                 <Col xs='1'>
                 <Dropdown drop="center">
-                    <Dropdown.Toggle id="dropdown-button-dark-example1" className='bg-soft-light border-0'>
+                    <Dropdown.Toggle id="dropdown-button-dark-example1" className='bg-dark border-0'>
                     <img src={`https://api-bangkit.up.railway.app/${session.image}`} width='30' />
                     </Dropdown.Toggle>
                     <Dropdown.Menu className='bg-soft-light' >
                         <NavLink to='/' style={({isActive}) => (isActive ? linkStyle : undefined)} className='dropdown-item py-2'><FaUser/> Homepage</NavLink>
-                        <Dropdown.Item href="#/action-4" onClick={ () => logout() }><FaSignOutAlt/> Logout</Dropdown.Item>
+                        <Dropdown.Item onClick={ () => logout() }><FaSignOutAlt/> Logout</Dropdown.Item>
                     </Dropdown.Menu>
                     </Dropdown>
                 </Col>

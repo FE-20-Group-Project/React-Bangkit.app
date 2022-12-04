@@ -27,7 +27,7 @@ function SectionReportList({subcategory, laporan}) {
                                 <article className='col-12 border-0 border-bottom border-top shadow-md'>
                                     <Row className='d-flex justify-content-between p-3'>
                                         <Col xs='1' className='d-flex justify-content-center flex-column'>
-                                            <img src={`https://api-bangkit.up.railway.app/${item.laporan.user.image}`} width='30px' />
+                                            <img  src={ item.laporan.image[0] ? `https://api-bangkit.up.railway.app/${item.laporan.image[0]}`: `https://api-bangkit.up.railway.app/${item.laporan.user.image}`} width='30px' />
                                         </Col>
                                         <Col xs='3' className='d-flex justify-content-center flex-column'>
                                             <Link className='text-danger' to={'/report/detail-report/' + item.laporan._id}>{item.laporan.title}</Link>
@@ -72,7 +72,7 @@ function SectionReportList({subcategory, laporan}) {
                                     <Card.Body key={item.laporan._id} className='bg-soft-light'>
                                         <Row className='d-flex justify-content-around'>
                                             <Col xs='3'>
-                                                <img src={`https://api-bangkit.up.railway.app/${item.laporan.user.image}`} className='img-fluid' />
+                                                <img src={ `https://api-bangkit.up.railway.app/${item.laporan.image[0]}` || `https://api-bangkit.up.railway.app/${item.laporan.user.image}`} className='img-fluid' />
                                             </Col>
                                             <Col xs='9'>
                                                 <Link to={'/report/detail-report/' + item.laporan._id} className='text-danger text-decoration-underline fw-500'>{item.laporan.title}</Link>

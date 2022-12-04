@@ -25,7 +25,9 @@ function AddReport() {
         e.preventDefault();
         const token = getCookie('token');
         const form = new FormData();
-        form.append('laporan', session.image);
+        if(image) {
+            form.append('laporan', image);
+        }
         form.append('title', title);
         form.append('category', category);
         form.append('subcategory', subCategory);

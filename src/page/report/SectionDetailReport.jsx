@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Row, Col, Card, Badge, Button, Breadcrumb } from 'react-bootstrap'
 import Reply from './Reply';
 import CarouselBS from '../../components/carousel/CarouselBS'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import io from 'socket.io-client'
 import axios from 'axios';
 import { getCookie } from '../../cookie/cookie';
@@ -16,6 +16,7 @@ const socket = io.connect("https://api-bangkit.up.railway.app");
 const MySwal = withReactContent(Swal)
 
 function SectionDetailReport({id, detailLaporan, setIsLoading}) {
+    const navigate = useNavigate();
     const {session} = useSelector( state => state.userSession );
     const [ data, setData ] = useState([]);
     const [ trending, setTrending ] = useState([]);
@@ -88,9 +89,10 @@ function SectionDetailReport({id, detailLaporan, setIsLoading}) {
                     if(data.data) {
                         Swal.fire(
                         'Selesai!',
-                        'Laporan berhasil ditutup.',
+                        'Laporan berhasil dihapus.',
                         'success'
                         )
+                        navigate('/report/my-report');
                     }
                 } )
             }
@@ -109,7 +111,7 @@ function SectionDetailReport({id, detailLaporan, setIsLoading}) {
                 if (result.isConfirmed) {
                     const token = getCookie('token');
                     axios({
-                        url: `${API_KEY_REPLY}/${id}`,
+                        url: `${API_KEY_REPLY}/${id}/${detailLaporan.id_laporan}`,
                         method: "DELETE",
                         headers: {  
                             authorization: `Bearer ${token}`
@@ -141,7 +143,7 @@ function SectionDetailReport({id, detailLaporan, setIsLoading}) {
     <section className='section-report container border my-3'>
         <Row className='d-flex justify-content-start p-3'>
             <Col xs='2'>
-                <img src={`https://api-bangkit.up.railway.app/${detailLaporan.laporan.user.image}`} className='img-fluid' />
+                <img src={ detailLaporan.laporan.image[0] ? `https://api-bangkit.up.railway.app/${detailLaporan.laporan.image[0]}`: `https://api-bangkit.up.railway.app/${detailLaporan.laporan.user.image}`} className='img-fluid' />
             </Col>
             <Col xs='5'>
                 <h3 className='fw-bold text-decoration-underline text-danger py-3'>{detailLaporan.laporan.title}</h3>

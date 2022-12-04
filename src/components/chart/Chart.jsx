@@ -29,7 +29,7 @@ ChartJS.register(
       },
       title: {
         display: true,
-        text: 'Chart.js Line Chart',
+        text: 'Data Aktifitas',
       },
     },
   };
@@ -40,13 +40,13 @@ ChartJS.register(
     labels,
     datasets: [
       {
-        label: 'Dataset 1',
+        label: 'Pelaporan Masalah',
         data: [12, 19, 3, 5, 2, 3],
         borderColor: 'rgb(255, 99, 132)',
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
       },
       {
-        label: 'Dataset 2',
+        label: 'Layanan Informasi',
         data: [12, 19, 3, 5, 2, 3],
         borderColor: 'rgb(53, 162, 235)',
         backgroundColor: 'rgba(53, 162, 235, 0.5)',

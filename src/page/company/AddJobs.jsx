@@ -12,6 +12,7 @@ import withReactContent from 'sweetalert2-react-content'
 const MySwal = withReactContent(Swal)
 import { API_KEY_JOBS } from '../../env/env'
 import { useSelector } from 'react-redux'
+import NavSide from '../../components/navigation/NavSide'
 
 function AddJobs() {
     const navigate = useNavigate();
@@ -27,9 +28,9 @@ function AddJobs() {
     const [qualification, setQualification] = useState('');
     const [workType, setWorkType] = useState('');
     const [expired, setExpired] = useState('');
-    const [categoryJobs, setCategoryJobs] = useState([]);
+    const [categoryJobs1, setCategoryJobs1] = useState('');
+    const [categoryJobs2, setCategoryJobs2] = useState('');
 
-  console.log(categoryJobs);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -39,7 +40,9 @@ function AddJobs() {
         form.append('positionName', positionName);
         form.append('desc', content);
         form.append('email', email);
-        form.append('category', categoryJobs);
+        form.append('category', [
+            categoryJobs1, categoryJobs2
+        ]);
         form.append('location', location);
         form.append('salary', salary);
         form.append('qualification', qualification);
@@ -62,25 +65,11 @@ function AddJobs() {
         } )
     }
 
-    const categoryInput = countCategory.map( (item, index) => {
-        return (
-            <Form.Group className='mb-3'>
-                <Form.Label><span className='text-danger'>*</span> Kategori Pekerjaan</Form.Label>
-                <Form.Control type='text' className='category' onChange={(e) => setCategoryJobs( value => [e.target.value] )} />
-            </Form.Group>
-            )
-    } )
-
-    const incrementCount = () => {
-        setCountCategory( oldArray => [...oldArray, 1] )
-    }
-    const decrementCount = () => {
-        setCountCategory( oldArray => [1] )
-    }
 
   return (
     <Container fluid>
     <Row>
+        <NavSide/>
         <section className='col-10'>
             <DashboardTopBar/>
                     <main>
@@ -103,16 +92,13 @@ function AddJobs() {
                                     <Form.Label><span className='text-danger'>*</span> Nama Pekerjaan</Form.Label>
                                     <Form.Control type='text' required onChange={ (e) => setPositionName(e.target.value) } />
                                 </Form.Group>
-                                <Form.Group className='d-flex justify-content-start'>
-                                    <aside className='mb-3 col-5'>
-                                        { categoryInput }
-                                    </aside>
-                                        <aside>
-                                    { categoryInput.length <= 5 && (
-                                        <Button className='bg-primary btn-sm text-light m-2' onClick={ () => incrementCount() }>+</Button>
-                                    ) }
-                                        <Button variant='danger' className='btn-sm' onClick={ () => decrementCount() }>Clear</Button>
-                                        </aside>
+                                <Form.Group className='mb-3'>
+                                    <Form.Label><span className='text-danger'>*</span> Kategori 1</Form.Label>
+                                    <Form.Control type='text' required onChange={ (e) => setCategoryJobs1(e.target.value) } />
+                                </Form.Group>
+                                <Form.Group className='mb-3'>
+                                    <Form.Label><span className='text-danger'>*</span> Kategori 2</Form.Label>
+                                    <Form.Control type='text' required onChange={ (e) => setCategoryJobs2(e.target.value) } />
                                 </Form.Group>
                                 <Form.Group className='mb-3'>
                                     <Form.Label><span className='text-danger'>*</span> Gaji Kisaran</Form.Label>
