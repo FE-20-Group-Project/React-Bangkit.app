@@ -81,7 +81,7 @@ function Navigation() {
                           ) }
                           <NavLink to='/user/profile' style={({isActive}) => (isActive ? linkStyle : undefined)} className='dropdown-item'><FaUser/> Profile</NavLink>
                           <Dropdown.Divider />
-                          <Dropdown.Item href="#/action-4" onClick={ () => logout() }><FaSignOutAlt/> Logout</Dropdown.Item>
+                          <Dropdown.Item className='text-danger' onClick={ () => logout() }><FaSignOutAlt/> Logout</Dropdown.Item>
                         </Dropdown.Menu>
                       </Dropdown>
 

@@ -39,13 +39,60 @@ function SectionJob({jobs}) {
                     <Card className='p-3 mx-auto border-top border-5 border-third rounded position-sticky top-10 mt-5'>
                         <Card.Title className='text-center text-danger fw-semibold my-3'>Filter</Card.Title>
                         <Form onSubmit={handleFilter} >
-                            <Form.Group className='mb-3'>
-                                <Form.Control type='search' onChange={ (e) => setNameCompany(e.target.value) } placeholder='Nama Perusahaan' />
+                        <Form.Group>
+                            <Form.Label className='text-danger fw-semibold'>Kategori</Form.Label>
+                        </Form.Group>
+                            <Form.Group>
+                            <Form.Check
+                              inline
+                              label="Komputer/Teknologi Informasi"
+                              value="Komputer/Teknologi Informasi"
+                              type="checkbox"/>
                             </Form.Group>
-                            <Form.Group className='mb-3'>
-                              <Form.Control type='search' onChange={ (e) => setLocation(e.target.value) } placeholder='Lokasi' />
-                              </Form.Group>
-                            <Form.Group className='w-50 mx-auto'>
+                            <Form.Group>
+                            <Form.Check
+                              inline
+                              label="IT-Perangkat Lunak"
+                              value="IT-Perangkat Lunak"
+                              type="checkbox"/>
+                            </Form.Group>
+                            <hr/>
+                        <Form.Group>
+                            <Form.Label className='text-danger fw-semibold'>Posisi Lamaran</Form.Label>
+                        </Form.Group>
+                            <Form.Group>
+                            <Form.Check
+                              inline
+                              label="Junior Software Engineer"
+                              value="Junior Software Engineer"
+                              type="checkbox"/>
+                            </Form.Group>
+                            <Form.Group>
+                            <Form.Check
+                              inline
+                              label="Back End Developer"
+                              value="Back End Developer"
+                              type="checkbox"/>
+                            </Form.Group>
+                            <hr/>
+                            <Form.Group>
+                            <Form.Label className='text-danger fw-semibold'>Jenis Pekerjaan</Form.Label>
+                          </Form.Group>
+                          <Form.Group>
+                            <Form.Check
+                              inline
+                              label="Magang"
+                              value="Magang"
+                              type="checkbox"/>
+                          </Form.Group>
+                          <Form.Group>
+                            <Form.Check
+                              inline
+                              label="Penuh Waktu"
+                              value="Penuh Waktu"
+                              type="checkbox"/>
+                          </Form.Group>
+                            <Form.Group className='w-50 mt-3 mx-auto'>
                               <Button type='submit' variant='danger' className='w-100 rounded-0'><FaFilter className='ms-2'/> Filter</Button>
                             </Form.Group>
                         </Form>

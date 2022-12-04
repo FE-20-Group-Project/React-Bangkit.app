@@ -7,6 +7,22 @@ body {
     background-position: center;
 }
 
+.card-profile {
+  border-width: 2px !important;
+  box-shadow: 10px 5px 10px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+.card-profile.back-dev:hover {
+  border: 3px solid var(--third-color);
+  transform: translateY(-10px);
+  transition: 1s;
+}
+.card-profile.front-dev:hover {
+  border: 3px solid var(--danger-color);
+  transform: translateY(-10px);
+  transition: 1s;
+}
+
 .icon-btn {
     width: 50px;
     height: 50px;

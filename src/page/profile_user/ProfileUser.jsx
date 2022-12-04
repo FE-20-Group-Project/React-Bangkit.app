@@ -17,15 +17,15 @@ function ProfileUser() {
 
   return (
     <>
-        <Navigation/>
         { isLoading ? (
             <Loading/>
         ) : (
             <>
+            <Navigation/>
                 <UserProfile profile={session} />
+            <Footer/>
             </>
         ) }
-        <Footer/>
     </>
   )
 }

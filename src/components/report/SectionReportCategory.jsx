@@ -214,7 +214,7 @@ function SectionReportCategory({laporan, refreshApi}) {
                                     <Card.Body key={item.laporan._id} className='bg-soft-light'>
                                         <Row className='d-flex justify-content-around'>
                                             <Col xs='3'>
-                                                <img src={`https://api-bangkit.up.railway.app/${item.laporan.user.image}`} className='img-fluid' />
+                                                <img src={ item.laporan.image[0] ? `https://api-bangkit.up.railway.app/${item.laporan.image}` : `https://api-bangkit.up.railway.app/${item.laporan.user.image}`} className='img-fluid' />
                                             </Col>
                                             <Col xs='9'>
                                                 <Link to={'/report/detail-report/' + item.laporan._id} className='text-danger text-category text-decoration-underline fw-500'>{item.laporan.title}</Link>

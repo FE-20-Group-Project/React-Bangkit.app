@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Row, Col, Card, Badge, Button, Breadcrumb } from 'react-bootstrap'
+import { Row, Col, Card, Button, Breadcrumb } from 'react-bootstrap'
 import Reply from './Reply';
 import CarouselBS from '../../components/carousel/CarouselBS'
 import { Link, useNavigate } from 'react-router-dom';
@@ -7,7 +7,8 @@ import io from 'socket.io-client'
 import axios from 'axios';
 import { getCookie } from '../../cookie/cookie';
 import { API_KEY_REPLY, API_KEY_REPORT } from '../../env/env';
-import { FaTrash, FaClock, FaUserAlt, FaEdit, FaClipboard, FaClipboardList, FaCheck, FaMailBulk, FaCheckCircle } from 'react-icons/fa';
+import { FaTrash, FaClock, FaUserAlt, FaEdit, FaClipboard, FaClipboardList, FaCheck, FaCheckCircle, FaTimes } from 'react-icons/fa';
+import ms from 'parse-ms'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import { useSelector } from 'react-redux';
@@ -19,6 +20,7 @@ function SectionDetailReport({id, detailLaporan, setIsLoading}) {
     const navigate = useNavigate();
     const {session} = useSelector( state => state.userSession );
     const [ data, setData ] = useState([]);
+    const [timer, setTimer] = useState();
     const [ trending, setTrending ] = useState([]);
     useEffect( () => {
         socket.on("laporan", (event) => {
@@ -28,7 +30,11 @@ function SectionDetailReport({id, detailLaporan, setIsLoading}) {
         })
     }, [socket, session] )
 
-
+    useEffect( () => {
+        const exp = detailLaporan.laporan.expired;
+        setTimer(ms(exp - Date.now()));
+    }, [setIsLoading])
+    
     const handleSolveReport = (id) => {
         Swal.fire({
             title: 'Anda yakin ingin menutup laporan berikut?',
@@ -81,7 +87,6 @@ function SectionDetailReport({id, detailLaporan, setIsLoading}) {
                         authorization: `Bearer ${token}`
                     }
                 }).then( data => {
-                    console.log(data);
                     if(data.data) {
                         Swal.fire(
                         'Selesai!',
@@ -124,7 +129,6 @@ function SectionDetailReport({id, detailLaporan, setIsLoading}) {
                 }
             })
     }
-    console.log(detailLaporan.laporan._id)
 
     const ReplyComponent = () => {
         if(session && detailLaporan.laporan.status === 'posted') {
@@ -150,33 +154,43 @@ function SectionDetailReport({id, detailLaporan, setIsLoading}) {
                 <h3 className='fw-bold text-decoration-underline text-danger py-3'>{detailLaporan.laporan.title}</h3>
                 <Row className='d-flex justify-content-between f-wrap'>
                     <Col xs='10' sm='6'>
-                    <h6 className='text-dark text-report-user-text my-3'><FaUserAlt className='text-report-user-icon fs-5 ms-2'/> {detailLaporan.laporan.user.name}</h6>
+                    <h6 className='text-dark text-report-user-text my-3'><FaUserAlt className='text-report-user-icon text-danger fs-5 ms-2'/> {detailLaporan.laporan.user.name}</h6>
                     </Col>
                     <Col  xs='10' sm='6'>
-                    <h6 className='text-dark text-report-user-text my-3'><FaClock className='text-report-user-icon fs-5 ms-2'/> {detailLaporan.laporan.date}</h6>
+                    <h6 className='text-dark text-report-user-text my-3'><FaClock className='text-report-user-icon text-danger fs-5 ms-2'/> {detailLaporan.laporan.date}</h6>
                     </Col>
                     <Col  xs='10' sm='6'>
-                    <h6 className='text-dark text-report-user-text my-3'><FaClipboard className='text-report-user-icon fs-5 ms-2'/> {detailLaporan.laporan.category}</h6>
+                    <h6 className='text-dark text-report-user-text my-3'><FaClipboard className='text-report-user-icon text-danger fs-5 ms-2'/> {detailLaporan.laporan.category}</h6>
                     </Col>
                     <Col  xs='10' sm='6'>
-                    <h6 className='text-dark text-report-user-text my-3'><FaClipboardList className='text-report-user-icon fs-5 ms-2'/> {detailLaporan.laporan.subcategory}</h6>
                     </Col>
+                    <h6 className='text-dark text-report-user-text my-3'><FaClipboardList className='text-report-user-icon text-danger fs-5 ms-2'/> {detailLaporan.laporan.subcategory}</h6>
+                    { detailLaporan.laporan.status === 'posted' && (
+                        <h6 className='text-dark text-report-user-text my-3'><FaClock className='text-report-user-icon text-danger fs-5 ms-2'/> {`Forum akan berakhir dalam, ${timer?.days} hari ${timer?.hours} jam ${timer?.minutes} menit`}</h6>
+                    ) }
                 </Row>
             </Col>
-            { session.name === detailLaporan.laporan.user.name && (
                 <Col xs='3'>
-                { detailLaporan.laporan.status === 'posted' && (
-                    <>
-                    <Button className='bg-success btn-sm border-0 text-light m-2' onClick={() => handleSolveReport(detailLaporan.laporan._id)}><FaCheck/> Tandai sudah selesai</Button>
-                    <Button className='bg-primary btn-sm border-0 text-light m-2'><FaEdit/> Edit</Button>
-                    </>
-                ) }
-                { detailLaporan.laporan.status === 'solved' && (
-                    <Button className='bg-success btn-sm border-0 text-light m-2'><FaCheck/> Laporan Selesai</Button>
-                ) }
-                    <Button className='bg-danger btn-sm border-0 text-light m-2' onClick={ () => handleDeleteLaporan(detailLaporan.laporan._id) }><FaTrash/> Hapus</Button>
+                    { session.name === detailLaporan.laporan.user.name && (
+                            <>
+                                { detailLaporan.laporan.status === 'posted' && (
+                                    <>
+                                        <Button className='bg-success btn-sm border-0 text-light m-2' onClick={() => handleSolveReport(detailLaporan.laporan._id)}><FaCheck/> Tandai sudah selesai</Button>
+                                        <Button className='bg-primary btn-sm border-0 text-light m-2'><FaEdit/> Edit</Button>
+                                    </>
+                                ) }
+                                { detailLaporan.laporan.status === 'solved' && (
+                                    <Button className='bg-success btn-sm border-0 text-light m-2'><FaCheck/> Laporan Selesai</Button>
+                                ) }
+                                { Math.sign(timer?.seconds) === -1 ? (
+                                <Button className='bg-danger btn-sm border-0 text-light m-2'><FaTimes/> Expired</Button>
+                                ) : (
+                                <Button className='bg-danger btn-sm border-0 text-light m-2' onClick={ () => handleDeleteLaporan(detailLaporan.laporan._id) }><FaTrash/> Hapus</Button>
+                                ) }
+                            </>
+                            ) }
+                    {  }
                 </Col>
-            ) }
         </Row>
     </section>
     <section className='section-reply my-5'>

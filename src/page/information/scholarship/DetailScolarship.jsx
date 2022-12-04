@@ -27,14 +27,14 @@ function DetailScolarship() {
 
             getAPi(`${API_KEY_SCHOLARSHIP}/${id}`).then( data => {
                 setDetailBeasiswa(data);
+                setIsLoading(false);
             } )
             getAPi(API_KEY_SCHOLARSHIP).then( data => {
                 setBeasiswa(data);
-                setIsLoading(false);
             } )
 
         
-    }, [])
+    }, [isLoading])
 
     const getAPi = async (api) => {
         const token = getCookie('token');
@@ -48,15 +48,15 @@ function DetailScolarship() {
 
   return (
     <>
-        <Navigation/>
         { isLoading ? (
             <Loading/>
         ) : (
             <>
-                <SectionDetailScholarship beasiswa={beasiswa} detailBeasiswa={detailBeasiswa} />
+            <Navigation/>
+                <SectionDetailScholarship beasiswa={beasiswa} detailBeasiswa={detailBeasiswa} setIsLoading={setIsLoading} />
+            <Footer/>
             </>
         ) }
-        <Footer/>
     </>
   )
 }

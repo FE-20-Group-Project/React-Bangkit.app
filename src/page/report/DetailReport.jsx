@@ -20,7 +20,6 @@ function DetailReport() {
                 } )
             }, [isLoading])
             
-            console.log(detailLaporan);
     const getAPi = async (api) => {
         const res = await axios.get(api);
         const result = res.data.data;

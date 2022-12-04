@@ -17,7 +17,7 @@ const API_KEY_USERS = 'https://api-bangkit.up.railway.app/api/admin/data/user/al
 const API_KEY_INSTANSI = 'https://api-bangkit.up.railway.app/api/admin/data/instansi/all'
 
 
-const API_KEY_NEWS = 'https://apicovid19indonesia-v2.vercel.app/api/indonesia/provinsi/more';
+const API_KEY_NEWS = 'https://apicovid19indonesia-v2.vercel.app/api/indonesia';
 
 //Key Session
 const KEY_SESSION = 'add_session';

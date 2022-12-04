@@ -60,9 +60,9 @@ function Reply({id}) {
                 <Form onSubmit={handleReply}>
                       <h6 className='fw-semibold'>Balasan</h6>
                     <Form.Group className='mb-2'>
-                        <button type='button' onClick={ () => handleEditUploadImage() } class="icon-btn add-btn">
-                            <div class="add-icon"></div>
-                            <div class="btn-txt text-gray"> Add Photo </div>
+                        <button type='button' onClick={ () => handleEditUploadImage() } className="icon-btn add-btn">
+                            <div className="add-icon"></div>
+                            <div className="btn-txt text-gray"> Add Photo </div>
                         </button>
                       <Form.Control type='file' id='edit-upload-image' onChange={ () => previewImage() } className='d-none' />
                     </Form.Group>
