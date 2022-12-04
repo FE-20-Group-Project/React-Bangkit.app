@@ -70,7 +70,7 @@ function DataArticle() {
         <Container fluid>
             <Row>
               <NavSide/>
-              <section className='col-10 px-0'>
+              <section className='dashboard-content col-10 px-0'>
                   <DashboardTopBar/>
                         <main className='my-3 p-3'>
                             <Card className='table-responsive'>
@@ -80,23 +80,23 @@ function DataArticle() {
                             <Table className='table-bordered'>
                                 <thead>
                                     <tr>
-                                        <th>No .</th>
-                                        <th>Gambar Artikel</th>
-                                        <th>Judul Artikel</th>
-                                        <th>Publisher</th>
-                                        <th>Aksi</th>
+                                        <th className='text-category'>No</th>
+                                        <th className='text-category'>Gambar Artikel</th>
+                                        <th className='text-category'>Judul Artikel</th>
+                                        <th className='text-category'>Publisher</th>
+                                        <th className='text-category'>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     { article.map( (item, index) => {
                                     return (  
                                         <tr key={item._id}>
-                                            <td>{index + 1}</td>
+                                            <td className='text-category'>{index + 1}</td>
                                             <td>
                                                 <img src={'https://api-bangkit.up.railway.app/'+item.image} width='80' />
                                             </td>
-                                            <td>{item.title}</td>
-                                            <td>{item.author}</td>
+                                            <td className='text-category'>{item.title}</td>
+                                            <td className='text-category'>{item.author}</td>
                                             <td>
                                                 <Link to='' className='btn btn-warning btn-sm w-100 mb-3'>
                                                     <FaEdit/>

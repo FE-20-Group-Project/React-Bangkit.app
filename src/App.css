@@ -103,12 +103,62 @@ body {
     top: calc(50% - 2px);
   }
 
-@media screen and (max-width: 850px) {
-    .text-header-2, .text-header {
-        font-size : 2rem !important;
-        text-align : center;
-    }
 
+  .toggle-responsive:focus {
+    outline: none !important;
+    border: 0 !important;
+  }
+  
+  @media screen and (max-width: 850px) {
+    .text-header-2, .text-header {
+      font-size : 2rem !important;
+      text-align : center;
+    }
+    
+    .nav-sidebar {
+      display: none !important;
+    }
+    
+    .dashboard-content {
+      width: 100% !important;
+    }
+  }
+  
+  @media screen and (max-width: 500px) {
+    .nav-container {
+      padding: 0 10px !important;
+    }
+    .text-header-reply {
+      font-size: 14px;
+    }
+    .img-header-reply {
+      width: 80px;
+    }
+  .text-body-reply-date {
+    font-size: 11px;
+  }
+  .text-body-reply-content {
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .text-report-user-text, .text-report-user-icon {
+    font-size: 14px !important;
+  }
+  .btn-reply-text {
+    font-size: 14px;
+  }
+  .breadcrumb-item {
+    font-size: 12px;
+  }
+  section.report-list {
+    padding: 10px 0 !important;
+  }
+  aside.column-category {
+    padding: 10px !important;
+  }
+  .text-category {
+    font-size: 12px !important;
+  }
 }
 
 @media screen and (max-width: 1120px) {

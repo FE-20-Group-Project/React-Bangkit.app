@@ -5,8 +5,8 @@ import Report from '../../assets/png/Report.png'
 function HeroSectionReport() {
   return (
     <section className='report-section container-fluid bg-soft-light p-5'>
-            <Row className='d-flex justify-content-around f-wrap'>
-                <Col xs='6'>
+            <Row className='d-flex justify-content-around f-wrap flex-column-reverse flex-md-row'>
+                <Col xs='12' xl='5'>
                     <h1 className='text-header-2'><span className='text-danger'>Forum </span>Pelaporan Masalah</h1>
                     <p>User dapat membuat, melihat, mengupdate, serta menghapus laporannya</p>
                     <ul>
@@ -18,7 +18,7 @@ function HeroSectionReport() {
                     Jika user belum menemukan donatur dalam waktu 7 hari, maka status laporan menjadi expired</li>
                     </ul>
                 </Col>
-                <Col xs='5'>
+                <Col xs='12' xl='5'  className='mb-3'>
                     <img className='img-fluid' src={Report} />
                 </Col>
             </Row>

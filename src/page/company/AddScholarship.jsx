@@ -62,7 +62,7 @@ function AddScholarship() {
     <Container fluid>
     <Row>
         <NavSide/>
-        <section className='col-10'>
+        <section className='dashboard-content col-10'>
             <DashboardTopBar/>
                     <main>
                         <Card className='table-responsive col-10 my-5'>

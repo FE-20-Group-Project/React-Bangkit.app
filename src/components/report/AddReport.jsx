@@ -55,9 +55,9 @@ function AddReport() {
 
 
   return (
-    <section className='add-report container-fluid p-5 bg-danger'>
-        <Row className='d-flex justify-content-between'>
-            <aside className='col-8'>
+    <section className='add-report container-fluid p-3 p-md-5 bg-danger'>
+        <Row className='d-flex justify-content-between f-wrap flex-column-reverse flex-md-row px-0 mx-0'>
+            <aside className='col-12 col-md-8'>
                 <Card className='shadow-lg'>
                 <Card.Header className='p-3'><h5>Buat Topik Baru</h5></Card.Header>
                 <Card.Body className='p-3'>
@@ -132,7 +132,7 @@ function AddReport() {
                 </Card.Body>
                 </Card>
             </aside>
-            <aside className='col-4'>
+            <aside className='col-12 col-md-4'>
                     <Card className='bg-soft-light mx-auto pt-3 px-3 mb-3'>
                         <Card.Title className='border-bottom py-3'>Aturan Pelaporan</Card.Title>
                         <Card.Body className='fw-light text-dark'>User dapat membuat maksimal 3 laporan live/aktif dengan kategori yang tersedia yakni pendidikan, ekonomi, dan kesehatan</Card.Body>

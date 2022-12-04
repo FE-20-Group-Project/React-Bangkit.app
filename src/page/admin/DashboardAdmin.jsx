@@ -20,6 +20,7 @@ const favIcon = {
 
 function DashboardAdmin() {
 
+ 
   const [ isLoading, setIsLoading ] = useState(true);
   const [ users, setUsers ] = useState();
   const [ instansi, setInstansi ] = useState();
@@ -53,8 +54,8 @@ function DashboardAdmin() {
         <Container fluid>
             <Row>
               <NavSide/>
-              <section className='col-10 p-0'>
-                  <DashboardTopBar/>
+              <section className='dashboard-content col-10 p-0'>
+                  <DashboardTopBar />
                   <HeaderInfoDashboard favIcon={favIcon} users={users} instansi={instansi} laporan={laporan} />
                         <main className='bg-soft-light p-5'>
                           <Chart/>

@@ -1,7 +1,8 @@
-import React from 'react'
-import { Row, Dropdown, Button, Col } from 'react-bootstrap'
-import { FaUser, FaBars, FaSignOutAlt } from 'react-icons/fa'
-import { NavLink } from 'react-router-dom'
+import React, {useState} from 'react'
+import { Row, Dropdown, Button, Col, Offcanvas } from 'react-bootstrap'
+import { FaUser, FaBars, FaSignOutAlt, FaTable, FaChartLine } from 'react-icons/fa'
+import Bangkit from '../../assets/image/bangkit2.png'
+import { NavLink, Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { getCookie } from '../../cookie/cookie'
@@ -16,6 +17,12 @@ function DashboardTopBar() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const {session} = useSelector( state => state.userSession );
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+  
+  
 
     const logout = () => {
         MySwal.fire({
@@ -41,27 +48,65 @@ function DashboardTopBar() {
           })
       }
     
+      console.log(show);
 
   return (
-    <header className='topbar container-fluid bg-dark text-light w-100 p-3'>
-            <Row className='d-flex justify-content-between'>
-                <Col xs='3' className='d-flex'>
-                    <Button className='bg-dark text-light border-0'><FaBars className='fs-4'/></Button>
-                    <h3 className='fw-bold'>Dashboard</h3>
-                </Col>
-                <Col xs='1'>
-                <Dropdown drop="center">
-                    <Dropdown.Toggle id="dropdown-button-dark-example1" className='bg-dark border-0'>
-                    <img src={`https://api-bangkit.up.railway.app/${session.image}`} width='30' />
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu className='bg-soft-light' >
-                        <NavLink to='/' style={({isActive}) => (isActive ? linkStyle : undefined)} className='dropdown-item py-2'><FaUser/> Homepage</NavLink>
-                        <Dropdown.Item onClick={ () => logout() }><FaSignOutAlt/> Logout</Dropdown.Item>
-                    </Dropdown.Menu>
-                    </Dropdown>
-                </Col>
-            </Row>
-    </header>
+    <>
+      <header className='topbar container-fluid bg-dark text-light w-100 p-3'>
+              <Row className='d-flex justify-content-between'>
+                  <Col xs='3' className='d-flex'>
+                  <Button variant="dark" onClick={handleShow} className="me-2 text-light"><FaBars/></Button>
+                  <Offcanvas show={show} onHide={handleClose} className='bg-danger' >
+                    <Offcanvas.Header closeButton>
+                      <Offcanvas.Title></Offcanvas.Title>
+                    </Offcanvas.Header>
+                    <Offcanvas.Body>
+                    <div className='logo my-3 text-center'>
+                        <img src={Bangkit} width='150' />
+                    </div>
+                    <ul className='list-group text-light mt-5' style={{ listStyle:'none' }}>
+                        <li>
+                            <small>Menu</small>
+                        </li>
+                        { session.type === 'admin' && (
+                          <>
+                            <Link to='/dashboard-admin' className='nav-links text-light fw-600 my-3'><FaChartLine className='mx-2'/> Dashboard</Link>
+                            <Link to='/dashboard-admin/data-user' className='nav-links text-light fw-600 my-3'><FaTable className='mx-2'/> Data User</Link>
+                            <Link to='/dashboard-admin/data-company' className='nav-links text-light fw-600 my-3'><FaTable className='mx-2'/> Data Instansi</Link>
+                            <Link to='/dashboard-admin/report' className='nav-links text-light fw-600 my-3'><FaTable className='mx-2'/> Data Laporan</Link>
+                            <Link to='/dashboard-admin/article' className='nav-links text-light fw-600 my-3'><FaTable className='mx-2'/> Data Artikel</Link>
+                          </>
+                        ) }
+                        { session.type === 'instansi' && (
+                          <>
+                            <Link to='/dashboard-company' className='nav-links text-light fw-600 my-3'><FaChartLine className='mx-2'/> Dashboard</Link>
+                            <Link to='/dashboard-company/jobs' className='nav-links text-light fw-600 my-3'><FaTable className='mx-2'/> Data Loker</Link>
+                            <Link to='/dashboard-company/scholarship' className='nav-links text-light fw-600 my-3'><FaTable className='mx-2'/> Data Beasiswa</Link>
+                            <Link to='/dashboard-company/report' className='nav-links text-light fw-600 my-3'><FaTable className='mx-2'/>Data Laporan</Link>
+                          </>
+                        ) }
+                        <hr/>
+                        <li className='nav-links text-light fw-600 my-2' onClick={ () => logout() } style={{ cursor:'pointer' }}><FaSignOutAlt className='mx-2'/> Logout</li>
+                    </ul>
+                    </Offcanvas.Body>
+                  </Offcanvas>
+                      <h3 className='fw-bold'>Dashboard</h3>
+                  </Col>
+                  <Col md='1' sm='2' xs='3'>
+                  <Dropdown drop="center">
+                      <Dropdown.Toggle id="dropdown-button-dark-example1" className='bg-dark border-0'>
+                      <img src={`https://api-bangkit.up.railway.app/${session.image}`} width='30' />
+                      </Dropdown.Toggle>
+                      <Dropdown.Menu className='bg-soft-light' >
+                          <NavLink to='/' style={({isActive}) => (isActive ? linkStyle : undefined)} className='dropdown-item py-2'><FaUser/> Homepage</NavLink>
+                          <Dropdown.Item onClick={ () => logout() }><FaSignOutAlt/> Logout</Dropdown.Item>
+                      </Dropdown.Menu>
+                      </Dropdown>
+                  </Col>
+              </Row>
+    
+      </header>
+    </>
   )
 }
 

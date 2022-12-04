@@ -1,5 +1,6 @@
 import React from 'react'
 import { FaChartLine, FaSignOutAlt, FaTable } from 'react-icons/fa'
+import { Offcanvas } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { clearSession } from '../../redux/action/userSession'
@@ -14,6 +15,7 @@ function NavSide() {
   const {session} = useSelector( state => state.userSession );
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
 
     const logout = () => {
         MySwal.fire({
@@ -40,7 +42,7 @@ function NavSide() {
       }
 
   return (
-    <nav className='col-2 bg-danger p-3' style={{ minHeight: '100vh' }}>
+    <nav className='nav-sidebar col-2 bg-danger p-3' style={{ minHeight: '100vh' }}>
         <div className='logo my-3 text-center'>
             <img src={Bangkit} width='150' />
         </div>

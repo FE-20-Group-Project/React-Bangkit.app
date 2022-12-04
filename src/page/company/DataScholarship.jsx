@@ -44,10 +44,10 @@ function DataScholarship() {
                 <Container fluid>
                     <Row className='d-flex justify-content-center'>
                         <NavSide/>
-                        <section className='col-10  p-0'>
+                        <section className='dashboard-content col-10  px-0'>
                             <DashboardTopBar/>
                     
-                            <main className='p-5'>
+                            <main className='my-3 p-3'>
                             <Card className='table-responsive'>
                                         <Card.Header>
                                             <Link to='/dashboard-company/scholarship/add-scholarship' className='btn btn-primary btn-sm'><FaPlus/> Tambah Beasiswa</Link>
@@ -55,25 +55,25 @@ function DataScholarship() {
                                     <Table className='table-bordered'>
                                         <thead>
                                             <tr align='center'>
-                                                <th>No .</th>
-                                                <th>Gambar Artikel</th>
-                                                <th>Judul Artikel</th>
-                                                <th>Publisher</th>
-                                                <th>Aksi</th>
+                                                <th className='text-category'>No</th>
+                                                <th className='text-category'>Gambar Artikel</th>
+                                                <th className='text-category'>Judul Artikel</th>
+                                                <th className='text-category'>Publisher</th>
+                                                <th className='text-category'>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             { scholarship.map( (item, index )=> (
                                                 <tr key={index} align='center'>
-                                                    <td>{index+1}</td>
-                                                    <td>{item.name}</td>
-                                                    <td>{item.kuota}</td>
-                                                    <td>{item.date}</td>
-                                                    <td>
-                                                        <Link className='btn btn-sm btn-warning btn-sm mx-2'>
+                                                    <td className='text-category'>{index+1}</td>
+                                                    <td className='text-category'>{item.name}</td>
+                                                    <td className='text-category'>{item.kuota}</td>
+                                                    <td className='text-category'>{item.date}</td>
+                                                    <td className='text-category'>
+                                                        <Link className='btn btn-sm btn-warning btn-sm w-100 mb-2'>
                                                         <FaEdit/>
                                                         </Link>
-                                                        <Button variant='danger' className='btn-sm'>
+                                                        <Button variant='danger' className='btn-sm w-100'>
                                                             <FaTrash/>
                                                         </Button>
                                                     </td>

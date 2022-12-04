@@ -22,16 +22,12 @@ function SectionDetailReport({id, detailLaporan, setIsLoading}) {
     const [ trending, setTrending ] = useState([]);
     useEffect( () => {
         socket.on("laporan", (event) => {
-                setData(event);
-            console.log(event);
+            if(event.id_laporan) {
+                setData(event.data);
+            }
         })
     }, [socket, session] )
 
-    const getAPI = async (api) => {
-        const response = await axios(api);
-        const result = response.data.data;
-        return result;
-    }
 
     const handleSolveReport = (id) => {
         Swal.fire({
@@ -99,7 +95,7 @@ function SectionDetailReport({id, detailLaporan, setIsLoading}) {
         })
     }
 
-    const handleDeleteReply = (id) => {
+    const handleDeleteReply = (id, id_laporan) => {
             Swal.fire({
                 title: 'Yakin ingin menghapus pesan ini?',
                 icon: 'warning',
@@ -111,13 +107,12 @@ function SectionDetailReport({id, detailLaporan, setIsLoading}) {
                 if (result.isConfirmed) {
                     const token = getCookie('token');
                     axios({
-                        url: `${API_KEY_REPLY}/${id}/${detailLaporan.id_laporan}`,
+                        url: `${API_KEY_REPLY}/${id}/${id_laporan}`,
                         method: "DELETE",
                         headers: {  
                             authorization: `Bearer ${token}`
                         }
                     }).then( data => {
-                        console.log(data);
                         if(data.data) {
                             Swal.fire(
                             'Terhapus!',
@@ -129,12 +124,12 @@ function SectionDetailReport({id, detailLaporan, setIsLoading}) {
                 }
             })
     }
-    console.log(detailLaporan)
+    console.log(detailLaporan.laporan._id)
 
   return (
     <>
     <CarouselBS/>
-    <Breadcrumb className='p-5'>        
+    <Breadcrumb className='px-3 py-5'>        
             <Link to='/' className='text-danger breadcrumb-item'>Beranda</Link>
             <Link to='/report' className='text-danger breadcrumb-item'>Pelaporan</Link>
             <Link to={'/report/' + detailLaporan.laporan.subcategory} className='text-danger breadcrumb-item'>List kategori pelaporan</Link>
@@ -142,23 +137,23 @@ function SectionDetailReport({id, detailLaporan, setIsLoading}) {
     </Breadcrumb>
     <section className='section-report container border my-3'>
         <Row className='d-flex justify-content-start p-3'>
-            <Col xs='2'>
+            <Col xs='5' md='2'>
                 <img src={ detailLaporan.laporan.image[0] ? `https://api-bangkit.up.railway.app/${detailLaporan.laporan.image[0]}`: `https://api-bangkit.up.railway.app/${detailLaporan.laporan.user.image}`} className='img-fluid' />
             </Col>
-            <Col xs='5'>
+            <Col xs='12' md='8'>
                 <h3 className='fw-bold text-decoration-underline text-danger py-3'>{detailLaporan.laporan.title}</h3>
-                <Row className='d-flex justify-content-between'>
-                    <Col xs='6'>
-                    <h6 className='text-dark my-3'><FaUserAlt className='fs-5 ms-2'/> {detailLaporan.laporan.user.name}</h6>
+                <Row className='d-flex justify-content-between f-wrap'>
+                    <Col xs='10' sm='6'>
+                    <h6 className='text-dark text-report-user-text my-3'><FaUserAlt className='text-report-user-icon fs-5 ms-2'/> {detailLaporan.laporan.user.name}</h6>
                     </Col>
-                    <Col xs='6'>
-                    <h6 className='text-dark my-3'><FaClock className='fs-5 ms-2'/> {detailLaporan.laporan.date}</h6>
+                    <Col  xs='10' sm='6'>
+                    <h6 className='text-dark text-report-user-text my-3'><FaClock className='text-report-user-icon fs-5 ms-2'/> {detailLaporan.laporan.date}</h6>
                     </Col>
-                    <Col xs='6'>
-                    <h6 className='text-dark my-3'><FaClipboard className='fs-5 ms-2'/> {detailLaporan.laporan.category}</h6>
+                    <Col  xs='10' sm='6'>
+                    <h6 className='text-dark text-report-user-text my-3'><FaClipboard className='text-report-user-icon fs-5 ms-2'/> {detailLaporan.laporan.category}</h6>
                     </Col>
-                    <Col xs='6'>
-                    <h6 className='text-dark my-3'><FaClipboardList className='fs-5 ms-2'/> {detailLaporan.laporan.subcategory}</h6>
+                    <Col  xs='10' sm='6'>
+                    <h6 className='text-dark text-report-user-text my-3'><FaClipboardList className='text-report-user-icon fs-5 ms-2'/> {detailLaporan.laporan.subcategory}</h6>
                     </Col>
                 </Row>
             </Col>
@@ -179,22 +174,22 @@ function SectionDetailReport({id, detailLaporan, setIsLoading}) {
         </Row>
     </section>
     <section className='section-reply my-5'>
-        <Row className='col-10 mx-auto'>
-            { data?.data?.reply?.map( (item, index)  =>(
+        <Row className='col-12 col-md-10 mx-auto'>
+            { data?.reply?.map( (item, index)  =>(
                 <Card key={index} className='border-0 shadow-md border-top bg-soft-light border-bottom rounded-0'>
                     <Row  className={ item.data_user.name === session.name ? 'd-flex justify-content-between row-reverse w-100 position-relative' : 'd-flex justify-content-between flex-row-reverse w-100 position-relative' }>
                     { item.data_user.name === session.name && (
-                        <span className='bg-danger position-absolute top-0 end-0 text-light text-center m-3 rounded' onClick={ () => handleDeleteReply(item.data_reply._id) } style={{ width:'60px' }}><FaTrash/></span>
+                        <span className='bg-danger position-absolute top-0 end-0 text-light text-center m-3 rounded' onClick={ () => handleDeleteReply(item.data_reply._id, detailLaporan.laporan._id) } style={{ width:'60px' }}><FaTrash/></span>
                     )
                     }
-                        <Card.Header className={item.data_user.name === session.name ? 'col-3 border-0' : 'col-3 border-0'}>
-                            <img src={`https://api-bangkit.up.railway.app/${item.data_user.image}`} className='mb-3' width='100' />
-                            <p className='fw-semibold'>{item.data_user.name} <FaCheckCircle className='text-third'/></p>
-                            <p className='fw-semibold'>{item.data_user.email}</p>
+                        <Card.Header className={item.data_user.name === session.name ? 'col-4 col-sm-3 border-0' : 'col-4 col-sm-3 border-0'}>
+                            <img src={`https://api-bangkit.up.railway.app/${item.data_user.image}`} className='mb-3 img-header-reply' width='100' />
+                            <p className='fw-semibold text-header-reply'>{item.data_user.name} <FaCheckCircle className='text-third'/></p>
+                            <p className='fw-semibold text-header-reply'>{item.data_user.email}</p>
                         </Card.Header>
-                        <Card.Body className={ item.data_user.name === session.name ? 'col-9' : 'col-9 text-end'}>
-                            <small className='mb-3'>{item.data_reply.date}</small>
-                            <p className='fw-500'>{item.data_reply.content}</p>
+                        <Card.Body className={ item.data_user.name === session.name ? 'col-7 col-sm-9' : 'col-7 col-sm-9 text-end'}>
+                            <small className='mb-3 text-body-reply-date'>{item.data_reply.date}</small>
+                            <p className='fw-500 text-body-reply-content'>{item.data_reply.content}</p>
                             { item.data_reply.image[0] && (
                             <img src={`https://api-bangkit.up.railway.app/${item.data_reply.image[0]}`} width='300' />
                             ) }

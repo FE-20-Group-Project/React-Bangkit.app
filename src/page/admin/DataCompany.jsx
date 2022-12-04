@@ -105,7 +105,7 @@ function DataCompany() {
         <Container fluid>
             <Row>
               <NavSide/>
-              <section className='col-10 px-0'>
+              <section className='dashboard-content col-10 px-0'>
                   <DashboardTopBar/>
                         <main className='my-3 p-3'>
                             <Card className='table-responsive'>
@@ -115,32 +115,32 @@ function DataCompany() {
                             <Table className='table-bordered'>
                                 <thead>
                                     <tr>
-                                        <th>No .</th>
-                                        <th>Profile</th>
-                                        <th>Nama Instansi</th>
-                                        <th>Email</th>
-                                        <th>Verifikasi</th>
-                                        <th>Formulir</th>
-                                        <th>Status</th>
+                                        <th className='text-category'>No</th>
+                                        <th className='text-category'>Profile</th>
+                                        <th className='text-category'>Nama Instansi</th>
+                                        <th className='text-category'>Email</th>
+                                        <th className='text-category'>Verifikasi</th>
+                                        <th className='text-category'>Formulir</th>
+                                        <th className='text-category'>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     { company.map( (item, index) => {
                                     return (  
                                         <tr key={item._id}>
-                                            <td>{index + 1}</td>
-                                            <td>
+                                            <td className='text-category'>{index + 1}</td>
+                                            <td className='text-category'>
                                                 <img src={'https://api-bangkit.up.railway.app/'+item.image} width='80' />
                                             </td>
-                                            <td>{item.name}</td>
-                                            <td>{item.email}</td>
-                                            <td>
+                                            <td className='text-category'>{item.name}</td>
+                                            <td className='text-category'>{item.email}</td>
+                                            <td className='text-category'>
                                                 { item.status==='accept' ? 
                                                 <span className='badge bg-success'><FaCheck/> Accept</span> : <span className='badge bg-danger'><FaTimes/> Pending</span> }
                                             </td>
-                                            <td><a href={'https://api-bangkit.up.railway.app'+item.dokumen} 
+                                            <td className='text-category'><a href={'https://api-bangkit.up.railway.app'+item.dokumen} 
                                             target='_blank' className='text-primary fw-semibold' >Dokumen</a></td>
-                                            <td>
+                                            <td className='text-category'>
                                                 { item.isBlocked ? 
                                                 <span className='badge bg-danger' onClick={() => handleUnblock(item._id)}><FaTimes/> Is Blocked</span>
                                                 : <span className='badge bg-success' onClick={ () => handleBlock(item._id)}><FaCheck/> Active</span> }
