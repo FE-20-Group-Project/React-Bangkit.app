@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from 'react'
-import { Row, Col, Table, Pagination, Card, Button } from 'react-bootstrap'
+import { Row, Col, Card } from 'react-bootstrap'
 import { FaRocketchat, FaEye } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import Profil from '../../assets/png/section.png'
 
 function SectionReportList({subcategory, laporan}) {
     const {session} = useSelector( state => state.userSession );
