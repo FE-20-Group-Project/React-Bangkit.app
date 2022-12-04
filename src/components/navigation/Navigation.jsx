@@ -58,8 +58,8 @@ function Navigation() {
                 <NavLink to="/report" style={({isActive}) => (isActive ? linkStyle : undefined)} className='nav-item p-2 me-3' >Pelaporan</NavLink>
                   <NavDropdown className='nav-links text-dark me-3' title='Informasi' id="collasible-nav-dropdown">
                       <NavLink to='/jobs' style={({isActive}) => (isActive ? linkStyle : undefined)} className='dropdown-item'>Lowongan Pekerjaan</NavLink>
-                      <NavLink to='/scholarship' style={({isActive}) => (isActive ? linkStyle : undefined)} className='dropdown-item'>Beasiswa Gratis</NavLink>
-                      <NavLink to="/article" style={({isActive}) => (isActive ? linkStyle : undefined)} className='dropdown-item' >Article</NavLink>
+                      <NavLink to='/scholarship' style={({isActive}) => (isActive ? linkStyle : undefined)} className='dropdown-item'>Beasiswa</NavLink>
+                      <NavLink to="/article" style={({isActive}) => (isActive ? linkStyle : undefined)} className='dropdown-item' >Portal Berita</NavLink>
                   </NavDropdown>
                 { session==false ? (
                   <>

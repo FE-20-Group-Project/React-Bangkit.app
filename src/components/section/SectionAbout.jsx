@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Col, Card } from 'react-bootstrap'
+import { Row, Col, Card, Button } from 'react-bootstrap'
 import Fazlu from '../../assets/profile/FazluRachman.png'
 import Naftali from '../../assets/profile/NaftaliSKP.jpg'
 import Zainul from '../../assets/profile/ZainulAnwarAdiP.jpg'
@@ -8,6 +8,7 @@ import Fawwaz from '../../assets/profile/FawwazArfiqi.jpeg'
 import Belva from '../../assets/profile/BelvaAprilliano Annyndra.png.jpg'
 import Mila from '../../assets/profile/SyafiatulKamila.png'
 import Bangkit from '../../assets/png/bangkit2.png'
+import { FaGithub, FaGithubSquare } from 'react-icons/fa'
 
 function SectionAbout() {
   return (
@@ -85,6 +86,9 @@ function SectionAbout() {
                   <h6 className='fw-semibold text-center'>Syafiatul Kamila</h6>
                   <h6 className='fw-semibold text-center text-third'>Back-End Dev</h6>
             </Card>
+            <Row className='mt-5'>
+                <a href='https://github.com/FE-20-Group-Project' target='_blank' className='btn btn-dark w-50 mx-auto rounded'><FaGithub className='fs-5 mx-2'/> Group Project - Organize</a>
+            </Row>
         </Row>
     </section>
     </>

@@ -41,7 +41,7 @@ function SectionScholarship({scholarship}) {
                         <Card.Title className='text-center text-danger fw-semibold my-3'>Filter</Card.Title>
                         <Form onSubmit={handleFilter} >
                         <Form.Group>
-                            <Form.Label className='text-danger fw-semibold'>Kategori</Form.Label>
+                            <Form.Label className='text-danger fw-semibold'>Kategori Beasiswa</Form.Label>
                         </Form.Group>
                             <Form.Group>
                             <Form.Check
@@ -55,24 +55,6 @@ function SectionScholarship({scholarship}) {
                               inline
                               label="IT-Perangkat Lunak"
                               value="IT-Perangkat Lunak"
-                              type="checkbox"/>
-                            </Form.Group>
-                            <hr/>
-                        <Form.Group>
-                            <Form.Label className='text-danger fw-semibold'>Posisi Lamaran</Form.Label>
-                        </Form.Group>
-                            <Form.Group>
-                            <Form.Check
-                              inline
-                              label="Junior Software Engineer"
-                              value="Junior Software Engineer"
-                              type="checkbox"/>
-                            </Form.Group>
-                            <Form.Group>
-                            <Form.Check
-                              inline
-                              label="Back End Developer"
-                              value="Back End Developer"
                               type="checkbox"/>
                             </Form.Group>
                             <hr/>

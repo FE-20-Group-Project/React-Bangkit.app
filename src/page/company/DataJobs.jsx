@@ -10,7 +10,9 @@ import axios from 'axios'
 import { API_KEY_JOBS } from '../../env/env'
 import { getCookie } from '../../cookie/cookie'
 import NavSide from '../../components/navigation/NavSide'
-
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+const MySwal = withReactContent(Swal)
 
 function DataJobs() {
   const navigate = useNavigate();
@@ -24,7 +26,7 @@ function DataJobs() {
           setJobs(data);
           setIsLoading(false);
       } )
-  },[session] )
+  },[setIsLoading] )
 
   const getAPI = async (api) => {
       const token = getCookie('token');
@@ -35,6 +37,37 @@ function DataJobs() {
       return result;
   }
 
+  const handleDeleteJobs = (id) => {
+    Swal.fire({
+        title: 'Yakin ingin menghapus Lowongan kerja berikut?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya, hapus!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            const token = getCookie('token');
+            axios({
+                url: `${API_KEY_JOBS}/${id}`,
+                method: "DELETE",
+                headers: {  
+                    authorization: `Bearer ${token}`
+                }
+            }).then( data => {
+                console.log(data);
+                if(data.data) {
+                    Swal.fire(
+                      'Terhapus!',
+                      'Lowongan Kerja berhasil dihapus.',
+                      'success'
+                    )
+                    setIsLoading(true);
+                }
+            } )
+        }
+      })
+}
  
   return (
     <>
@@ -63,7 +96,7 @@ function DataJobs() {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            { jobs.map( (item, index) => (
+                                            { jobs?.map( (item, index) => (
                                                 <tr key={index} align='center'>
                                                     <td className='text-category'>{index + 1}</td>
                                                     <td className='text-category'>{item.companyName}</td>
@@ -73,7 +106,7 @@ function DataJobs() {
                                                         <Link className='btn btn-sm btn-warning btn-sm w-100 mb-2'>
                                                             <FaEdit/>
                                                         </Link>
-                                                        <Button variant='danger' className='btn-sm w-100'>
+                                                        <Button variant='danger' onClick={ () => handleDeleteJobs(item._id) } className='btn-sm w-100'>
                                                             <FaTrash/>
                                                         </Button>
                                                     </td>
