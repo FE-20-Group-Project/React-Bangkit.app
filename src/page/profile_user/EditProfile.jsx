@@ -149,15 +149,15 @@ function EditProfile() {
                         <Form onSubmit={handleForgetPassword}>
                             <Form.Group className='mb-3'>
                                 <p className='fw-light'>Password Lama <span className='text-danger'>*</span></p>
-                                <Form.Control type='password' onChange={ (e) => setEditOldPassword(e.target.value) } />
+                                <Form.Control type='password'  defaultValue='' onChange={ (e) => setEditOldPassword(e.target.value) } />
                             </Form.Group>
                             <Form.Group className='mb-3'>
                                 <p className='fw-light'>Password Baru <span className='text-danger'>*</span></p>
-                                <Form.Control type='password' onChange={ (e) => setEditNewPassword(e.target.value) } />
+                                <Form.Control type='password' defaultValue='' onChange={ (e) => setEditNewPassword(e.target.value) } />
                             </Form.Group>
                             <Form.Group className='mb-3'>
                                 <p className='fw-light'>Konfirmasi Password Baru <span className='text-danger'>*</span></p>
-                                <Form.Control type='password' onChange={ (e) => setEditConfirmNewPassword(e.target.value) } />
+                                <Form.Control type='password'  defaultValue='' onChange={ (e) => setEditConfirmNewPassword(e.target.value) } />
                             </Form.Group>
                             <Form.Group className='text-end'>
                                 <Button variant='danger' type='submit'>Simpan</Button>

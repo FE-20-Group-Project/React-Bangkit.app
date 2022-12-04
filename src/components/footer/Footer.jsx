@@ -38,8 +38,17 @@ function Footer() {
                 <a className='text-light' href={`mailto:fazrlu9575@gmail.com,`}>
                     <ListGroup.Item>Contact</ListGroup.Item>
                 </a>
+                <Link className='text-light' to='/report'>
+                    <ListGroup.Item>Pelaporan Masalah</ListGroup.Item>
+                </Link>
+                <Link className='text-light' to='/jobs'>
+                    <ListGroup.Item>Lowongan Kerja</ListGroup.Item>
+                </Link>
+                <Link className='text-light' to='/scholarship'>
+                    <ListGroup.Item>Beasiswa</ListGroup.Item>
+                </Link>
                 <Link className='text-light' to='/article'>
-                    <ListGroup.Item>Article</ListGroup.Item>
+                    <ListGroup.Item>Portal Berita</ListGroup.Item>
                 </Link>
             </ul>
             </Col>

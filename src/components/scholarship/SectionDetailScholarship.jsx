@@ -1,12 +1,19 @@
 import React from 'react'
 import DetailScolarship from '../../page/information/scholarship/DetailScolarship'
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { FaInfoCircle, FaPhoneSquare, FaRegAddressBook } from 'react-icons/fa';
 
-function SectionDetailScholarship({beasiswa, detailBeasiswa}) {
+function SectionDetailScholarship({beasiswa, detailBeasiswa, setIsLoading}) {
     const {session} = useSelector( state => state.userSession );
+    const navigate = useNavigate();
+
+    const redirectToBeasiswa = (id) => {
+        navigate(`/scholarship/${id}`);
+        setIsLoading(true);
+    }
+
   return (
     <section className='container my-5' >
               <Row className='flex-column-reverse flex-xl-row'>
@@ -26,7 +33,7 @@ function SectionDetailScholarship({beasiswa, detailBeasiswa}) {
                                     <Card.Body>{item.instansiName}</Card.Body>
                                 </Col>
                                 <Col xs='3' className='d-flex justify-content-center flex-column' >
-                                    <Link to={'/scholarship/' + item._id} className='btn btn-warning w-100 rounded-0 mb-3'><FaInfoCircle className='ms-2'/> Detail</Link>
+                                    <Button onClick={ () => redirectToBeasiswa(item._id) } className='btn btn-warning w-100 rounded-0 mb-3 text-light'><FaInfoCircle className='ms-2'/> Detail</Button>
                                     <a href={item.link} target='_blank' className='btn btn-success text-light w-100 rounded-0 mb-3'><FaRegAddressBook className='ms-2'/> Daftar</a>
                                 </Col>
                             </Row>

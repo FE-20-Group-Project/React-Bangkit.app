@@ -67,9 +67,9 @@ function AddReport() {
                     </Form.Group>
                     <Form.Group className='mb-3'>
                         <Form.Label className='d-block'>Image</Form.Label>
-                        <button class="icon-btn add-btn" onClick={ () => handleEditUploadImage() }>
-                            <div class="add-icon"></div>
-                            <div class="btn-txt text-gray"> Add Photo </div>
+                        <button className="icon-btn add-btn" type='button' onClick={ () => handleEditUploadImage() }>
+                            <div className="add-icon"></div>
+                            <div className="btn-txt text-gray"> Add Photo </div>
                         </button>
                         <Form.Control type='file' id='edit-upload-image' onChange={ () => previewImage() } className='d-none' />
                     </Form.Group>
@@ -98,7 +98,6 @@ function AddReport() {
                             ) }
                             { category==='Pendidikan' && (
                                 <>
-                                <option></option>
                                 <option></option>
                                 <option>bantuan-biaya</option>
                                 <option>kuota-internet</option>

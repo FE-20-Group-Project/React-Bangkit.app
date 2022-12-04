@@ -58,7 +58,7 @@ function BannerFeature() {
                         </div>
                         <div className="col-7">
                             <h5 className='fw-semibold border-bottom border-3 border-danger'>Portal Berita</h5>
-                            <small className='text-card'>Fitur pelaporan masalah adalah forum dimana user dapat membuat laporan dan saling berdiskusi untuk membantu satu sama lain.</small>
+                            <small className='text-card'>Menyediakan informasi yang konkrit dan aktual untuk mengatasi hoax yang beredar di masyarakat pada masa pandemi sehingga menimbulkan ketakutan dan kepanikan</small>
                         </div>
                     </div>
                     <Link to='/article' className="card-neu-button text-center text-light">Info Selengkapnya</Link>
@@ -72,7 +72,7 @@ function BannerFeature() {
                         </div>
                         <div className="col-7">
                             <h5 className='fw-semibold border-bottom border-3 border-danger'>Pelaporan Masalah</h5>
-                            <small className='text-card'>Bantuan bagi para pelajar atau mahasiswa yang kesulitan dalam melanjutkan pendidikan dikarenakan keterbatasan ekonomi.</small>
+                            <small className='text-card'>Fitur pelaporan masalah adalah forum dimana user dapat membuat laporan dan saling berdiskusi untuk membantu satu sama lain.</small>
                         </div>
                     </div>
                     <Link to='/report' className="card-neu-button text-center text-light">Info Selengkapnya</Link>

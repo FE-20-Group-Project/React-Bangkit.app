@@ -35,6 +35,7 @@ import AddScholarship from './page/company/AddScholarship'
 import DataReport from './page/company/DataReport'
 import DataCompany from './page/admin/DataCompany'
 import DataUser from './page/admin/DataUser'
+import DetailArticle from './page/information/pandemic/DetailArticle'
 
 function App() {
   const dispatch = useDispatch();
@@ -67,6 +68,7 @@ useEffect( () => {
                   <Route path='/scholarship' element={<Scholarship/>} />
                   <Route path='/scholarship/:id' element={<DetailScolarship/>} />
                   <Route path='/article' element={<Article/>} />
+                  <Route path='/article/detail-article/:id' element={<DetailArticle/>} />
                   <Route path='/report' element={<Report/>} />
                   <Route path='/report/my-report' element={<MyReport/>} />
                   <Route path='/report/:subcategory' element={<ReportList/>} />

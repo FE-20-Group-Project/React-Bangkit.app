@@ -26,14 +26,13 @@ function DetailJobs() {
       
             getApiJobs(`${API_KEY_JOBS}/${id}`).then( data => {
                 setDetailJobs(data);
+                setIsLoading(false);
             } )
             getApiJobs( API_KEY_JOBS ).then( data => {
                 setJobs(data);
-                setIsLoading(false);
             } )
-
       
-    }, [] );
+    }, [isLoading] );
 
     const getApiJobs = async (api) => {
         const token = getCookie('token');
@@ -47,15 +46,15 @@ function DetailJobs() {
 
   return (
     <>
-        <Navigation/>
         { isLoading ? (
             <Loading/>
         ) : (
             <>
-                <SectionDetailJobs jobs={jobs} detailJobs={detailJobs} />
+            <Navigation/>
+                <SectionDetailJobs jobs={jobs} detailJobs={detailJobs} setIsLoading={setIsLoading} />
+            <Footer/>
             </>
         ) }
-        <Footer/>
     </>
   )
 }

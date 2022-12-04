@@ -40,13 +40,42 @@ function SectionScholarship({scholarship}) {
                     <Card className='p-3 mx-auto border-top border-5 border-danger rounded position-sticky top-10 mt-5'>
                         <Card.Title className='text-center text-danger fw-semibold my-3'>Filter</Card.Title>
                         <Form onSubmit={handleFilter} >
-                            <Form.Group className='mb-3'>
-                                <Form.Control type='search' placeholder='Nama Perusahaan' onChange={ (e) => setNamaPerusahaan(e.target.value) } />
+                        <Form.Group>
+                            <Form.Label className='text-danger fw-semibold'>Kategori Beasiswa</Form.Label>
+                        </Form.Group>
+                            <Form.Group>
+                            <Form.Check
+                              inline
+                              label="Komputer/Teknologi Informasi"
+                              value="Komputer/Teknologi Informasi"
+                              type="checkbox"/>
                             </Form.Group>
-                            <Form.Group className='mb-3'>
-                                <Form.Control type='search' placeholder='Nama Beasiswa' onChange={ (e) => setNamaBeasiswa(e.target.value) } />
+                            <Form.Group>
+                            <Form.Check
+                              inline
+                              label="IT-Perangkat Lunak"
+                              value="IT-Perangkat Lunak"
+                              type="checkbox"/>
                             </Form.Group>
-                            <Form.Group className='w-50 mx-auto'>
+                            <hr/>
+                          <Form.Group>
+                            <Form.Label className='text-danger fw-semibold'>Jenis Pekerjaan</Form.Label>
+                          </Form.Group>
+                          <Form.Group>
+                            <Form.Check
+                              inline
+                              label="Magang"
+                              value="Magang"
+                              type="checkbox"/>
+                          </Form.Group>
+                          <Form.Group>
+                            <Form.Check
+                              inline
+                              label="Penuh Waktu"
+                              value="Penuh Waktu"
+                              type="checkbox"/>
+                          </Form.Group>
+                            <Form.Group className='w-50 mt-3 mx-auto'>
                               <Button type='submit' variant='danger' className='w-100 rounded-0'><FaFilter className='ms-2'/> Filter</Button>
                             </Form.Group>
                         </Form>

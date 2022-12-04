@@ -3,13 +3,13 @@ import { Container, Row, Table, Card, Button } from 'react-bootstrap'
 import DashboardTopBar from '../../components/navigation/DashboardTopBar'
 import Loading from '../../components/loader/Loading'
 import { Link } from 'react-router-dom'
-import { FaEdit, FaPlus, FaTrash, FaUser } from 'react-icons/fa'
+import { FaEdit, FaPlus, FaTrash } from 'react-icons/fa'
 import axios from 'axios'
 import { API_KEY_ARTICLE } from '../../env/env'
 import { getCookie } from '../../cookie/cookie'
+import NavSide from '../../components/navigation/NavSide'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-import NavSide from '../../components/navigation/NavSide'
 const MySwal = withReactContent(Swal)
 
 function DataArticle() {

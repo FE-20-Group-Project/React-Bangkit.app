@@ -99,7 +99,7 @@ function DashboardTopBar() {
                       </Dropdown.Toggle>
                       <Dropdown.Menu className='bg-soft-light' >
                           <NavLink to='/' style={({isActive}) => (isActive ? linkStyle : undefined)} className='dropdown-item py-2'><FaUser/> Homepage</NavLink>
-                          <Dropdown.Item onClick={ () => logout() }><FaSignOutAlt/> Logout</Dropdown.Item>
+                          <Dropdown.Item className='text-danger' onClick={ () => logout() }><FaSignOutAlt/> Logout</Dropdown.Item>
                       </Dropdown.Menu>
                       </Dropdown>
                   </Col>

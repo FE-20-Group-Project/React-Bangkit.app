@@ -10,6 +10,9 @@ import NavSide from '../../components/navigation/NavSide'
 import axios from 'axios'
 import { getCookie } from '../../cookie/cookie'
 import Loading from '../../components/loader/Loading'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+const MySwal = withReactContent(Swal)
 
 
 function DataScholarship() {
@@ -24,7 +27,7 @@ function DataScholarship() {
             setScholarship(data);
             setIsLoading(false);
         } )
-  }, [] )
+  }, [setIsLoading] )
 
   const getAPI = async (api) => {
     const token = getCookie('token');
@@ -34,7 +37,38 @@ function DataScholarship() {
     const result = response.data.data;
     return result;
   }
-  
+
+  const handleDeleteScholarship = (id) => {
+        Swal.fire({
+            title: 'Yakin ingin menghapus Beasiswa berikut?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, hapus!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const token = getCookie('token');
+                axios({
+                    url: `${API_KEY_SCHOLARSHIP}/${id}`,
+                    method: "DELETE",
+                    headers: {  
+                        authorization: `Bearer ${token}`
+                    }
+                }).then( data => {
+                    console.log(data);
+                    if(data.data) {
+                        Swal.fire(
+                        'Terhapus!',
+                        'Beasiswa berhasil dihapus.',
+                        'success'
+                        )
+                        setIsLoading(true);
+                    }
+                } )
+            }
+        })
+    }
   return (
     <>
         { isLoading ? (
@@ -63,7 +97,7 @@ function DataScholarship() {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            { scholarship.map( (item, index )=> (
+                                            { scholarship?.map( (item, index )=> (
                                                 <tr key={index} align='center'>
                                                     <td className='text-category'>{index+1}</td>
                                                     <td className='text-category'>{item.name}</td>
@@ -73,7 +107,7 @@ function DataScholarship() {
                                                         <Link className='btn btn-sm btn-warning btn-sm w-100 mb-2'>
                                                         <FaEdit/>
                                                         </Link>
-                                                        <Button variant='danger' className='btn-sm w-100'>
+                                                        <Button variant='danger' onClick={ () => handleDeleteScholarship(item._id) } className='btn-sm w-100'>
                                                             <FaTrash/>
                                                         </Button>
                                                     </td>

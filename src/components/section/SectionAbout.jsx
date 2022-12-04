@@ -1,7 +1,14 @@
 import React from 'react'
-import { Row, Col, Card } from 'react-bootstrap'
+import { Row, Col, Card, Button } from 'react-bootstrap'
+import Fazlu from '../../assets/profile/FazluRachman.png'
+import Naftali from '../../assets/profile/NaftaliSKP.jpg'
+import Zainul from '../../assets/profile/ZainulAnwarAdiP.jpg'
+import Gibran from '../../assets/profile/DaarusyGibran.png'
+import Fawwaz from '../../assets/profile/FawwazArfiqi.jpeg'
+import Belva from '../../assets/profile/BelvaAprilliano Annyndra.png.jpg'
+import Mila from '../../assets/profile/SyafiatulKamila.png'
 import Bangkit from '../../assets/png/bangkit2.png'
-import {FcFactory, FcGraduationCap, FcPlus} from 'react-icons/fc'
+import { FaGithub, FaGithubSquare } from 'react-icons/fa'
 
 function SectionAbout() {
   return (
@@ -29,59 +36,59 @@ function SectionAbout() {
         <Row className='d-flex justify-content-around'>
           <Col xs='10' md='5' className='p-3'>
             <h5 className='text-danger'>Visi Bangkit</h5>
-            <h1 className='text-header-2 text-primary'>Sejuta digital talent untuk Indonesia</h1>
-            <p>Visi kami adalah untuk menghasilkan sejuta digital talent untuk Indonesia melalui pendidikan vokasi digital.</p>
+            <h3 className='text-header-2 text-primary'>solusi digital inovatif untuk penerima dampak pandemi covid-19 di Indonesia</h3>
+            <p>Visi Bangkit adalah menjadi solusi digital inovatif untuk mengatasi permasalahan yang diakibatkan oleh dampak pandemi covid-19 di Indonesia.</p>
           </Col>
           <Col xs='10' md='5' className='p-3'>
-            <h5 className='text-danger'>Visi Bangkit</h5>
-            <h1 className='text-header-2 text-primary'>Sejuta digital talent untuk Indonesia</h1>
-            <p>Visi kami adalah untuk menghasilkan sejuta digital talent untuk Indonesia melalui pendidikan vokasi digital.</p>
+            <h5 className='text-danger'>Misi Bangkit</h5>
+            <h3 className='text-header-2 text-primary'>Menghadirkan fitur yang dapat menjawab permasalahan masyarakat dari berbagai sektor masalah.</h3>
+            <p className='fw-light'>Bangkit memiliki misi untuk menghadirkan 2 solusi utama, yaitu <strong className='fw-bold'>pelaporan masalah</strong> yang merupakan solusi yang menekankan kolaborasi tanpa batas dimana pengguna dapat melaporkan masalahnya dan pengguna lain maupun instansi dapat membantu menyelesaikan masalah tersebut dan <strong className='fw-bold'>penyediaan informasi</strong> yang menyajikan informasi lowongan pekerjaan, beasiswa, dan artikel kesehatan yang bermanfaat bagi masyarakat Indonesia untuk dapat kembali pulih dari dampak pandemi covid-19.</p>
           </Col>
         </Row>
     </section>
-    <section className='why-section container-fluid bg-soft-light pb-5'>
-      <h1 className='text-center text-dark fw-bold'>Kenapa Bangkit?</h1>
-        <Row className='d-flex justify-content-around'>
-            <Card className='col-10 col-md-5 m-3 p-3'>
-              <Row className='d-flex justify-content-around '>
-                  <Col xs='1'>
-                    <FcFactory className='fs-1'/>
-                  </Col>
-                  <Col xs='10'>
-                    <p>User akan disajikan informasi yang bersumber dari instansi (Pemerintah, Swasta, LSM), informasi yang disajikan akan terbagi menjadi 3 sektor masalah</p>
-                  </Col>
-              </Row>
+    <section className='why-section container-fluid bg-soft-light mb-3 pb-5'>
+      <h1 className='text-center text-dark fw-bold border-top pt-3 border-2'>Team Profile <span className='text-danger'>FE</span> & <span className='text-third'>BE</span> 8</h1>
+        <Row className='d-flex justify-content-around mt-5 f-wrap'>
+            <Card className='card-profile front-dev col-6 col-md-2 m-2 p-3 rounded-5 shadow-md' >
+                  <img src={Zainul} className='img-fluid rounded-circle mx-auto border-warning border border-3' style={{ width:'100px', height: '100px', marginTop: '-40px' }} />
+                  <h6 className='fw-semibold text-center'>Zainul Anwar Adi P</h6>
+                  <h6 className='fw-semibold text-center text-danger'>Front-End Dev</h6>
             </Card>
-            <Card className='col-10 col-md-5 d-flex justify-content-around m-3 p-3'>
-              <Row className='d-flex justify-content-around '>
-                    <Col xs='1'>
-                      <FcFactory className='fs-1'/>
-                    </Col>
-                    <Col xs='10'>
-                      <p>Bantuan dapat datang dari berbagai elemen masyarakat, mulai dari masyarakat biasa, instansi pemerintah, pihak swasta, dan LSM. Solusi ini menekankan pada kolaborasi tanpa batas. Setelah user melaporkan masalahnya, user hanya perlu menunggu sampai bantuan tiba.</p>
-                    </Col>
-                </Row>
+            <Card className='card-profile front-dev col-6 col-md-2 m-2 p-3 rounded-5 shadow-md' >
+                  <img src={Naftali} className='img-fluid rounded-circle mx-auto border-warning border border-3' style={{ width:'100px', height: '100px', marginTop: '-40px' }} />
+                  <h6 className='fw-semibold text-center'>Naftali S K P</h6>
+                  <h6 className='fw-semibold text-center text-danger'>Front-End Dev</h6>
             </Card>
-            <Card className='col-10 col-md-5 d-flex justify-content-around m-3 p-3'>
-              <Row className='d-flex justify-content-around '>
-                    <Col xs='1'>
-                      <FcGraduationCap className='fs-1'/>
-                    </Col>
-                    <Col xs='10'>
-                      <p>Menurut United Nations International Children's Emergency Fund (UNICEF) pada hasil surveinya menunjukan bahwa dari dampak Covid-19, sebanyak 938 anak atau sekitar 1% anak mengalami putus sekolah dan 74% diantaranya memiliki alasan putus sekolah dikarenakan tidak ada biaya.</p>
-                    </Col>
-                </Row>
+            <Card className='card-profile front-dev col-6 col-md-2 m-2 p-3 rounded-5 shadow-md' >
+                  <img src={Fazlu} className='img-fluid rounded-circle mx-auto border-warning border border-3' style={{ width:'100px', height: '100px', marginTop: '-40px' }} />
+                  <h6 className='fw-semibold text-center'>Fazlu Rachman</h6>
+                  <h6 className='fw-semibold text-center text-danger'>Front-End Dev</h6>
             </Card>
-            <Card className='col-10 col-md-5 d-flex justify-content-around m-3 p-3'>
-              <Row className='d-flex justify-content-around '>
-                    <Col xs='1'>
-                      <FcPlus className='fs-1'/>
-                    </Col>
-                    <Col xs='10'>
-                      <p>Menurut data Kementerian Kesehatan Republik Indonesia, per tanggal 21 Februari 2021, kasus aktif covid-19 di indonesia mencapai 157.088 kasus mengalami kenaikan 1.109 kasus. </p>
-                    </Col>
-                </Row>
+        </Row>
+        <Row className='d-flex justify-content-around mt-3 f-wrap'>
+            <Card className='card-profile back-dev col-6 col-md-2 m-2 p-3 rounded-5 shadow-md' >
+                  <img src={Gibran} className='img-fluid rounded-circle mx-auto border-warning border border-3' style={{ width:'100px', height: '100px', marginTop: '-40px' }} />
+                  <h6 className='fw-semibold text-center'>Daarusy Gibran</h6>
+                  <h6 className='fw-semibold text-center text-third'>Back-End Dev</h6>
             </Card>
+            <Card className='card-profile back-dev col-6 col-md-2 m-2 p-3 rounded-5 shadow-md'>
+                <img src={Belva} className='img-fluid rounded-circle mx-auto border-warning border border-3' style={{ width:'100px', height: '100px', marginTop: '-40px' }} />
+                  <h6 className='fw-semibold text-center'>Belva Aprilliano A</h6>
+                  <h6 className='fw-semibold text-center text-third'>Back-End Dev</h6>
+            </Card>
+            <Card className='card-profile back-dev col-6 col-md-2 m-2 p-3 rounded-5 shadow-md'>
+                <img src={Fawwaz} className='img-fluid rounded-circle mx-auto  border-warning border border-3' style={{ width:'100px', height: '100px', marginTop: '-40px' }} />
+                  <h6 className='fw-semibold text-center'>Fawwaz Arfiqi</h6>
+                  <h6 className='fw-semibold text-center text-third'>Back-End Dev</h6>
+            </Card>
+            <Card className='card-profile back-dev col-6 col-md-2 m-2 p-3 rounded-5 shadow-md'>
+                <img src={Mila} className='img-fluid rounded-circle mx-auto  border-warning border border-3' style={{ width:'100px', height: '100px', marginTop: '-40px' }} />
+                  <h6 className='fw-semibold text-center'>Syafiatul Kamila</h6>
+                  <h6 className='fw-semibold text-center text-third'>Back-End Dev</h6>
+            </Card>
+            <Row className='mt-5'>
+                <a href='https://github.com/FE-20-Group-Project' target='_blank' className='btn btn-dark w-50 mx-auto rounded'><FaGithub className='fs-5 mx-2'/> Group Project - Organize</a>
+            </Row>
         </Row>
     </section>
     </>
