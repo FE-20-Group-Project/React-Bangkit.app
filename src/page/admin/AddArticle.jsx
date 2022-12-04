@@ -49,10 +49,10 @@ function AddArticle() {
     <Container fluid>
     <Row>
         <NavSide/>
-        <section className='col-10'>
+        <section className='dashboard-content col-10 px-0'>
             <DashboardTopBar/>
-                    <main>
-                        <Card className='table-responsive col-10 my-5'>
+                    <main className='my-3'>
+                        <Card className='table-responsive col-md-10 col-sm-12 mx-auto my-5'>
                         <Card.Header>
                             <Link to='/dashboard-admin/article' className='btn btn-danger btn-sm'><FaArrowLeft/> Kembali</Link>
                         </Card.Header>

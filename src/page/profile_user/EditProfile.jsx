@@ -114,12 +114,12 @@ function EditProfile() {
         <Navigation/>
         <section className='py-5 container-fluid bg-danger'>
             <Row className='d-flex justify-content-center'>
-                <aside className='card col-3 me-3 py-3 px-0'>
+                <aside className='card col-10 col-md-3 mb-3 me-md-3 mb-md-0 py-3 px-0'>
                     <NavLink to='/user/edit/editProfile' style={({isActive}) => isActive ? editNavStyle : undefined} className='p-3 text-dark'>Edit Profile</NavLink>
                     <NavLink to='/user/edit/lupaPassword' style={({isActive}) => isActive ? editNavStyle : undefined} className='p-3 text-dark'>Lupa Password</NavLink>
                 </aside>
                 { editOption==='editProfile' ? (
-                <aside className='card col-8 p-3'>
+                <aside className='card col-10 col-md-8 p-3'>
                         <h5 className='fw-semibold'>Edit Profile</h5>
                         <Form onSubmit={handleSubmit}>
                             <Form.Group className='mb-3'>
@@ -144,7 +144,7 @@ function EditProfile() {
                         </Form>
                 </aside>
                 ): (
-                <aside className='card col-8 p-3'>
+                <aside className='card col-10 col-md-8 p-3'>
                         <h5 className='fw-semibold'>Ubah Kata Sandi</h5>
                         <Form onSubmit={handleForgetPassword}>
                             <Form.Group className='mb-3'>

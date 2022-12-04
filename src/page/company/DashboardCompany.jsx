@@ -55,11 +55,11 @@ function DashboardCompany() {
                 <Container fluid>
                     <Row className='d-flex justify-content-center'>
                         <NavSide/>
-                        <section className='col-10  p-0'>
+                        <section className='dashboard-content col-10  p-0'>
                             <DashboardTopBar/>
-                            <header className='container-fluid bg-dark py-5'>
+                            <header className='container-fluid bg-success py-5'>
                                 <Row className='d-flex justify-content-around'>
-                                    <Card className='col-3 p-3 border-start border-warning border-5 border-0 shadow-lg'>
+                                    <Card className='col-10 col-md-3 m-3 p-3 border-start border-warning border-5 border-0 shadow-lg'>
                                         <Row className='d-flex justify-content-start py-3'>
                                             <Col xs='3'>
                                             <FaUserTie className='fs-1 text-warning'/>
@@ -70,7 +70,7 @@ function DashboardCompany() {
                                         </Row>
                                         <h5>Total Loker</h5>
                                     </Card>
-                                    <Card className='col-3 p-3  border-start border-primary border-5 border-0 shadow-lg'>
+                                    <Card className='col-10 col-md-3 m-3 p-3  border-start border-primary border-5 border-0 shadow-lg'>
                                         <Row className='d-flex justify-content-start py-3'>
                                             <Col xs='3'>
                                             <FaBookOpen className='fs-1 text-primary'/>
@@ -81,7 +81,7 @@ function DashboardCompany() {
                                         </Row>
                                         <h5>Total Beasiswa</h5>
                                     </Card>
-                                    <Card className='col-3 p-3  border-start border-danger border-5 border-0 shadow-lg'>
+                                    <Card className='col-10 col-md-3 m-3 p-3  border-start border-danger border-5 border-0 shadow-lg'>
                                         <Row className='d-flex justify-content-start py-3'>
                                             <Col xs='3'>
                                             <FaBullhorn className='fs-1 text-danger'/>

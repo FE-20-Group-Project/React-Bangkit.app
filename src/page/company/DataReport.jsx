@@ -42,36 +42,37 @@ function DataReport() {
                 <Container fluid>
                     <Row className='d-flex justify-content-center'>
                         <NavSide/>
-                        <section className='col-10 px-0'>
+                        <section className='dashboard-content col-10 px-0'>
                             <DashboardTopBar/>
                     
                             <main className='my-3 p-3'>
-                            <Card className='table-responsive'>
+                            <Card className='table-responsive col-12'>
                                         <Card.Header>
+                                        Data Pelaporan Masalah
                                         </Card.Header>
                                     <Table className='table-bordered'>
                                         <thead>
                                             <tr align='center'>
-                                                <th>No .</th>
-                                                <th>Gambar</th>
-                                                <th>Title</th>
-                                                <th>Kategori</th>
-                                                <th>Sub Kategori</th>
-                                                <th>Aksi</th>
+                                                <th className='text-category'>No</th>
+                                                <th className='text-category'>Gambar</th>
+                                                <th className='text-category'>Title</th>
+                                                <th className='text-category'>Kategori</th>
+                                                <th className='text-category'>Sub Kategori</th>
+                                                <th className='text-category'>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             { report.map( (item, index )=> (
                                                 <tr key={index} align='center'>
-                                                    <td>{index+1}</td>
-                                                    <td>
+                                                    <td className='text-category'>{index+1}</td>
+                                                    <td >
                                                     <img src={ item.laporan.image[0] ? `https://api-bangkit.up.railway.app/${item.laporan.image[0]}` : `https://api-bangkit.up.railway.app/${item.laporan.user.image}`} width='60' />
                                                     </td>
-                                                    <td>{item.laporan.title}</td>
-                                                    <td>{item.laporan.category}</td>
-                                                    <td>{item.laporan.subcategory}</td>
-                                                    <td className='d-flex flex-column'>
-                                                        <Link to={`/report/detail-report/${item.laporan._id}`} className='btn btn-sm btn-warning btn-sm w-50 mx-auto mb-3'>
+                                                    <td className='text-category'>{item.laporan.title}</td>
+                                                    <td className='text-category'>{item.laporan.category}</td>
+                                                    <td className='text-category'>{item.laporan.subcategory}</td>
+                                                    <td className='text-category'>
+                                                        <Link to={`/report/detail-report/${item.laporan._id}`} className='btn btn-sm btn-warning btn-sm w-100'>
                                                         <FaInfoCircle/>
                                                         </Link>
                                                     </td>

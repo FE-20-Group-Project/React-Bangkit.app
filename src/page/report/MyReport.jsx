@@ -77,54 +77,54 @@ function MyReport() {
     ) : (
       <>
         <Navigation/>
-        <section className='report-list container-fluid p-5 bg-soft-light'>
+        <section className='report-list container-fluid bg-soft-light p-5'>
             <nav className='mb-5'>
-                <Row className='d-flex justify-content-center'>
-                    <Col xs='5' className='p-3 text-center  border-danger border-bottom rounded-0'>
+                <Row className='d-flex justify-content-center m-0 p-0'>
+                    <Col xs='12' sm='5' className='p-3 text-center  border-danger border-bottom rounded-0'>
                         <Link to='/report' className='fs-5 fw-semibold text-danger p-3'>Lihat Kategori Laporan</Link>
                     </Col>
-                    <Col xs='5' className='p-3 text-center border border-danger border-bottom-0 rounded-0 '>
+                    <Col xs='12' sm='5' className='p-3 text-center border border-danger border-bottom-0 rounded-0 '>
                         <Link to='/report/my-report' className='fs-5  fw-semibold text-danger p-3'>Lihat Laporanku</Link>
                     </Col>
                 </Row>
               </nav>
-            <Row className='d-flex justify-content-between'>
-            <aside className='container'>
+            <Row className='d-flex justify-content-between m-0 p-0'>
+            <aside className='col-12'>
                 { laporan.map( item => {
                 return ( 
                     <article key={item.id} className='border-top border-bottom shadow-md'>
                         <Row className='p-3'>
-                            <Col xs='1'>
+                            <Col xs='2' sm='1'>
                                 <img src={ item.laporan.image[0] ? `https://api-bangkit.up.railway.app/${item.laporan.image[0]}`: `https://api-bangkit.up.railway.app/${item.laporan.user.image}`} width='30px' />
                             </Col>
-                            <Col xs='3'>
-                                <Link className='text-danger' to={'/report/detail-report/' + item.laporan._id}>{item.laporan.title}</Link>
+                            <Col >
+                                <Link className='text-category text-danger' to={'/report/detail-report/' + item.laporan._id}>{item.laporan.title}</Link>
                             </Col>
-                            <Col xs='2'>
-                                <span>
-                                <FaRocketchat className='fs-5 me-2 text-danger'/>
+                            <Col >
+                                <span className='text-category'>
+                                <FaRocketchat className='text-category fs-5 me-2 text-danger'/>
                                 {item.reply.length}
                                 </span>
                             </Col>
-                            <Col xs='2'>
-                                <span>
-                                <FaEye className='fs-5 me-2 text-danger' />
+                            <Col >
+                                <span  className='text-category'>
+                                <FaEye className='text-category fs-5 me-2 text-danger' />
                                 {item.laporan.total_view}
                                 </span>
                             </Col>
-                            <Col xs='2'>
-                                <small>{item.laporan.date}</small>
+                            <Col xs='2' >
+                                <small  className='text-category'>{item.laporan.date}</small>
                             </Col>
-                            <Col xs='1'>
+                            <Col xs='3' md='1'>
                             { item.laporan.status === 'solved' && (
-                                <span className='badge badge-pill bg-success w-100'><FaCheck/></span>
+                                <span className='text-category badge badge-pill bg-success w-100'><FaCheck/></span>
                             ) }
                             { item.laporan.status === 'posted' && (
-                                <span className='badge badge-pill bg-primary w-100'><FaRedoAlt/></span>
+                                <span className='text-category badge badge-pill bg-primary w-100'><FaRedoAlt/></span>
                             ) }
                             </Col>
-                            <Col xs='1'>
-                                <span className='badge badge-pill bg-danger w-100' style={{ cursor: 'pointer' }} onClick={ () => handleEditLaporan(item.laporan._id)}>Hapus</span>
+                            <Col xs='3' md='1'>
+                                <span className='text-category badge badge-pill bg-danger w-100' style={{ cursor: 'pointer' }} onClick={ () => handleEditLaporan(item.laporan._id)}>Hapus</span>
                             </Col>
                         </Row>
                     </article>

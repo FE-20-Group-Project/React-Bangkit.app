@@ -13,13 +13,15 @@ function Reply({id}) {
   const handleReply = (e) => {
     e.preventDefault();
     e.target.reset();
-    document.getElementById('preview-img').src = '';
-      const form = new FormData();
-      form.append('id_laporan', id);
-      if(image) {
-        form.append('balasan', image);
+    const form = new FormData();
+    form.append('id_laporan', id);
+    if(image) {
+      form.append('balasan', image);
+      setImage('')
+      document.getElementById('preview-img').src = '';
       }
       form.append('content', content);
+      setContent('')
       axios({
         url: API_KEY_REPLY,
         method: "POST",
@@ -28,8 +30,6 @@ function Reply({id}) {
       }).then( data => {
         if(data.data) {
           setIsLoading(true);
-          setImage('')
-          setContent('')
         }
       } )
   }
@@ -56,11 +56,11 @@ function Reply({id}) {
   return (
     <section className='section-reply container'>
       <Row>
-            <Col xs='8' className='p-3'>
+            <Col xs='12' md='8' className='p-3'>
                 <Form onSubmit={handleReply}>
-                      <h5 className='fw-semibold'>Balasan</h5>
+                      <h6 className='fw-semibold'>Balasan</h6>
                     <Form.Group className='mb-2'>
-                        <button onClick={ () => handleEditUploadImage() } class="icon-btn add-btn">
+                        <button type='button' onClick={ () => handleEditUploadImage() } class="icon-btn add-btn">
                             <div class="add-icon"></div>
                             <div class="btn-txt text-gray"> Add Photo </div>
                         </button>
@@ -84,7 +84,7 @@ function Reply({id}) {
                             </svg>
                             </div>
                         </div>
-                        <span>Send</span>
+                        <span className='btn-reply-text'>Send</span>
                     </button>
                     </Form.Group>
                 </Form>

@@ -46,11 +46,11 @@ function Navigation() {
 
   return (
     <Navbar collapseOnSelect expand="md" variant="light" className='bg-light border-bottom border-5 shadow-lg border-danger py-3 position-sticky top-0' style={{ zIndex: '9' }}>
-    <Container fluid className='px-5'>
+    <Container fluid className='nav-container px-5'>
       <NavLink to='/'>
             <img src={Logo} width='100px' />
       </NavLink>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" className='toggle-responsive' />
         <Navbar.Collapse id="responsive-navbar-nav">  
             <Nav className="d-flex w-100 justify-content-end">
                 <NavLink to="/" style={({isActive}) => (isActive ? linkStyle : undefined)} className='nav-item p-2 me-3' >Beranda</NavLink>
@@ -63,8 +63,8 @@ function Navigation() {
                   </NavDropdown>
                 { session==false ? (
                   <>
-                    <NavLink to='/login' className='btn btn-sm btn-outline-danger mx-2 rounded-pill p-2 px-3'><FaSignInAlt className='me-2'/>Login</NavLink>
-                    <NavLink to='/register' className='btn btn-sm btn-danger rounded-pill p-2 px-3'><FaPenAlt className='me-2'/>Register</NavLink>
+                    <NavLink to='/login' className='btn btn-sm btn-outline-danger mx-2 rounded-pill pt-1 px-2 m-1'><FaSignInAlt className='me-2'/>Login</NavLink>
+                    <NavLink to='/register' className='btn btn-sm btn-danger rounded-pill pt-1 px-2 m-1'><FaPenAlt className='me-2'/>Register</NavLink>
                   </>
                 ): (
                       <Dropdown drop="start">

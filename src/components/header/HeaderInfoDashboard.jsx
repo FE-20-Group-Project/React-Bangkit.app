@@ -10,7 +10,7 @@ function HeaderInfoDashboard({favIcon, users, instansi, laporan}) {
   return (
     <header className='container-fluid bg-secondary py-5'>
         <Row className='d-flex justify-content-around'>
-            <Card className='col-3 p-3 border-start border-success border-5 border-0 shadow-lg'>
+            <Card className='col-10 col-md-3 m-3 p-3 border-start border-success border-5 border-0 shadow-lg'>
                 <Row className='d-flex justify-content-start py-3'>
                     <Col xs='3'>
                     <FaUserAlt className='fs-1 text-success'/>
@@ -21,7 +21,7 @@ function HeaderInfoDashboard({favIcon, users, instansi, laporan}) {
                 </Row>
                 <h5>Total Pengguna</h5>
             </Card>
-            <Card className='col-3 p-3  border-start border-primary border-5 border-0 shadow-lg'>
+            <Card className='col-10 col-md-3 m-3 p-3  border-start border-primary border-5 border-0 shadow-lg'>
                 <Row className='d-flex justify-content-start py-3'>
                     <Col xs='3'>
                     <FaBuilding className='fs-1 text-primary'/>
@@ -32,7 +32,7 @@ function HeaderInfoDashboard({favIcon, users, instansi, laporan}) {
                 </Row>
                 <h5>Total Instansi</h5>
             </Card>
-            <Card className='col-3 p-3  border-start border-danger border-5 border-0 shadow-lg'>
+            <Card className='col-10 col-md-3 m-3 p-3  border-start border-danger border-5 border-0 shadow-lg'>
                 <Row className='d-flex justify-content-start py-3'>
                     <Col xs='3'>
                     <FaBullhorn className='fs-1 text-danger'/>
