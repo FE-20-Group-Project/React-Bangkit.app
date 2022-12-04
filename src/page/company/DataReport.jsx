@@ -74,9 +74,6 @@ function DataReport() {
                                                         <Link to={`/report/detail-report/${item.laporan._id}`} className='btn btn-sm btn-warning btn-sm w-50 mx-auto mb-3'>
                                                         <FaInfoCircle/>
                                                         </Link>
-                                                        <Button variant='danger' className='btn-sm mx-auto w-50'>
-                                                            <FaTrash/>
-                                                        </Button>
                                                     </td>
                                                 </tr>
                                             ) ) }

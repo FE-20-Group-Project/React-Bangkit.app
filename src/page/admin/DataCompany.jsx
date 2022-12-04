@@ -34,20 +34,20 @@ function DataCompany() {
         return result;
     }
 
-    const handleDelete = (id) => {
+    const handleBlock = async (id) => {
         Swal.fire({
-            title: 'Yakin ingin menghapus Artikel berikut?',
+            title: 'Yakin ingin memblock instansi berikut?',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Ya, hapus!'
+            confirmButtonText: 'Ya!'
           }).then((result) => {
             if (result.isConfirmed) {
                 const token = getCookie('token');
                 axios({
-                    url: `${API_KEY_COMPANY}/${id}`,
-                    method: "DELETE",
+                    url: `https://api-bangkit.up.railway.app/api/admin/data/instansi/block/?id=${id}&isBlocked=true`,
+                    method: "GET",
                     headers: {  
                         authorization: `Bearer ${token}`
                     }
@@ -55,8 +55,39 @@ function DataCompany() {
                     console.log(data);
                     if(data.data) {
                         Swal.fire(
-                          'Terhapus!',
-                          'Artikel berhasil dihapus.',
+                          'Success!',
+                          'Instansi berhasil di block.',
+                          'success'
+                        )
+                        setIsLoading(true);
+                    }
+                } )
+            }
+          })
+    }
+    const handleUnblock = async (id) => {
+        Swal.fire({
+            title: 'Yakin ingin melepas block dari instansi berikut?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                const token = getCookie('token');
+                axios({
+                    url: `https://api-bangkit.up.railway.app/api/admin/data/instansi/block/?id=${id}&isBlocked=false`,
+                    method: "GET",
+                    headers: {  
+                        authorization: `Bearer ${token}`
+                    }
+                }).then( data => {
+                    console.log(data);
+                    if(data.data) {
+                        Swal.fire(
+                          'Success!',
+                          'Instansi berhasil di unblock.',
                           'success'
                         )
                         setIsLoading(true);
@@ -79,6 +110,7 @@ function DataCompany() {
                         <main className='my-3 p-3'>
                             <Card className='table-responsive'>
                                 <Card.Header>
+                                Data Instansi
                                 </Card.Header>
                             <Table className='table-bordered'>
                                 <thead>
@@ -88,7 +120,8 @@ function DataCompany() {
                                         <th>Nama Instansi</th>
                                         <th>Email</th>
                                         <th>Verifikasi</th>
-                                        <th>Aksi</th>
+                                        <th>Formulir</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -101,15 +134,16 @@ function DataCompany() {
                                             </td>
                                             <td>{item.name}</td>
                                             <td>{item.email}</td>
-                                            <td>{ item.status==='accept' ? 
-                                            <span className='badge bg-success'><FaCheck/> Accept</span> : <span className='badge bg-danger'><FaTimes/> Pending</span> }</td>
                                             <td>
-                                                <Link to='' className='btn btn-warning btn-sm mx-2'>
-                                                    <FaEdit/>
-                                                </Link>
-                                                <Button variant='danger' onClick={ () => handleDelete(item._id) } className='btn-sm'>
-                                                    <FaTrash/>
-                                                </Button>
+                                                { item.status==='accept' ? 
+                                                <span className='badge bg-success'><FaCheck/> Accept</span> : <span className='badge bg-danger'><FaTimes/> Pending</span> }
+                                            </td>
+                                            <td><a href={'https://api-bangkit.up.railway.app'+item.dokumen} 
+                                            target='_blank' className='text-primary fw-semibold' >Dokumen</a></td>
+                                            <td>
+                                                { item.isBlocked ? 
+                                                <span className='badge bg-danger' onClick={() => handleUnblock(item._id)}><FaTimes/> Is Blocked</span>
+                                                : <span className='badge bg-success' onClick={ () => handleBlock(item._id)}><FaCheck/> Active</span> }
                                             </td>
                                         </tr>
                                         )

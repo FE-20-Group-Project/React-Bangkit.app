@@ -55,8 +55,39 @@ function DataUser() {
                     console.log(data);
                     if(data.data) {
                         Swal.fire(
-                          'Terhapus!',
+                          'Success!',
                           'User berhasil di block.',
+                          'success'
+                        )
+                        setIsLoading(true);
+                    }
+                } )
+            }
+          })
+    }
+    const handleUnblock = async (id) => {
+        Swal.fire({
+            title: 'Yakin ingin melepas block dari user berikut?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                const token = getCookie('token');
+                axios({
+                    url: `https://api-bangkit.up.railway.app/api/admin/data/user/block/?id=${id}&isBlocked=false`,
+                    method: "GET",
+                    headers: {  
+                        authorization: `Bearer ${token}`
+                    }
+                }).then( data => {
+                    console.log(data);
+                    if(data.data) {
+                        Swal.fire(
+                          'Success!',
+                          'User berhasil di unblock.',
                           'success'
                         )
                         setIsLoading(true);
@@ -88,7 +119,7 @@ function DataUser() {
                     if(data.data) {
                         Swal.fire(
                           'Terhapus!',
-                          'Artikel berhasil dihapus.',
+                          'Userberhasil dihapus.',
                           'success'
                         )
                         setIsLoading(true);
@@ -121,7 +152,6 @@ function DataUser() {
                                         <th>Nama</th>
                                         <th>Email</th>
                                         <th>Status</th>
-                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -138,14 +168,6 @@ function DataUser() {
                                                 { item.isBlocked ? 
                                                 <span className='badge bg-danger' onClick={() => handleUnblock(item._id)}><FaTimes/> Is Blocked</span>
                                                 : <span className='badge bg-success' onClick={ () => handleBlock(item._id)}><FaCheck/> Active</span> }
-                                            </td>
-                                            <td>
-                                                <Link to='' className='btn btn-warning btn-sm mx-2'>
-                                                    <FaEdit/>
-                                                </Link>
-                                                <Button variant='danger' onClick={ () => handleDelete(item._id) } className='btn-sm'>
-                                                    <FaTrash/>
-                                                </Button>
                                             </td>
                                         </tr>
                                         )
