@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Form, Row } from 'react-bootstrap'
-import { useParams, NavLink } from 'react-router-dom'
+import { useParams, NavLink, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { editProfile, getSession } from '../../redux/action/userSession';
 import { getCookie } from '../../cookie/cookie';
@@ -15,7 +15,8 @@ const MySwal = withReactContent(Swal)
 function EditProfile() {
     const { editOption } = useParams();
     const dispatch = useDispatch();
-    const {session, token} = useSelector( state => state.userSession );
+    const navigate = useNavigate(); 
+    const {session} = useSelector( state => state.userSession );
 
     const [ editImage, setEditImage ] = useState('');
     const [ editEmail, setEditEmail ] = useState('');
@@ -46,7 +47,6 @@ function EditProfile() {
         const token = getCookie('token');
         form.append("file", editImage);
         console.log(editImage);
-        console.log("id :" + session._id, "token :" + token);
         form.append("name", editName);
         form.append("email", editEmail);
         axios({
@@ -57,12 +57,13 @@ function EditProfile() {
             },
             data: form
         }).then( data => {
-            if(data){
+            if(data.data){
                 dispatch(getSession(token));
                 MySwal.fire({
                     icon: 'success',
                     title: 'Data Berhasil Diupdate!',
                   })
+                  navigate('/user/profile');
             }
         } )
     }
@@ -74,7 +75,6 @@ function EditProfile() {
         formPassword.append("oldPassword", editOldPassword);
         formPassword.append("newPassword", editNewPassword);
         formPassword.append("confirmPassword", editConfirmNewPassword);
-       
         axios({
             url: `https://api-bangkit.up.railway.app/api/user/edit/${session._id}`,
             method: "PUT",

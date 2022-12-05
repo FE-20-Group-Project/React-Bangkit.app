@@ -135,7 +135,7 @@ function SectionDetailReport({id, detailLaporan, setIsLoading}) {
             return <Reply id={id} setIsLoading={setIsLoading}/>
         }
     }
-
+console.log(data);
   return (
     <>
     <CarouselBS/>
@@ -152,6 +152,8 @@ function SectionDetailReport({id, detailLaporan, setIsLoading}) {
             </Col>
             <Col xs='12' md='8'>
                 <h3 className='fw-bold text-decoration-underline text-danger py-3'>{detailLaporan.laporan.title}</h3>
+                <p className='fw-bold text-dark pt-2'>Deskripsi :</p>
+                <p className='fw-bold text-dark py-2'>{detailLaporan.laporan.content}</p>
                 <Row className='d-flex justify-content-between f-wrap'>
                     <Col xs='10' sm='6'>
                     <h6 className='text-dark text-report-user-text my-3'><FaUserAlt className='text-report-user-icon text-danger fs-5 ms-2'/> {detailLaporan.laporan.user.name}</h6>
