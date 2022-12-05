@@ -131,11 +131,11 @@ function SectionDetailReport({id, detailLaporan, setIsLoading}) {
     }
 
     const ReplyComponent = () => {
-        if(session && detailLaporan.laporan.status === 'posted') {
-            return <Reply id={id} setIsLoading={setIsLoading}/>
+        if(detailLaporan.laporan.status === 'posted') {
+            return <Reply id={id} session={session} MySwal={MySwal}/>
         }
     }
-console.log(data);
+    
   return (
     <>
     <CarouselBS/>

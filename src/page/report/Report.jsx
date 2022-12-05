@@ -15,6 +15,7 @@ function Report() {
   const [ isLoading, setIsLoading ] = useState(true);
 
   useEffect( () => {
+    window.scrollTo(0, 0);
     axios.get(API_KEY_REPORT).then( data => {
           setLaporan(data.data.data.filter( item => item.laporan.status === 'posted' ));
           setIsLoading(false);
