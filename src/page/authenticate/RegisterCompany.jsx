@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Register from '../../assets/png/regis3.jpg'
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap'
@@ -18,6 +18,10 @@ function RegisterCompany() {
     const [ company_password, setCompany_password ] = useState();
     const [ confirmPassword, setConfirmPassword ] = useState();
     const [ document, setDocument ] = useState();
+
+    useEffect( () => {
+        window.scrollTo(0, 0);
+    },[] )
 
     const register = async (dataForm, form) => {
 

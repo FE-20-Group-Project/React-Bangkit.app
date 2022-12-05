@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { API_KEY_LOGIN  } from '../../env/env'
-import { getCookie } from '../../cookie/cookie'
 import { getSession } from '../../redux/action/userSession'
-import { Container, Row, Card, Col, Form, Button, Spinner } from 'react-bootstrap'
+import { Container, Row, Card, Col, Form, Button } from 'react-bootstrap'
 import Logo from '../../assets/image/bangkit.png'
 import LogoLogin from '../../assets/png/login.png'
 import axios from 'axios'
@@ -21,6 +20,10 @@ function Login() {
     const [ loading, setLoading ] = useState(false);
     const [ email, setEmail ] = useState();
     const [ password, setPassword ] = useState();
+
+    useEffect( () => {
+        window.scrollTo(0, 0);
+    },[] )
 
     const createSessionObj = async (email, password, form) => {
        try{

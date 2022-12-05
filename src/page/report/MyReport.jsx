@@ -21,6 +21,7 @@ function MyReport() {
     const {session} = useSelector( state => state.userSession );
 
     useEffect( () => {
+        window.scrollTo(0, 0);
         if(!session) {
             MySwal.fire({
                 icon: 'warning',

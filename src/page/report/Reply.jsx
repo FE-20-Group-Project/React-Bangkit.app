@@ -4,34 +4,46 @@ import { API_KEY_REPLY } from '../../env/env';
 import { Form, Row, Col, Button } from 'react-bootstrap'
 import { getCookie } from '../../cookie/cookie'
 import { FaImage } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
-function Reply({id}) {
-  const token = getCookie('token');
+function Reply({id, session, MySwal}) {
+  const navigate = useNavigate();
   const [ content, setContent ] = useState();
   const [ image, setImage ] = useState();
-
+  
   const handleReply = (e) => {
+
     e.preventDefault();
     e.target.reset();
-    const form = new FormData();
-    form.append('id_laporan', id);
-    if(image) {
-      form.append('balasan', image);
-      setImage('')
-      document.getElementById('preview-img').src = '';
-      }
-      form.append('content', content);
-      setContent('')
-      axios({
-        url: API_KEY_REPLY,
-        method: "POST",
-        headers: { authorization: `Bearer ${token}` },
-        data: form
-      }).then( data => {
-        if(data.data) {
-          setIsLoading(true);
-        }
-      } )
+
+    if(!session) {
+        MySwal.fire({
+          icon: 'warning',
+          title: 'Maaf, untuk dapat mengirim pesan anda harus login terlebih dahulu!',
+      })
+        navigate('/login');
+    }else {
+        const token = getCookie('token');
+        const form = new FormData();
+        form.append('id_laporan', id);
+        if(image) {
+          form.append('balasan', image);
+          setImage('')
+          document.getElementById('preview-img').src = '';
+          }
+          form.append('content', content);
+          setContent('')
+          axios({
+            url: API_KEY_REPLY,
+            method: "POST",
+            headers: { authorization: `Bearer ${token}` },
+            data: form
+          }).then( data => {
+            if(data.data) {
+              setIsLoading(true);
+            }
+          } )
+    }
   }
 
   const handleEditUploadImage = () => {
@@ -50,8 +62,6 @@ function Reply({id}) {
         reader.readAsDataURL(file);
     }
   }
-
-  console.log(image, content);
 
   return (
     <section className='section-reply container'>
