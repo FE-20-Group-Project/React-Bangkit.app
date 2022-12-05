@@ -36,6 +36,8 @@ import DataReport from './page/company/DataReport'
 import DataCompany from './page/admin/DataCompany'
 import DataUser from './page/admin/DataUser'
 import DetailArticle from './page/information/pandemic/DetailArticle'
+import Error403 from './page/error/Error403'
+import Error404 from './page/error/Error404'
 
 function App() {
   const dispatch = useDispatch();
@@ -92,6 +94,10 @@ useEffect( () => {
                   <Route path='/dashboard-admin/report' element={<DataReport/>}/>
                   <Route path='/dashboard-admin/data-company' element={<DataCompany/>}/>
                   <Route path='/dashboard-admin/data-user' element={<DataUser/>}/>
+
+
+                  <Route path='/error-provider' element={<Error403/>} />
+                  <Route path='/*' element={<Error404/>} />
               </Routes>
         </div>
       ) }

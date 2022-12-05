@@ -42,10 +42,11 @@ function EditProfile() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const inputImage = document.getElementById('edit-upload-image');
         const form = new FormData();
         const token = getCookie('token');
-        form.append("file", editImage);
+        if(editImage) {
+            form.append("file", editImage);
+        }
         console.log(editImage);
         form.append("name", editName);
         form.append("email", editEmail);
@@ -65,7 +66,12 @@ function EditProfile() {
                   })
                   navigate('/user/profile');
             }
-        } )
+        } ).catch( error => {
+            MySwal.fire({
+              icon: 'warning',
+              title: error.response.data.message,
+          })
+          } )
     }
 
     const handleForgetPassword = (e) => {
@@ -90,7 +96,12 @@ function EditProfile() {
                     title: 'Data Berhasil Diupdate!',
                   })
             }
-        } )        
+        } ).catch( error => {
+            MySwal.fire({
+              icon: 'warning',
+              title: error.response.data.message,
+          })
+          } )     
     }
 
     const previewFile = () => {

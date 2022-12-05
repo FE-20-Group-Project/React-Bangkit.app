@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Container, Row, Table, Card, Button } from 'react-bootstrap'
 import DashboardTopBar from '../../components/navigation/DashboardTopBar'
 import Loading from '../../components/loader/Loading'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FaEdit, FaPlus, FaTrash, FaTimes, FaCheck, FaUser } from 'react-icons/fa'
 import axios from 'axios'
 import { API_KEY_USERS } from '../../env/env'
@@ -11,18 +11,25 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import NavSide from '../../components/navigation/NavSide'
 import Footer from '../../components/footer/Footer'
+import { useSelector } from 'react-redux'
 const MySwal = withReactContent(Swal)
 
 function DataUser() {
 
+    const navigate = useNavigate();
+    const {session} = useSelector( state => state.userSession );
     const [user, setUser] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect( () => {
-        getAPI(API_KEY_USERS).then( data => {
-            setUser(data);
-            setIsLoading(false);
-        } )
+        if(session.type !== 'admin') {
+            navigate('/error-provider')
+        }else {
+            getAPI(API_KEY_USERS).then( data => {
+                setUser(data);
+                setIsLoading(false);
+            } )
+        }
     }, [isLoading] );
 
     const getAPI = async (api) => {
