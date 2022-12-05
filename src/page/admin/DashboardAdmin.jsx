@@ -11,6 +11,7 @@ import axios from 'axios'
 import Loading from '../../components/loader/Loading'
 import NavSide from '../../components/navigation/NavSide'
 import Footer from '../../components/footer/Footer'
+import { useSelector } from 'react-redux'
 
 const favIcon = {
   FaBuilding,
@@ -20,7 +21,6 @@ const favIcon = {
 
 function DashboardAdmin() {
 
- 
   const [ isLoading, setIsLoading ] = useState(true);
   const [ users, setUsers ] = useState();
   const [ instansi, setInstansi ] = useState();

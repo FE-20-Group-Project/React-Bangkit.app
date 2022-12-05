@@ -64,6 +64,11 @@ function SectionDetailReport({id, detailLaporan, setIsLoading}) {
                         'success'
                         )
                     }
+                } ).catch( error => {
+                    MySwal.fire({
+                        icon: 'warning',
+                        title: error.response.data.message,
+                    })
                 } )
             }
         })
@@ -95,6 +100,11 @@ function SectionDetailReport({id, detailLaporan, setIsLoading}) {
                         )
                         navigate('/report/my-report');
                     }
+                } ).catch( error => {
+                    MySwal.fire({
+                        icon: 'warning',
+                        title: error.response.data.message,
+                    })
                 } )
             }
         })
@@ -125,6 +135,11 @@ function SectionDetailReport({id, detailLaporan, setIsLoading}) {
                             'success'
                             )
                         }
+                    } ).catch( error => {
+                        MySwal.fire({
+                            icon: 'warning',
+                            title: error.response.data.message,
+                        })
                     } )
                 }
             })

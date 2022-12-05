@@ -67,7 +67,6 @@ function Login() {
         
     }
 
-
     const handleLogin = (e) => {
         e.preventDefault();
         createSessionObj(email, password, e.target);

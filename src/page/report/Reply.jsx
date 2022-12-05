@@ -42,6 +42,11 @@ function Reply({id, session, MySwal}) {
             if(data.data) {
               setIsLoading(true);
             }
+          } ).catch( error => {
+            MySwal.fire({
+              icon: 'warning',
+              title: error.response.data.message,
+          })
           } )
     }
   }

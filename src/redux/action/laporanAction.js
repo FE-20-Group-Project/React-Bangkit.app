@@ -42,10 +42,16 @@ const postDataReport = (token, form, MySwal, navigate) => {
             if(data.data) {
                 dispatch(successGetReport(data.data.data));
                 MySwal.fire({
+                    icon: 'success',
                     title: 'Berhasil membuat laporan!',
                 })
                 navigate('/report/my-report');
             }
+        } ).catch( error => {
+            MySwal.fire({
+                icon: 'warning',
+                title: error.response.data.message,
+            })
         } )
     }
 }
