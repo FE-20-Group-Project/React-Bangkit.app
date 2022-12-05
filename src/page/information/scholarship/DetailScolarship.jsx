@@ -23,8 +23,14 @@ function DetailScolarship() {
     const [ beasiswa, setBeasiswa ] = useState([]);
     const { id } = useParams();
     useEffect( () => {
-        window.scrollTo(0, 0);
-
+        if(!session) {
+            MySwal.fire({
+                icon: 'warning',
+                title: 'Maaf, untuk dapat lanjut anda harus login terlebih dahulu!',
+            })
+            navigate('/login');
+        }else {
+            window.scrollTo(0, 0);
             getAPi(`${API_KEY_SCHOLARSHIP}/${id}`).then( data => {
                 setDetailBeasiswa(data);
                 setIsLoading(false);
@@ -32,6 +38,7 @@ function DetailScolarship() {
             getAPi(API_KEY_SCHOLARSHIP).then( data => {
                 setBeasiswa(data);
             } )
+        }
 
         
     }, [isLoading])

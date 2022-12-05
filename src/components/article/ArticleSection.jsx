@@ -34,7 +34,7 @@ function ArticleSection({article}) {
                                       <img src={`https://api-bangkit.up.railway.app/${item.image}`} className='img-fluid w-100 h-100' />
                                   </Col>
                                   <Col xs='12' xl='6' className='p-3 d-flex justify-content-center flex-column'>
-                                      <Link to={`/article/detail-article${item._id}`} className='h5 fw-bold text-danger text-decoration-underline' >{item.title}</Link>
+                                      <Link to={`/article/detail-article/${item._id}`} className='h5 fw-bold text-danger text-decoration-underline' >{item.title}</Link>
                                       <p>{item.publish_date}</p>
                                   </Col>
                               </Row>

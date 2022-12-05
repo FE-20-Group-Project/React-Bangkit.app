@@ -22,8 +22,14 @@ function DetailJobs() {
     const [ jobs, setJobs ] = useState([]);
     const { id } = useParams();
     useEffect( () => {
-        window.scrollTo(0, 0);
-      
+        if(!session) {
+            MySwal.fire({
+                icon: 'warning',
+                title: 'Maaf, untuk dapat lanjut anda harus login terlebih dahulu!',
+            })
+            navigate('/login');
+        }else {
+            window.scrollTo(0, 0);
             getApiJobs(`${API_KEY_JOBS}/${id}`).then( data => {
                 setDetailJobs(data);
                 setIsLoading(false);
@@ -31,7 +37,7 @@ function DetailJobs() {
             getApiJobs( API_KEY_JOBS ).then( data => {
                 setJobs(data);
             } )
-      
+        }
     }, [isLoading] );
 
     const getApiJobs = async (api) => {
