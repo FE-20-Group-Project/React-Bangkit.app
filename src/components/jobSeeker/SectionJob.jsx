@@ -19,7 +19,7 @@ function SectionJob({jobs}) {
 
   return (
     <>
-      <section className='container-fluid job-section bg-light p-3 mb-5'>
+      <section className='container-fluid job-section bg-light bg-beasiswa p-3 mb-5'>
         <Row className='d-flex justify-content-around f-wrap'>
             <Col xs='10' xl='5' className='p-3 d-flex justify-content-center flex-column'>
               <Row>

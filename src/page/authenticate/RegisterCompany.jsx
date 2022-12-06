@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import Register from '../../assets/png/regis3.jpg'
+import Register from '../../assets/png/regis.png'
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap'
 import { API_KEY_REGISTER_COMPANY } from '../../env/env'
 import Swal from 'sweetalert2'
@@ -74,7 +74,6 @@ function RegisterCompany() {
                             <Col xs='10' md='5' className='mx-auto d-flex justify-content-center py-3 flex-column'>
                                 <aside className='ps-3 text-primary rounded'>
                                     <img className='img-fluid' src={Register} />
-                                    <h3 className='fw-bold'>Ayo bergabung bersama kami dan kirimkan bantuan untuk mereka yang membutuhkan!</h3>
                                 </aside>
                             </Col>
                             <Col xs='10' md='5' className='bg-soft-light mx-auto'>

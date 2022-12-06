@@ -49,12 +49,6 @@ function SectionReportList({subcategory, laporan}) {
                                     </Row>
                                 </article>
                             )
-                        }else {
-                            return (
-                                <article className='col-12 border-0 text-center border-bottom border-top shadow-md'>
-                                        <h3 className='text-gray'>Tidak ada data Laporan!</h3>
-                                </article>
-                            )
                         }
                     } ) }
                 </Row>
