@@ -72,9 +72,9 @@ function RegisterCompany() {
                 <Container className='p-5'>
                         <Row className='d-flex justify-content-between'>
                             <Col xs='10' md='5' className='mx-auto d-flex justify-content-center py-3 flex-column'>
-                                <aside className='ps-3 text-primary rounded'>
+                                <aside className='ps-3 text-primary rounded position-relative'>
                                     <img className='img-fluid' src={Register} />
-                                    <h3 className='fw-bold'>Ayo bergabung bersama kami dan kirimkan bantuan untuk mereka yang membutuhkan!</h3>
+                                    <h3 className='fw-bold position-absolute top-50 bg-dark-transparant'>Ayo bergabung bersama kami dan kirimkan bantuan untuk mereka yang membutuhkan!</h3>
                                 </aside>
                             </Col>
                             <Col xs='10' md='5' className='bg-soft-light mx-auto'>
