@@ -14,6 +14,7 @@ function ReportList() {
   const [ subCategory, setSubCategory ] = useState([]);
 
   useEffect( () => {
+      window.scrollTo(0, 0);
       axios.get(API_KEY_REPORT).then( data => {
                 setSubCategory(data.data.data.filter( item => item.laporan.status === 'posted' ));
                 setIsLoading(setIsLoading(false));
