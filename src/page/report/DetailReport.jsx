@@ -14,6 +14,7 @@ function DetailReport() {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect( () => {
+            window.scrollTo(0, 0);
             getAPi(API_KEY_REPORT + '/' + id).then( data => {
                     setDetailLaporan(data);
                     setIsLoading(false);

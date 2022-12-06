@@ -11,15 +11,16 @@ function SectionContactUs() {
                 <Form action="https://formspree.io/f/xaykynly" method="POST">
                     <Form.Group className='mb-3'>
                         <Form.Label className='text-light fw-semibold'>Nama Lengkap</Form.Label>
-                        <Form.Control required type='text' />
+                        <Form.Control name="name" required type='text' />
                     </Form.Group>
                     <Form.Group className='mb-3'>
                     <Form.Label className='text-light fw-semibold'>Alamat Email</Form.Label>
-                        <Form.Control required type='email' />
+                        <Form.Control name="email" required type='email' />
                     </Form.Group>
                     <Form.Group className='mb-3'>
                     <Form.Label className='text-light fw-semibold'>Pesan</Form.Label>
                             <Form.Control
+                            name="message"
                             required
                             as="textarea"
                             style={{ height: '100px' }}/>
