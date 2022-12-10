@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Row, Col, Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 
@@ -28,17 +28,15 @@ function ArticleSection({article}) {
             <Row className='d-flex justify-content-center f-wrap p-0 m-0'>
                 { article?.map( (item, index) => {
                     return (
-                          <Col key={index} xs="10" sm='5' className='m-3 bg-soft-light shadow-lg rounded'>
-                              <Row className='d-flex justify-content-between p-0'>
-                                  <Col xs='12' xl='6' className='p-0'>
-                                      <img src={`https://api-bangkit.up.railway.app/${item.image}`} className='img-fluid w-100 h-100' />
-                                  </Col>
-                                  <Col xs='12' xl='6' className='p-3 d-flex justify-content-center flex-column'>
-                                      <Link to={`/article/detail-article/${item._id}`} className='h5 fw-bold text-danger text-decoration-underline' >{item.title}</Link>
-                                      <p>{item.publish_date}</p>
-                                  </Col>
-                              </Row>
-                          </Col>
+                          <Card key={index} className='col-10 col-sm-3 p-0 m-3 bg-soft-light shadow-lg rounded'>                       
+                                <Card.Header className='p-0'>
+                                    <img src={`https://api-bangkit.up.railway.app/${item.image}`} className='w-100 rounded-top' style={{ height:'200px' }} />
+                                </Card.Header>
+                                <Card.Body className='p-3 d-flex justify-content-center flex-column'>
+                                    <Link to={`/article/detail-article/${item._id}`} className='h5 fw-bold text-danger text-decoration-underline' >{item.title}</Link>
+                                    <p>{item.publish_date}</p>
+                                </Card.Body>
+                          </Card>
                     )
                 } ) }
             </Row>

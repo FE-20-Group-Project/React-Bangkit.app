@@ -4,7 +4,7 @@ import Loading from '../../../components/loader/Loading'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import Navigation from '../../../components/navigation/Navigation'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Breadcrumb, Row, Col } from 'react-bootstrap'
 import Footer from '../../../components/footer/Footer'
 import { useParams } from 'react-router-dom'
 
@@ -40,7 +40,6 @@ function DetailArticle() {
     setIsLoading(true);
   }
 
-console.log(listArticle);
   return (
     <>
         <div className='bg-virus bg-soft-light'>
@@ -49,37 +48,38 @@ console.log(listArticle);
             ) : (
               <>
             <Navigation/>
-            <section className='article-first py-5'>
+            <section className='article-first pt-3 bg-soft-light shadow-lg col-10 mx-auto'>
+                <Breadcrumb className='px-3 py-5'>        
+                    <Link to='/' className='text-danger breadcrumb-item'>Beranda</Link>
+                    <Link to='/article' className='text-danger breadcrumb-item'>Portal Berita</Link>
+                    <Breadcrumb.Item active>{detailArticle.title}</Breadcrumb.Item>
+                </Breadcrumb>
                 <h2 className='container fw-bold text-danger'>{detailArticle.title}</h2>
                 <Row className='d-flex justify-content-center p-0 m-0'>
                 <Col xs="10" className='m-3 rounded'>
                     <Row className='d-flex justify-content-around p-0 m-0'>
-                        <Col xs='10' className='p-3'>
+                        <Col xs='12' sm='10' md='5' className='p-3'>
                             <img src={`https://api-bangkit.up.railway.app/${detailArticle?.image}`} className='img-fluid w-100' />
                         </Col>
-                        <Col xs='12' className='p-3 d-flex bg-soft-light p-3 rounded justify-content-center flex-column'>
+                        <Col xs='12' className='d-flex justify-content-center flex-column'>
                             <p>{detailArticle.author}</p>
                             <p>{detailArticle.publish_date}</p>
-                            <p>{detailArticle.content}</p>
+                            <p dangerouslySetInnerHTML={{__html: detailArticle.content}}></p>
                         </Col>
                     </Row>
                 </Col>
                 </Row>
                 </section>
-                <section className='article-section pb-5' >
-                    <Row className='d-flex justify-content-center f-wrap p-0 m-0'>
+                <section className='article-section pb-5 shadow-lg bg-soft-light col-10 mx-auto' >
+                    <Row className='d-flex justify-content-start p-3 m-0'>
                         { listArticle?.map( (item, index) => {
                             return (
-                                <Col key={index} xs="10" sm='5' className='m-3 bg-soft-light rounded rounded'>
-                                    <Row className='d-flex justify-content-between p-0'>
-                                        <Col xs='12' xl='6' className='p-0'>
-                                            <img src={`https://api-bangkit.up.railway.app/${item.image}`} className='img-fluid w-100 h-100' />
-                                        </Col>
-                                        <Col xs='12' xl='6' className='p-3 d-flex justify-content-center flex-column'>
-                                            <p onClick={() => redirectToArticle(item._id)} style={{ cursor: 'pointer' }} className='h5 fw-bold text-danger text-decoration-underline' >{item.title}</p>
-                                            <p>{item.author}</p>
-                                            <p>{item.publish_date}</p>
-                                        </Col>
+                                <Col key={index} xs="10" sm='3' className='m-3'>
+                                    <Row>
+                                        <img style={{ width:'300px', height:'200px' }} src={`https://api-bangkit.up.railway.app/${item.image}`}/>
+                                        <p onClick={() => redirectToArticle(item._id)} style={{ cursor: 'pointer' }} className='h5 fw-bold text-danger mt-3' >{item.title}</p>
+                                        <p>{item.author}</p>
+                                        <p>{item.publish_date}</p>
                                     </Row>
                                 </Col>
                             )

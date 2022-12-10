@@ -13,7 +13,7 @@ function UserProfile({profile}) {
             <Row className='d-flex justify-content-center'>
                 <aside className='card col-10 col-md-4 border bg-soft-light text-center me-3 pt-3 px-0 position-relative' style={{ marginTop: '-110px' }}>
                     <Link to='/user/edit/editProfile' className='btn bg-light text-dark border m-2 position-absolute top-0 end-0'><FaEdit className='fs-5 fw-light'/></Link>
-                    <img src={`https://api-bangkit.up.railway.app/${profile.image}`} width='150px' className='rounded-cricle mx-auto mb-3' />
+                    <img src={`https://api-bangkit.up.railway.app/${profile.image}`} width='150px' height='150px' className='rounded-circle mx-auto mb-3' />
                     <Card.Footer className='fw-bold py-3'>
                         <Card.Title className='fs-5 fw-bold'>{profile.name}</Card.Title>
                         <Card.Text className='text-danger'>{profile.email}</Card.Text>

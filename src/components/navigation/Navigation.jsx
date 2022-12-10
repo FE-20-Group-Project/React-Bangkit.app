@@ -69,7 +69,7 @@ function Navigation() {
                 ): (
                       <Dropdown drop="start">
                         <Dropdown.Toggle id="dropdown-button-dark-example1" className='bg-light border-0'>
-                        <img src={`https://api-bangkit.up.railway.app/${session.image}`} width='30' />
+                        <img src={`https://api-bangkit.up.railway.app/${session.image}`} width='30' height='30' className='rounded-circle' />
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu variant="light" >

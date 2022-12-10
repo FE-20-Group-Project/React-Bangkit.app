@@ -228,7 +228,7 @@ function SectionDetailReport({id, detailLaporan, setIsLoading}) {
                             <small className='mb-3 text-body-reply-date'>{item.data_reply.date}</small>
                             <p className='fw-500 text-body-reply-content'>{item.data_reply.content}</p>
                             { item.data_reply.image[0] && (
-                            <img src={`https://api-bangkit.up.railway.app/${item.data_reply.image[0]}`} width='300' />
+                            <img src={`https://api-bangkit.up.railway.app/${item.data_reply.image[0]}`} width='300' className='img-reply' />
                             ) }
                         </Card.Body>
                     </Row>
