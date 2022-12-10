@@ -16,9 +16,6 @@ function SectionReportList({subcategory, laporan}) {
         <section className='report-list container-fluid bg-soft-light p-5'>
             <Row className='p-0 m-0 d-flex justify-content-between'>
                 <aside className='col-12 col-md-7 px-0'>
-                    <Row className='mb-3'>
-
-                    </Row>
                 <Row>
                     { laporan.map( item => {
                         if(item.laporan.subcategory === subcategory){

@@ -175,6 +175,9 @@ body {
   .text-category {
     font-size: 12px !important;
   }
+  .img-reply {
+    width: 100px;
+  }
 }
 
 @media screen and (max-width: 1120px) {

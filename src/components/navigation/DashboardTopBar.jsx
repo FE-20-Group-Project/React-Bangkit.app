@@ -95,7 +95,7 @@ function DashboardTopBar() {
                   <Col md='1' sm='2' xs='3'>
                   <Dropdown drop="center">
                       <Dropdown.Toggle id="dropdown-button-dark-example1" className='bg-dark border-0'>
-                      <img src={`https://api-bangkit.up.railway.app/${session.image}`} width='30' />
+                      <img src={`https://api-bangkit.up.railway.app/${session.image}`} width='30' height='30' className='rounded-circle' />
                       </Dropdown.Toggle>
                       <Dropdown.Menu className='bg-soft-light' >
                           <NavLink to='/' style={({isActive}) => (isActive ? linkStyle : undefined)} className='dropdown-item py-2'><FaUser/> Homepage</NavLink>

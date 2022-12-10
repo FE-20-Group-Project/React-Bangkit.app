@@ -136,7 +136,7 @@ function EditProfile() {
                             <Form.Group className='mb-3'>
                                 <p className='fw-light'>Foto Profil <span className='text-danger'>*</span></p>
                                 <Row className='d-flex justify-content-start'>
-                                    <img id='preview-img' style={{ width: '100px' }} src={`https://api-bangkit.up.railway.app/${session.image}`} />
+                                    <img id='preview-img' style={{ width: '100px', height: '80px' }} src={`https://api-bangkit.up.railway.app/${session.image}`} className='rounded-circle' />
                                     <Button onClick={ () => handleEditUploadImage() } variant='primary' style={{ width: '150px', height: '30px' }} className='btn-sm'>Unggah Foto</Button>
                                     <Form.Control id='edit-upload-image' onChange={ () => previewFile() } className='d-none' type='file' />
                                 </Row>

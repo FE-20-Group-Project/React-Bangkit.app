@@ -76,7 +76,6 @@ function AddArticle() {
                                     <RichTextEditor setContent={setContent} />
                                     </Form.Group>
                             <Form.Group className='text-end'>
-                            <div dangerouslySetInnerHTML={{ __html: content }}></div>
                                 <Button variant='primary' type='submit' className='w-50'>Simpan</Button>
                             </Form.Group>
                             </Form>
