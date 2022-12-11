@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { API_KEY_REPLY } from '../../env/env';
 import { Form, Row, Col, Button } from 'react-bootstrap'
 import { getCookie } from '../../cookie/cookie'
-import { FaImage } from 'react-icons/fa';
+import { FaImage, FaTimes } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
 function Reply({id, session, MySwal}) {
@@ -12,7 +12,7 @@ function Reply({id, session, MySwal}) {
   const [ image, setImage ] = useState();
   
   const handleReply = (e) => {
-
+    document.querySelector('.content-preview-img').classList.add('d-none');
     e.preventDefault();
     e.target.reset();
 
@@ -56,6 +56,7 @@ function Reply({id, session, MySwal}) {
   }
 
   const previewImage = () => {
+    document.querySelector('.content-preview-img').classList.remove('d-none');
     const preview = document.getElementById('preview-img');
     const file = document.getElementById('edit-upload-image').files[0];
     const reader = new FileReader();
@@ -66,6 +67,12 @@ function Reply({id, session, MySwal}) {
     if (file) {
         reader.readAsDataURL(file);
     }
+  }
+
+  const handleDeletePreview = () => {
+      document.querySelector('.content-preview-img').classList.add('d-none');
+      document.getElementById('preview-img').src = '';
+      setImage();
   }
 
   return (
@@ -79,8 +86,12 @@ function Reply({id, session, MySwal}) {
                             <div className="add-icon"></div>
                             <div className="btn-txt text-gray"> Add Photo </div>
                         </button>
-                      <Form.Control type='file' id='edit-upload-image' onChange={ () => previewImage() } className='d-none' />
+                      <Form.Control type='file' id='edit-upload-image' accept='image/jpeg, image/png, image/jpg' onChange={ () => previewImage() } className='d-none' />
                     </Form.Group>
+                      <Form.Group className='mb-3 position-relative content-preview-img d-none' style={{ width:'180px' }}>
+                            <FaTimes onClick={ () => handleDeletePreview() } className='text-danger fs-4 fw-bold position-absolute top-0 end-0 bg-transparant-dark p-1' style={{ cursor:'pointer' }} />
+                            <img src='' id='preview-img' alt='img-preview' className='img-fluid' />
+                      </Form.Group>
                     <Form.Group>
                       <Form.Control
                       required
@@ -103,9 +114,6 @@ function Reply({id, session, MySwal}) {
                     </button>
                     </Form.Group>
                 </Form>
-            </Col>
-            <Col xs='3' className='p-3'>
-              <img src='' id='preview-img' className='img-fluid' />
             </Col>
       </Row>
     </section>

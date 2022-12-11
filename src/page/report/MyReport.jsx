@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { API_KEY_REPORT } from '../../env/env'
 import { NavLink, Link, useNavigate } from 'react-router-dom'
 import { Row, Col, Card } from 'react-bootstrap'
-import { FaRocketchat, FaEye, FaCheck, FaRedoAlt } from 'react-icons/fa'
+import { FaRocketchat, FaEye, FaCheck, FaRedoAlt, FaTrash } from 'react-icons/fa'
 import Navigation from '../../components/navigation/Navigation'
 import Footer from '../../components/footer/Footer'
 import Loading from '../../components/loader/Loading'
@@ -70,7 +70,6 @@ function MyReport() {
           })
     }
 
-    console.log(laporan);
   return (
     <>
     { isLoading ? (
@@ -98,16 +97,16 @@ function MyReport() {
                             <Col xs='2' sm='1'>
                                 <img src={ item.laporan.image[0] ? `https://api-bangkit.up.railway.app/${item.laporan.image[0]}`: `https://api-bangkit.up.railway.app/${item.laporan.user.image}`} width='30px' />
                             </Col>
-                            <Col >
+                            <Col xs='10' md='2' >
                                 <Link className='text-category text-danger' to={'/report/detail-report/' + item.laporan._id}>{item.laporan.title}</Link>
                             </Col>
-                            <Col >
+                            <Col  xs='10' md='2' >
                                 <span className='text-category'>
                                 <FaRocketchat className='text-category fs-5 me-2 text-danger'/>
                                 {item.reply.length}
                                 </span>
                             </Col>
-                            <Col >
+                            <Col  xs='10' md='2' >
                                 <span  className='text-category'>
                                 <FaEye className='text-category fs-5 me-2 text-danger' />
                                 {item.laporan.total_view}
@@ -125,7 +124,7 @@ function MyReport() {
                             ) }
                             </Col>
                             <Col xs='3' md='1'>
-                                <span className='text-category badge badge-pill bg-danger w-100' style={{ cursor: 'pointer' }} onClick={ () => handleEditLaporan(item.laporan._id)}>Hapus</span>
+                                <span className='text-category badge badge-pill bg-danger w-100' style={{ cursor: 'pointer' }} onClick={ () => handleEditLaporan(item.laporan._id)}><FaTrash/></span>
                             </Col>
                         </Row>
                     </article>

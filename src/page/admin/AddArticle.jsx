@@ -61,7 +61,7 @@ function AddArticle() {
                             <Form onSubmit={ handleSubmit }>
                                 <Form.Group className='mb-3'>
                                     <Form.Label><span className='text-danger'>*</span> Image file</Form.Label>
-                                    <Form.Control type='file' onChange={ (e) => setImage(e.target.files[0]) } />
+                                    <Form.Control type='file' accept='image/jpeg, image/png, image/jpg' onChange={ (e) => setImage(e.target.files[0]) } />
                                 </Form.Group>
                                 <Form.Group className='mb-3'>
                                     <Form.Label><span className='text-danger'>*</span> Title</Form.Label>

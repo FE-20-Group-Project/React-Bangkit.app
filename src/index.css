@@ -90,7 +90,16 @@ Timpa Class bootstrap atau buat Class baru jika dibutuhkan... */
     background-color: var(--light-soft-color) !important;
 }
 .bg-transparant-dark {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  .bg-transparant-darker {
     background-color: rgba(0, 0, 0, 0.8);
+  }
+  .bg-join {
+    background-image: url('./src/assets/png/join.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-positon: center;
 }
 .bg-footer {
     background-image: url('../img/bg.jpg');
@@ -531,7 +540,7 @@ Timpa Class bootstrap atau buat Class baru jika dibutuhkan... */
 }
 .card-neu {
   width: 190px;
-  height: 254px;
+  height: 260px;
   border-radius: 20px;
   background: #f5f5f5;
   position: relative;
