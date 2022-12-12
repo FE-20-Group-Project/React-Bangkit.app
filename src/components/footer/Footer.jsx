@@ -57,7 +57,7 @@ function Footer() {
                 <img src={NUS} width='200' />
             </Col>
         </Row>
-        <Row className='py-3 bg-transparant-dark d-flex justify-content-center flex-column'>
+        <Row className='py-3 bg-transparant-darker d-flex justify-content-center flex-column'>
                 <p className='text-light text-center'>Copyright <FaCopyright/> Group FEBE 8 - NUS #Tech4Impact 2022 | All Right Reserved</p>
         </Row>
     </footer>

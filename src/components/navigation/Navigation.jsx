@@ -63,8 +63,8 @@ function Navigation() {
                   </NavDropdown>
                 { session==false ? (
                   <>
-                    <NavLink to='/login' className='btn btn-sm btn-outline-danger mx-2 rounded-pill pt-1 px-2 m-1'><FaSignInAlt className='me-2'/>Login</NavLink>
-                    <NavLink to='/register' className='btn btn-sm btn-danger rounded-pill pt-1 px-2 m-1'><FaPenAlt className='me-2'/>Register</NavLink>
+                    <NavLink to='/login' className='btn btn-sm btn-outline-danger mx-2 pt-1 px-2 m-1'><FaSignInAlt className='me-2'/>Login</NavLink>
+                    <NavLink to='/register' className='btn btn-sm btn-danger pt-1 px-2 m-1'><FaPenAlt className='me-2'/>Register</NavLink>
                   </>
                 ): (
                       <Dropdown drop="start">

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import Bangkit from '../../assets/png/join.png'
 import { Link, NavLink } from 'react-router-dom'
 import { Row, Col, Card, Button, Form } from 'react-bootstrap'
 import Sembako from '../../assets/png/Sembako.png'
@@ -62,7 +63,7 @@ function SectionReportCategory({laporan, refreshApi}) {
                 </Row>
             </nav>
             <Row className='d-flex justify-content-between f-wrap mx-0 px-0'>
-                <aside className='column-category col-12 col-md-8 bg-danger border'>
+                <aside className='column-category col-12 col-md-8 bg-danger rounded'>
                     <Row className='mb-3'>
                         <h3 className='fw-semibold my-3 text-light'>Ekonomi</h3>
                         <Link to='/report/bahan-pokok'>
@@ -202,16 +203,20 @@ function SectionReportCategory({laporan, refreshApi}) {
                 <aside className='col-md-4 col-12 mt-3'>
                     <Row className='p-0 m-0 position-sticky' style={{ top:'40px' }}>
                         { !session && (
-                            <Card className='bg-danger mx-auto text-center py-5 px-3 mb-3 position-sticky'>
-                                <Card.Title className='fw-bold text-light'>Selamat datang di Bangkit</Card.Title>
-                                <Card.Body className='fw-light text-light'>Join sekarang di forum bantuan kami dengan mendaftarkan akun</Card.Body>
-                                <Link to='/register' className='btn btn-light w-50 mx-auto text-danger'>Daftar</Link>
+                            <Card className='bg-primary mx-auto text-center py-5 mb-3 bg-join position-sticky'>
+                                    <Card.Body className='w-100 bg-transparant-dark rounded'>
+                                            <Card.Title className='fw-bold text-warning fs-3'>Selamat datang di Bangkit</Card.Title>
+                                            <p className='fw-semibold text-light'>Join sekarang di forum bantuan kami dengan mendaftarkan akun</p>
+                                            <Link to='/register' className='btn btn-light fw-semibold w-50 mx-auto text-danger'>Daftar</Link>
+                                    </Card.Body>
                             </Card>
                         ) }
-                        <Card className='bg-soft-light mx-auto p-3'>
-                            <Card.Title className='border-bottom py-3'>Trending Post</Card.Title>
+                        <Card className='bg-soft-light mx-auto p-0'>
+                            <Card.Header className='bg-primary'>
+                                <Card.Title className='text-light fw-semibold'>Trending Post</Card.Title>
+                            </Card.Header>
                                 { trending.map( item => (
-                                    <Card.Body key={item.laporan._id} className='bg-soft-light'>
+                                    <Card.Body key={item.laporan._id} className='bg-soft-light p-3'>
                                         <Row className='d-flex justify-content-around'>
                                             <Col xs='3'>
                                                 <img src={ item.laporan.image[0] ? `https://api-bangkit.up.railway.app/${item.laporan.image}` : `https://api-bangkit.up.railway.app/${item.laporan.user.image}`} className='img-fluid' />

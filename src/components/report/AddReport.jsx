@@ -12,7 +12,6 @@ const MySwal = withReactContent(Swal)
 function AddReport() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const {session} = useSelector( state => state.userSession );
 
     const [ image, setImage ] = useState('');
     const [ title, setTitle ] = useState('');
@@ -71,7 +70,7 @@ function AddReport() {
                             <div className="add-icon"></div>
                             <div className="btn-txt text-gray"> Add Photo </div>
                         </button>
-                        <Form.Control type='file' id='edit-upload-image' onChange={ () => previewImage() } className='d-none' />
+                        <Form.Control type='file' id='edit-upload-image' accept='image/jpeg, image/png, image/jpg' onChange={ () => previewImage() } className='d-none' />
                     </Form.Group>
                         <Form.Group className='mb-3'>
                             <Form.Label>Judul Topik</Form.Label>

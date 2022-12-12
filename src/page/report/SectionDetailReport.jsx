@@ -160,7 +160,30 @@ function SectionDetailReport({id, detailLaporan, setIsLoading}) {
             <Link to={'/report/' + detailLaporan.laporan.subcategory} className='text-danger breadcrumb-item'>List kategori pelaporan</Link>
             <Breadcrumb.Item active>{detailLaporan.laporan.title}</Breadcrumb.Item>
     </Breadcrumb>
-    <section className='section-report container border my-3'>
+    <section className='section-report container border border-danger border-3 rounded my-3'>
+        <Row>
+            <Col xs='10'>
+                { session.name === detailLaporan.laporan.user.name && (
+                        <>
+                            { detailLaporan.laporan.status === 'posted' && (
+                                <>
+                                    <Button className='bg-success btn-sm border-0 text-light m-2' onClick={() => handleSolveReport(detailLaporan.laporan._id)}><FaCheck/> <span className='report-text-button'>Tandai sudah selesai</span></Button>
+                                    <Button className='bg-primary btn-sm border-0 text-light m-2'><FaEdit/> <span className='report-text-button'>Edit</span></Button>
+                                </>
+                            ) }
+                            { detailLaporan.laporan.status === 'solved' && (
+                                <Button className='bg-success btn-sm border-0 text-light m-2'><FaCheck/> Laporan Selesai</Button>
+                            ) }
+                            { Math.sign(timer?.seconds) === -1 ? (
+                            <Button className='bg-danger btn-sm border-0 text-light m-2'><FaTimes/> Expired</Button>
+                            ) : (
+                            <Button className='bg-danger btn-sm border-0 text-light m-2' onClick={ () => handleDeleteLaporan(detailLaporan.laporan._id) }><FaTrash/> <span className='report-text-button'>Hapus</span></Button>
+                            ) }
+                        </>
+                        ) }
+                {  }
+            </Col>
+        </Row>
         <Row className='d-flex justify-content-start p-3'>
             <Col xs='5' md='2'>
                 <img src={ detailLaporan.laporan.image[0] ? `https://api-bangkit.up.railway.app/${detailLaporan.laporan.image[0]}`: `https://api-bangkit.up.railway.app/${detailLaporan.laporan.user.image}`} className='img-fluid' />
@@ -187,27 +210,6 @@ function SectionDetailReport({id, detailLaporan, setIsLoading}) {
                     ) }
                 </Row>
             </Col>
-                <Col xs='3'>
-                    { session.name === detailLaporan.laporan.user.name && (
-                            <>
-                                { detailLaporan.laporan.status === 'posted' && (
-                                    <>
-                                        <Button className='bg-success btn-sm border-0 text-light m-2' onClick={() => handleSolveReport(detailLaporan.laporan._id)}><FaCheck/> Tandai sudah selesai</Button>
-                                        <Button className='bg-primary btn-sm border-0 text-light m-2'><FaEdit/> Edit</Button>
-                                    </>
-                                ) }
-                                { detailLaporan.laporan.status === 'solved' && (
-                                    <Button className='bg-success btn-sm border-0 text-light m-2'><FaCheck/> Laporan Selesai</Button>
-                                ) }
-                                { Math.sign(timer?.seconds) === -1 ? (
-                                <Button className='bg-danger btn-sm border-0 text-light m-2'><FaTimes/> Expired</Button>
-                                ) : (
-                                <Button className='bg-danger btn-sm border-0 text-light m-2' onClick={ () => handleDeleteLaporan(detailLaporan.laporan._id) }><FaTrash/> Hapus</Button>
-                                ) }
-                            </>
-                            ) }
-                    {  }
-                </Col>
         </Row>
     </section>
     <section className='section-reply my-5'>
@@ -216,7 +218,7 @@ function SectionDetailReport({id, detailLaporan, setIsLoading}) {
                 <Card key={index} className='border-0 shadow-md border-top bg-soft-light border-bottom rounded-0'>
                     <Row  className={ item.data_user.name === session.name ? 'd-flex justify-content-between row-reverse w-100 position-relative' : 'd-flex justify-content-between flex-row-reverse w-100 position-relative' }>
                     { item.data_user.name === session.name && (
-                        <span className='bg-danger position-absolute top-0 end-0 text-light text-center m-3 rounded' onClick={ () => handleDeleteReply(item.data_reply._id, detailLaporan.laporan._id) } style={{ width:'60px' }}><FaTrash/></span>
+                        <span className='bg-danger position-absolute top-0 end-0 text-light text-center m-3 rounded' onClick={ () => handleDeleteReply(item.data_reply._id, detailLaporan.laporan._id) } style={{ width:'60px', cursor:'pointer' }}><FaTrash/></span>
                     )
                     }
                         <Card.Header className={item.data_user.name === session.name ? 'col-4 col-sm-3 border-0' : 'col-4 col-sm-3 border-0'}>
@@ -228,7 +230,7 @@ function SectionDetailReport({id, detailLaporan, setIsLoading}) {
                             <small className='mb-3 text-body-reply-date'>{item.data_reply.date}</small>
                             <p className='fw-500 text-body-reply-content'>{item.data_reply.content}</p>
                             { item.data_reply.image[0] && (
-                            <img src={`https://api-bangkit.up.railway.app/${item.data_reply.image[0]}`} width='300' className='img-reply' />
+                            <img src={`https://api-bangkit.up.railway.app/${item.data_reply.image[0]}`} alt='image-reply' width='300' className='img-reply' />
                             ) }
                         </Card.Body>
                     </Row>

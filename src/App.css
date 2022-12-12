@@ -124,7 +124,11 @@ body {
     outline: none !important;
     border: 0 !important;
   }
-  
+  @media screen and (max-width: 1054px) {
+    .card-neu {
+      height: auto !important;
+    }
+  }
   @media screen and (max-width: 850px) {
     .text-header-2, .text-header {
       font-size : 2rem !important;
@@ -178,6 +182,9 @@ body {
   .img-reply {
     width: 100px;
   }
+  /* .report-text-button {
+    display: none;
+  } */
 }
 
 @media screen and (max-width: 1120px) {

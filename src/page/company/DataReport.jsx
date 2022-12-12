@@ -21,7 +21,7 @@ function DataReport() {
   useEffect( () => {
         getAPI(API_KEY_REPORT).then( data => {
             console.log(data);
-            setReport(data.filter( item => item.laporan.status === 'posted' ));
+            setReport(data);
             setIsLoading(false);
         } )
   }, [] )
