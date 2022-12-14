@@ -33,8 +33,8 @@ function SectionDetailScholarship({beasiswa, detailBeasiswa, setIsLoading}) {
                                     <Card.Body>{item.instansiName}</Card.Body>
                                 </Col>
                                 <Col xs='3' className='d-flex justify-content-center flex-column' >
-                                    <Button onClick={ () => redirectToBeasiswa(item._id) } className='btn btn-warning w-100 rounded-0 mb-3 text-light'><FaInfoCircle className='ms-2'/> Detail</Button>
-                                    <a href={item.link} target='_blank' className='btn btn-success text-light w-100 rounded-0 mb-3'><FaRegAddressBook className='ms-2'/> Daftar</a>
+                                    <Button onClick={ () => redirectToBeasiswa(item._id) } className='btn btn-warning w-100 rounded-0 mb-3 text-light'><FaInfoCircle className='ms-2'/></Button>
+                                    <a href={item.link} target='_blank' className='btn btn-success text-light w-100 rounded-0 mb-3'><FaRegAddressBook className='ms-2'/></a>
                                 </Col>
                             </Row>
                         </Card>

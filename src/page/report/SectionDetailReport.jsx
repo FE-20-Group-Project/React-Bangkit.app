@@ -222,7 +222,7 @@ function SectionDetailReport({id, detailLaporan, setIsLoading}) {
                     )
                     }
                         <Card.Header className={item.data_user.name === session.name ? 'col-4 col-sm-3 border-0' : 'col-4 col-sm-3 border-0'}>
-                            <img src={`https://api-bangkit.up.railway.app/${item.data_user.image}`} className='mb-3 img-header-reply' width='100' />
+                            <img src={`https://api-bangkit.up.railway.app/${item.data_user.image}`} className='mb-3 img-header-reply rounded-circle' width='100' height='100' />
                             <p className='fw-semibold text-header-reply'>{item.data_user.name} <FaCheckCircle className='text-third'/></p>
                             <p className='fw-semibold text-header-reply'>{item.data_user.email}</p>
                         </Card.Header>
