@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { getCookie } from '../../cookie/cookie'
+import cookieCutter from 'cookie-cutter'
 import { clearSession, getSession, } from '../../redux/action/userSession'
 import { Nav, Navbar, NavDropdown, Container,  Form, Button, Dropdown } from 'react-bootstrap'
 import Logo from '../../assets/image/bangkit.png'
@@ -30,8 +31,7 @@ function Navigation() {
     }).then((result) => {
       if (result.isConfirmed) {
         dispatch(clearSession(getCookie('token')));
-        // document.cookie = "token=; expires=passedDate";
-        document.cookie = "token=; Max-Age=0";
+        cookieCutter.set("token","",{ expires: new Date(0) });
         MySwal.fire({
           icon: 'success',
           title: 'Berhasil Logout!'

@@ -44,18 +44,12 @@ function SectionScholarship({scholarship}) {
                             <Form.Label className='text-danger fw-semibold'>Peruntukan</Form.Label>
                         </Form.Group>
                             <Form.Group>
-                            <Form.Check
-                              inline
-                              label="Diploma-IV(D4)"
-                              value="Diploma-IV(D4)"
-                              type="checkbox"/>
-                            </Form.Group>
-                            <Form.Group>
-                            <Form.Check
-                              inline
-                              label="Sarjana S1"
-                              value="Sarjana S1"
-                              type="checkbox"/>
+                              <Form.Select>
+                                  <option></option>
+                                  <option>SD</option>
+                                  <option>SMA</option>
+                                  <option>Perguruan Tinggi</option>
+                              </Form.Select>
                             </Form.Group>
                             <hr/>
                           <Form.Group>
@@ -81,8 +75,11 @@ function SectionScholarship({scholarship}) {
                         </Form>
                     </Card>
                 </Col>
-                <Col xs='12' xl='8' className='p-3' style={{ height: '100vh', overflow:'scroll' }}>
+                <Col xs='12' xl='8' className='p-3' style={{ height: '100vh', overflowY:'scroll' }}>
                     <h2 className='text-center fw-bold text-light'>Beasiswa List</h2>
+                    <Form.Group>
+                        <Form.Control type='search' className='rounded-0' placeholder='Ketikan sesuatu...' />
+                    </Form.Group>
                     <ScholarshipList session={session} scholarship={scholarship}/>
                 </Col>
             </Row>

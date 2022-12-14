@@ -51,7 +51,7 @@ function SectionDetailJobs({jobs, detailJobs, setIsLoading}) {
                     <Link to='/jobs' className='btn btn-danger rounded-pill'>Kembali</Link>
                 </Form.Group>
                 <Row>
-                    <p className='py-5'>{detailJobs.desc}</p>
+                    <p className='py-5' dangerouslySetInnerHTML={{__html: detailJobs.desc}}></p>
                 </Row>
             </Col>
         </Row>

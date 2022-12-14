@@ -17,7 +17,6 @@ import NavSide from '../../components/navigation/NavSide'
 function AddJobs() {
     const navigate = useNavigate();
     const {session} = useSelector( state => state.userSession );
-    const [countCategory, setCountCategory] = useState([1]);
 
     const [companyName, setCompanyName] = useState(session.name);
     const [positionName, setPositionName] = useState('');
@@ -28,32 +27,28 @@ function AddJobs() {
     const [qualification, setQualification] = useState('');
     const [workType, setWorkType] = useState('');
     const [expired, setExpired] = useState('');
-    const [categoryJobs1, setCategoryJobs1] = useState('');
-    const [categoryJobs2, setCategoryJobs2] = useState('');
+    const [categoryJobs, setCategoryJobs] = useState('');
 
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const token = getCookie('token');
-        const form = new FormData();
-        form.append('companyName', companyName);
-        form.append('positionName', positionName);
-        form.append('desc', content);
-        form.append('email', email);
-        form.append('category', [
-            categoryJobs1, categoryJobs2
-        ]);
-        form.append('location', location);
-        form.append('salary', salary);
-        form.append('qualification', qualification);
-        form.append('workType', workType);
-        form.append('expired', '7');
-     
         axios({
             url: API_KEY_JOBS,
             method: "POST",
-            headers: { authorization: `Bearer ${token}` },
-            data: form
+            headers: { authorization: `Bearer ${token}`, 'Content-Type':' application/json' },
+            data: {
+                companyName : companyName,
+                positionName : positionName,
+                desc : content,
+                email : email,
+                category : categoryJobs,
+                location : location,
+                salary : salary,
+                qualification : qualification,
+                workType : workType,
+                expired : '7'
+            }
         }).then( data => {
             console.log(data);
             if(data.data) {
@@ -62,6 +57,12 @@ function AddJobs() {
                 })
                 navigate('/dashboard-company/jobs');
             }
+        } ).catch( error => {
+            console.log(error)
+            MySwal.fire({
+                icon: 'warning',
+                title: error.response.data.message,
+            })
         } )
     }
 
@@ -70,10 +71,10 @@ function AddJobs() {
     <Container fluid>
     <Row>
         <NavSide/>
-        <section className='dashboard-content col-10'>
+        <section className='dashboard-content col-10  px-0'>
             <DashboardTopBar/>
                     <main>
-                        <Card className='table-responsive col-10 my-5'>
+                        <Card className='table-responsive col-10 my-5 mx-auto'>
                         <Card.Header>
                             <Link to='/dashboard-company/jobs' className='btn btn-danger btn-sm'><FaArrowLeft/> Kembali</Link>
                         </Card.Header>
@@ -93,13 +94,18 @@ function AddJobs() {
                                     <Form.Control type='text' required onChange={ (e) => setPositionName(e.target.value) } />
                                 </Form.Group>
                                 <Form.Group className='mb-3'>
-                                    <Form.Label><span className='text-danger'>*</span> Kategori 1</Form.Label>
-                                    <Form.Control type='text' required onChange={ (e) => setCategoryJobs1(e.target.value) } />
+                                    <Form.Label><span className='text-danger'>*</span> Lokasi</Form.Label>
+                                    <Form.Control type='text' required onChange={ (e) => setLocation(e.target.value) } />
                                 </Form.Group>
-                                <Form.Group className='mb-3'>
-                                    <Form.Label><span className='text-danger'>*</span> Kategori 2</Form.Label>
-                                    <Form.Control type='text' required onChange={ (e) => setCategoryJobs2(e.target.value) } />
-                                </Form.Group>
+                              <Form.Group>
+                                    <Form.Label><span className='text-danger'>*</span> kategori </Form.Label>
+                                    <Form.Select required onChange={ (e) => setCategoryJobs(e.target.value) }>
+                                        <option></option>
+                                        <option>IT</option>
+                                        <option>Akuntansi</option>
+                                        <option>Pelayanan</option>
+                                    </Form.Select>
+                              </Form.Group>
                                 <Form.Group className='mb-3'>
                                     <Form.Label><span className='text-danger'>*</span> Gaji Kisaran</Form.Label>
                                     <Form.Control type='text' required onChange={ (e) => setSalary(e.target.value) } />

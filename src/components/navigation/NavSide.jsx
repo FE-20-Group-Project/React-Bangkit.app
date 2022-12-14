@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { clearSession } from '../../redux/action/userSession'
 import { getCookie } from '../../cookie/cookie'
+import cookieCutter from 'cookie-cutter'
 import Bangkit from '../../assets/image/bangkit2.png'
 
 import Swal from 'sweetalert2'
@@ -29,8 +30,7 @@ function NavSide() {
             if (result.isConfirmed) {
                 const token = getCookie('token')
               dispatch(clearSession(token));
-              // document.cookie = "token=; expires=passedDate";
-              document.cookie = "token=; Max-Age=0";
+              cookieCutter.set("token","",{ expires: new Date(0) });
               MySwal.fire({
                 icon: 'success',
                 title: 'Berhasil Logout!'

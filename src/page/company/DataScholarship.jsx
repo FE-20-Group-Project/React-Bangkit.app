@@ -69,6 +69,8 @@ function DataScholarship() {
             }
         })
     }
+    console.log(isLoading);
+
   return (
     <>
         { isLoading ? (

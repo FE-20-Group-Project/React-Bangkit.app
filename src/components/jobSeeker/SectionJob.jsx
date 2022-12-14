@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Card, Col, Row, Form, Button } from 'react-bootstrap'
 import { FaFilter } from 'react-icons/fa'
-import { getFIlterJobs } from '../../redux/action/jobAction'
 import Jobs from '../../assets/png/search.png'
 import JobList from './JobList'
 import { useDispatch, useSelector } from 'react-redux'
@@ -14,7 +13,6 @@ function SectionJob({jobs}) {
 
   const handleFilter = (e) => {
     e.preventDefault();
-        dispatch(getFIlterJobs(nameCompany, location));
   }
 
   return (
@@ -43,36 +41,12 @@ function SectionJob({jobs}) {
                             <Form.Label className='text-danger fw-semibold'>Kategori</Form.Label>
                         </Form.Group>
                             <Form.Group>
-                            <Form.Check
-                              inline
-                              label="Komputer/Teknologi Informasi"
-                              value="Komputer/Teknologi Informasi"
-                              type="checkbox"/>
-                            </Form.Group>
-                            <Form.Group>
-                            <Form.Check
-                              inline
-                              label="IT-Perangkat Lunak"
-                              value="IT-Perangkat Lunak"
-                              type="checkbox"/>
-                            </Form.Group>
-                            <hr/>
-                        <Form.Group>
-                            <Form.Label className='text-danger fw-semibold'>Posisi Lamaran</Form.Label>
-                        </Form.Group>
-                            <Form.Group>
-                            <Form.Check
-                              inline
-                              label="Junior Software Engineer"
-                              value="Junior Software Engineer"
-                              type="checkbox"/>
-                            </Form.Group>
-                            <Form.Group>
-                            <Form.Check
-                              inline
-                              label="Back End Developer"
-                              value="Back End Developer"
-                              type="checkbox"/>
+                              <Form.Select>
+                                  <option></option>
+                                  <option>IT</option>
+                                  <option>Akuntansi</option>
+                                  <option>Pelayanan</option>
+                              </Form.Select>
                             </Form.Group>
                             <hr/>
                             <Form.Group>
@@ -98,8 +72,11 @@ function SectionJob({jobs}) {
                         </Form>
                     </Card>
                 </Col>
-                <Col xs='12' xl='8' className='p-3'  style={{ height: '100vh', overflow:'scroll' }}>
+                <Col xs='12' xl='8' className='p-3'  style={{ height: '100vh', overflowY:'scroll' }}>
                     <h2 className='text-center fw-bold text-light'>Job List</h2>
+                    <Form.Group>
+                        <Form.Control type='search' className='rounded-0' placeholder='Ketikan sesuatu...' />
+                    </Form.Group>
                     <JobList session={session} data={jobs} />
                 </Col>
             </Row>

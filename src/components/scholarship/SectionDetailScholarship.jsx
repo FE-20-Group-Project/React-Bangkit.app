@@ -51,7 +51,7 @@ function SectionDetailScholarship({beasiswa, detailBeasiswa, setIsLoading}) {
                     <Link to='/scholarship' className='btn btn-danger rounded-pill'>Kembali</Link>
                 </Form.Group>
                 <Row>
-                    <p className='py-5'>{detailBeasiswa.desc}</p>
+                    <p className='py-5' dangerouslySetInnerHTML={{__html: detailBeasiswa.desc}}></p>
                 </Row>
             </Col>
         </Row>
