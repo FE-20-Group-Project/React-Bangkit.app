@@ -26,14 +26,5 @@ const getJobs = () => {
     }
 }
 
-const getFIlterJobs = (name, location) => {
-    return async (dispatch) => {
-        dispatch(fetchStart());
-        const response = await axios.get('https://6350c3703e9fa1244e4c9abd.mockapi.io/bangkit/company_help_information?type=Job%20Seeker')
-        const filter = response.data.filter( item => item.namaPerusahaan == name || item.lokasi == location );
-        console.log(filter);
-        dispatch(successGetJobs(filter));
-    }
-}
 
-export { FETCH_START, getJobs, getFIlterJobs, SUCCESS_GET_JOBS };
+export { FETCH_START, getJobs, SUCCESS_GET_JOBS };

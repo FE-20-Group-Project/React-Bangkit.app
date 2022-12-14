@@ -6,6 +6,7 @@ import { NavLink, Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { getCookie } from '../../cookie/cookie'
+import cookieCutter from 'cookie-cutter'
 import { clearSession } from '../../redux/action/userSession'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
@@ -36,8 +37,7 @@ function DashboardTopBar() {
             if (result.isConfirmed) {
               const token = getCookie('token')
               dispatch(clearSession(token));
-              // document.cookie = "token=; expires=passedDate";
-              document.cookie = "token=; Max-Age=0";
+              cookieCutter.set("token","",{ expires: new Date(0) });
               MySwal.fire({
                 icon: 'success',
                 title: 'Berhasil Logout!'
@@ -48,7 +48,6 @@ function DashboardTopBar() {
           })
       }
     
-      console.log(show);
 
   return (
     <>
