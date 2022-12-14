@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Bangkit from '../../assets/png/join.png'
+import Join from '../../assets/png/join.png'
 import { Link, NavLink } from 'react-router-dom'
 import { Row, Col, Card, Button, Form } from 'react-bootstrap'
 import Sembako from '../../assets/png/Sembako.png'
