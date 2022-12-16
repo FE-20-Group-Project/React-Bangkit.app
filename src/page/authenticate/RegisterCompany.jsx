@@ -104,6 +104,7 @@ function RegisterCompany() {
                                                 <span className='bar w-100'></span>
                                                 <label className='label-input'>Password</label>
                                             </div>
+                                            <small ><span className='text-danger'>*</span> password minimum 6 karakter</small>
                                         </Form.Group>
                                         <Form.Group className='mb-4'>
                                             <div className='group'>
@@ -115,6 +116,7 @@ function RegisterCompany() {
                                         </Form.Group>
                                         <Form.Group className='mb-4'>
                                             <Form.Control onChange={ (e) => setDocument(e.target.files[0]) } type='file' />
+                                            <small><span className='text-danger'>*</span>  Kirimkan surat pendaftaran instansi dengan format (.pdf, .doc)</small>
                                         </Form.Group>
                                         <Form.Group className='mb-5'>
                                             <Button variant='danger' type='submit' className='w-100 mb-2'>Daftar</Button>

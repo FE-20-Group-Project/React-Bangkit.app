@@ -111,6 +111,7 @@ const handleSubmit = (e) => {
                                                     <span className='bar w-100'></span>
                                                     <label className='label-input'>Password</label>
                                                 </div>
+                                                <small ><span className='text-danger'>*</span> password minimum 6 karakter</small>
                                             </Form.Group>
                                             <Form.Group className='mb-4'>
                                                 <div className='group'>
