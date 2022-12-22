@@ -8,11 +8,12 @@ import { useDispatch, useSelector } from 'react-redux'
 function SectionJob({jobs}) {
   const {session} = useSelector( state => state.userSession );
   const dispatch = useDispatch();
-  const [ nameCompany, setNameCompany ] = useState('');
-  const [ location, setLocation ] = useState('');
+  const [ category, setCategory ] = useState('');
+  const [ typeJobs, setTypeJobs ] = useState('');
 
   const handleFilter = (e) => {
     e.preventDefault();
+    console.log(category, typeJobs)
   }
 
   return (
@@ -41,7 +42,7 @@ function SectionJob({jobs}) {
                             <Form.Label className='text-danger fw-semibold'>Kategori</Form.Label>
                         </Form.Group>
                             <Form.Group>
-                              <Form.Select>
+                              <Form.Select onChange={ (e) => setCategory(e.target.value) }>
                                   <option></option>
                                   <option>IT</option>
                                   <option>Akuntansi</option>
@@ -55,8 +56,9 @@ function SectionJob({jobs}) {
                           <Form.Group>
                             <Form.Check
                               inline
-                              label="Magang"
-                              value="Magang"
+                              label="Paruh Waktu"
+                              value="Paruh Waktu"
+                              onChange={ (e) => setTypeJobs(e.target.value) }
                               type="checkbox"/>
                           </Form.Group>
                           <Form.Group>
