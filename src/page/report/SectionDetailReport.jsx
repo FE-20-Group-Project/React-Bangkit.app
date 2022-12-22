@@ -13,7 +13,7 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import { useSelector } from 'react-redux';
 
-const socket = io.connect("https://api-bangkit.up.railway.app");
+const socket = io.connect("http://malon.my.id:8181");
 const MySwal = withReactContent(Swal)
 
 function SectionDetailReport({id, detailLaporan, setIsLoading}) {
