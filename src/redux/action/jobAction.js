@@ -26,5 +26,13 @@ const getJobs = () => {
     }
 }
 
+// const filterJobs = (jobs, category, type) => {
+//     return () => {
+//         dispatch(fetchStart());
+//         const filter = jobs.filter( item => item.category === category && item. )
+//         dispatch(successGetJobs());
+//     }
+// }
+
 
 export { FETCH_START, getJobs, SUCCESS_GET_JOBS };
