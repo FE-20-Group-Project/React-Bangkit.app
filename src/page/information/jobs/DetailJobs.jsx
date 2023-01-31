@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { API_KEY_JOBS} from '../../../env/env';
+import { BASE_URL } from '../../../env/env';
 import SectionDetailJobs from '../../../components/jobSeeker/SectionDetailJobs';
 import { useSelector } from 'react-redux';
 import Swal from 'sweetalert2'
@@ -30,11 +30,11 @@ function DetailJobs() {
             navigate('/login');
         }else {
             window.scrollTo(0, 0);
-            getApiJobs(`${API_KEY_JOBS}/${id}`).then( data => {
+            getApiJobs(`${BASE_URL}/api/loker/${id}`).then( data => {
                 setDetailJobs(data);
                 setIsLoading(false);
             } )
-            getApiJobs( API_KEY_JOBS ).then( data => {
+            getApiJobs( `${BASE_URL}/api/loker` ).then( data => {
                 setJobs(data);
             } )
         }

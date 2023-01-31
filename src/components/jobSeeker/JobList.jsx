@@ -1,4 +1,5 @@
 import React from 'react'
+import { BASE_URL } from '../../env/env';
 import { Row, Card, Col } from 'react-bootstrap'
 import { FaInfoCircle, FaPhoneSquare } from 'react-icons/fa';
 import { Link } from 'react-router-dom'
@@ -13,7 +14,7 @@ function JobList({session, data}) {
                     <Card key={item._id} className='border-0 border-top border-5 border-third rounded m-3 p-3'>
                         <Row className='d-flex justify-content-around'>
                             <Col xs='3' className='p-3' >
-                                <img className='img-fluid' src={'https://api-bangkit.up.railway.app/' + item.image} />
+                                <img className='img-fluid' src={`${BASE_URL}/${item.image}`} />
                             </Col>
                             <Col xs='10' sm='6' >
                                 <Card.Title className='fw-semibold'>{item.positionName}</Card.Title>

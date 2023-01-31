@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react'
-import { API_KEY_REPLY } from '../../env/env';
+import { BASE_URL } from '../../env/env';
 import { Form, Row, Col, Button } from 'react-bootstrap'
 import { getCookie } from '../../cookie/cookie'
 import { FaImage, FaTimes } from 'react-icons/fa';
@@ -34,7 +34,7 @@ function Reply({id, session, MySwal}) {
           form.append('content', content);
           setContent('')
           axios({
-            url: API_KEY_REPLY,
+            url: `${BASE_URL}/api/laporan/reply`,
             method: "POST",
             headers: { authorization: `Bearer ${token}` },
             data: form

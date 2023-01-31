@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { API_KEY_LOGIN  } from '../../env/env'
+import { BASE_URL } from '../../env/env'
 import { getSession } from '../../redux/action/userSession'
 import { Container, Row, Card, Col, Form, Button } from 'react-bootstrap'
 import Logo from '../../assets/image/bangkit.png'
@@ -28,7 +28,7 @@ function Login() {
     const createSessionObj = async (email, password, form) => {
        try{
             setLoading(true);
-            const response = await axios.post(API_KEY_LOGIN, {
+            const response = await axios.post(`${BASE_URL}/api/auth/login`, {
                 "email": email,
                 "password": password
             })

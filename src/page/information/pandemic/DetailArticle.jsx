@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { API_KEY_ARTICLE } from '../../../env/env'
+import { BASE_URL } from '../../../env/env'
 import Loading from '../../../components/loader/Loading'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
@@ -18,12 +18,12 @@ function DetailArticle() {
 
   useEffect( () => {
       window.scrollTo(0, 0);
-      getApiArticle(`${API_KEY_ARTICLE}/${id}`).then( data => {
+      getApiArticle(`${BASE_URL}/api/artikel/${id}`).then( data => {
           setDetailArticle(data);
           setIsLoading(false);
       } )
 
-      getApiArticle(API_KEY_ARTICLE).then( data => {
+      getApiArticle(`${BASE_URL}/api/artikel`).then( data => {
         setListArticle(data);
       } )
   }, [isLoading] );
@@ -59,7 +59,7 @@ function DetailArticle() {
                 <Col xs="10" className='m-3 rounded'>
                     <Row className='d-flex justify-content-around p-0 m-0'>
                         <Col xs='12' sm='10' md='5' className='p-3'>
-                            <img src={`https://api-bangkit.up.railway.app/${detailArticle?.image}`} className='img-fluid w-100' />
+                            <img src={`${BASE_URL}/${detailArticle?.image}`} className='img-fluid w-100' />
                         </Col>
                         <Col xs='12' className='d-flex justify-content-center flex-column'>
                             <p>{detailArticle.author}</p>
@@ -76,7 +76,7 @@ function DetailArticle() {
                             return (
                                 <Col key={index} xs="10" sm='3' className='m-3'>
                                     <Row>
-                                        <img style={{ width:'300px', height:'200px' }} src={`https://api-bangkit.up.railway.app/${item.image}`}/>
+                                        <img style={{ width:'300px', height:'200px' }} src={`${BASE_URL}/${item.image}`}/>
                                         <p onClick={() => redirectToArticle(item._id)} style={{ cursor: 'pointer' }} className='h5 fw-bold text-danger mt-3' >{item.title}</p>
                                         <p>{item.author}</p>
                                         <p>{item.publish_date}</p>

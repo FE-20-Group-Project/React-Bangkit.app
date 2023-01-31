@@ -6,14 +6,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import io from 'socket.io-client'
 import axios from 'axios';
 import { getCookie } from '../../cookie/cookie';
-import { API_KEY_REPLY, API_KEY_REPORT } from '../../env/env';
+import { BASE_URL } from '../../env/env';
 import { FaTrash, FaClock, FaUserAlt, FaEdit, FaClipboard, FaClipboardList, FaCheck, FaCheckCircle, FaTimes } from 'react-icons/fa';
 import ms from 'parse-ms'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import { useSelector } from 'react-redux';
 
-const socket = io.connect("https://malon.my.id:8181");
+const socket = io.connect(BASE_URL);
 const MySwal = withReactContent(Swal)
 
 function SectionDetailReport({id, detailLaporan, setIsLoading}) {
@@ -49,7 +49,7 @@ function SectionDetailReport({id, detailLaporan, setIsLoading}) {
                 const form = new FormData();
                 form.append('status', 'solved');
                 axios({
-                    url: `${API_KEY_REPORT}/${id}`,
+                    url: `${BASE_URL}/api/laporan/lapor/${id}`,
                     method: "PUT",
                     headers: {  
                         authorization: `Bearer ${token}`
@@ -86,7 +86,7 @@ function SectionDetailReport({id, detailLaporan, setIsLoading}) {
             if (result.isConfirmed) {
                 const token = getCookie('token');
                 axios({
-                    url: `${API_KEY_REPORT}/${id}`,
+                    url: `${BASE_URL}/api/laporan/lapor/${id}`,
                     method: "DELETE",
                     headers: {  
                         authorization: `Bearer ${token}`
@@ -122,7 +122,7 @@ function SectionDetailReport({id, detailLaporan, setIsLoading}) {
                 if (result.isConfirmed) {
                     const token = getCookie('token');
                     axios({
-                        url: `${API_KEY_REPLY}/${id}/${id_laporan}`,
+                        url: `${BASE_URL}/api/laporan/reply/${id}/${id_laporan}`,
                         method: "DELETE",
                         headers: {  
                             authorization: `Bearer ${token}`
@@ -186,7 +186,7 @@ function SectionDetailReport({id, detailLaporan, setIsLoading}) {
         </Row>
         <Row className='d-flex justify-content-start p-3'>
             <Col xs='5' md='2'>
-                <img src={ detailLaporan.laporan.image[0] ? `https://api-bangkit.up.railway.app/${detailLaporan.laporan.image[0]}`: `https://api-bangkit.up.railway.app/${detailLaporan.laporan.user.image}`} className='img-fluid' />
+                <img src={ detailLaporan.laporan.image[0] ? `${BASE_URL}/${detailLaporan.laporan.image[0]}`: `${BASE_URL}/${detailLaporan.laporan.user.image}`} className='img-fluid' />
             </Col>
             <Col xs='12' md='8'>
                 <h3 className='fw-bold text-decoration-underline text-danger py-3'>{detailLaporan.laporan.title}</h3>
@@ -222,7 +222,7 @@ function SectionDetailReport({id, detailLaporan, setIsLoading}) {
                     )
                     }
                         <Card.Header className={item.data_user.name === session.name ? 'col-4 col-sm-3 border-0' : 'col-4 col-sm-3 border-0'}>
-                            <img src={`https://api-bangkit.up.railway.app/${item.data_user.image}`} className='mb-3 img-header-reply rounded-circle' width='100' height='100' />
+                            <img src={`${BASE_URL}/${item.data_user.image}`} className='mb-3 img-header-reply rounded-circle' width='100' height='100' />
                             <p className='fw-semibold text-header-reply'>{item.data_user.name} <FaCheckCircle className='text-third'/></p>
                             <p className='fw-semibold text-header-reply'>{item.data_user.email}</p>
                         </Card.Header>
@@ -230,7 +230,7 @@ function SectionDetailReport({id, detailLaporan, setIsLoading}) {
                             <small className='mb-3 text-body-reply-date'>{item.data_reply.date}</small>
                             <p className='fw-500 text-body-reply-content'>{item.data_reply.content}</p>
                             { item.data_reply.image[0] && (
-                            <img src={`https://api-bangkit.up.railway.app/${item.data_reply.image[0]}`} alt='image-reply' width='300' className='img-reply' />
+                            <img src={`${BASE_URL}/${item.data_reply.image[0]}`} alt='image-reply' width='300' className='img-reply' />
                             ) }
                         </Card.Body>
                     </Row>

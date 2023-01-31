@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Join from '../../assets/png/join.png'
+import { BASE_URL } from '../../env/env'
 import { Link, NavLink } from 'react-router-dom'
 import { Row, Col, Card, Button, Form } from 'react-bootstrap'
 import Sembako from '../../assets/png/Sembako.png'
@@ -219,7 +220,7 @@ function SectionReportCategory({laporan, refreshApi}) {
                                     <Card.Body key={item.laporan._id} className='bg-soft-light p-3'>
                                         <Row className='d-flex justify-content-around'>
                                             <Col xs='3'>
-                                                <img src={ item.laporan.image[0] ? `https://api-bangkit.up.railway.app/${item.laporan.image}` : `https://api-bangkit.up.railway.app/${item.laporan.user.image}`} className='img-fluid' />
+                                                <img src={ item.laporan.image[0] ? `${BASE_URL}/${item.laporan.image}` : `${BASE_URL}/${item.laporan.user.image}`} className='img-fluid' />
                                             </Col>
                                             <Col xs='9'>
                                                 <Link to={'/report/detail-report/' + item.laporan._id} className='text-danger text-category text-decoration-underline fw-500'>{item.laporan.title}</Link>

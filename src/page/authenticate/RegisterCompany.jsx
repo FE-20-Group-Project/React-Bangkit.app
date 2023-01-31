@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Register from '../../assets/png/regis.png'
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap'
-import { API_KEY_REGISTER_COMPANY } from '../../env/env'
+import { BASE_URL } from '../../env/env'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import axios from 'axios'
@@ -26,7 +26,7 @@ function RegisterCompany() {
     const register = async (dataForm, form) => {
 
             axios({
-                url : API_KEY_REGISTER_COMPANY,
+                url : `${BASE_URL}/api/auth/register/instansi`,
                 method : "POST",
                 data : dataForm
             }).then( data => {

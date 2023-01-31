@@ -3,6 +3,7 @@ import { Button, Form, Row } from 'react-bootstrap'
 import { useParams, NavLink, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { editProfile, getSession } from '../../redux/action/userSession';
+import { BASE_URL } from '../../env/env';
 import { getCookie } from '../../cookie/cookie';
 import axios from 'axios'
 import Navigation from '../../components/navigation/Navigation';
@@ -51,7 +52,7 @@ function EditProfile() {
         form.append("name", editName);
         form.append("email", editEmail);
         axios({
-            url:` https://api-bangkit.up.railway.app/api/user/edit/${session._id}`,
+            url:`${BASE_URL}/api/user/edit/${session._id}`,
             method: "PUT",
             headers: {
                 authorization: `Bearer ${token}`
@@ -82,7 +83,7 @@ function EditProfile() {
         formPassword.append("newPassword", editNewPassword);
         formPassword.append("confirmPassword", editConfirmNewPassword);
         axios({
-            url: `https://api-bangkit.up.railway.app/api/user/edit/${session._id}`,
+            url: `${BASE_URL}/api/user/edit/${session._id}`,
             method: "PUT",
             headers: {
                 authorization: `Bearer ${token}`

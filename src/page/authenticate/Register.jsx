@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap'
-import { API_KEY_REGISTER } from '../../env/env'
+import { BASE_URL } from '../../env/env'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import axios from 'axios'
@@ -26,7 +26,7 @@ useEffect( () => {
 
 const register = async (data, form) => {
     try {
-        const response = await axios.post(API_KEY_REGISTER, data);
+        const response = await axios.post(`${BASE_URL}/api/auth/register/user`, data);
         if(response.data) {
             MySwal.fire({
                 icon: 'success',

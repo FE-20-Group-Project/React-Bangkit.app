@@ -31,11 +31,11 @@ function DetailScolarship() {
             navigate('/login');
         }else {
             window.scrollTo(0, 0);
-            getAPi(`${API_KEY_SCHOLARSHIP}/${id}`).then( data => {
+            getAPi(`${BASE_URL}/api/beasiswa/${id}`).then( data => {
                 setDetailBeasiswa(data);
                 setIsLoading(false);
             } )
-            getAPi(API_KEY_SCHOLARSHIP).then( data => {
+            getAPi(`${BASE_URL}/api/beasiswa`).then( data => {
                 setBeasiswa(data);
             } )
         }
