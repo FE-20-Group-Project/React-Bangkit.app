@@ -10,7 +10,7 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 
 const MySwal = withReactContent(Swal)
-import { API_KEY_JOBS } from '../../env/env'
+import { BASE_URL } from '../../env/env'
 import { useSelector } from 'react-redux'
 import NavSide from '../../components/navigation/NavSide'
 
@@ -34,7 +34,7 @@ function AddJobs() {
         e.preventDefault();
         const token = getCookie('token');
         axios({
-            url: API_KEY_JOBS,
+            url: `${BASE_URL}/api/loker`,
             method: "POST",
             headers: { authorization: `Bearer ${token}`, 'Content-Type':' application/json' },
             data: {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Register from '../../assets/png/regis.png'
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap'
 import { BASE_URL } from '../../env/env'
@@ -12,7 +12,7 @@ import Footer from '../../components/footer/Footer'
 const MySwal = withReactContent(Swal)
 
 function RegisterCompany() {
-
+    const navigate = useNavigate();
     const [ company_email, setCompany_email ] = useState();
     const [ company_name, setCompany_name ] = useState();
     const [ company_password, setCompany_password ] = useState();

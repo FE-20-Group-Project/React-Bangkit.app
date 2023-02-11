@@ -5,7 +5,7 @@ import Loading from '../../components/loader/Loading'
 import { Link } from 'react-router-dom'
 import { FaEdit, FaPlus, FaTrash } from 'react-icons/fa'
 import axios from 'axios'
-import { API_KEY_ARTICLE } from '../../env/env'
+import { BASE_URL } from '../../env/env'
 import { getCookie } from '../../cookie/cookie'
 import NavSide from '../../components/navigation/NavSide'
 import Swal from 'sweetalert2'
@@ -18,7 +18,7 @@ function DataArticle() {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect( () => {
-        getAPI(API_KEY_ARTICLE).then( data => {
+        getAPI(`${BASE_URL}/api/artikel`).then( data => {
             setArticle(data);
             setIsLoading(false);
         } )
@@ -42,7 +42,7 @@ function DataArticle() {
             if (result.isConfirmed) {
                 const token = getCookie('token');
                 axios({
-                    url: `${API_KEY_ARTICLE}/${id}`,
+                    url: `${BASE_URL}/api/artikel/${id}`,
                     method: "DELETE",
                     headers: {  
                         authorization: `Bearer ${token}`
@@ -93,7 +93,7 @@ function DataArticle() {
                                         <tr key={item._id}>
                                             <td className='text-category'>{index + 1}</td>
                                             <td>
-                                                <img src={'https://api-bangkit.up.railway.app/'+item.image} width='80' />
+                                                <img src={`${BASE_URL}/${item.image}`} width='80' />
                                             </td>
                                             <td className='text-category'>{item.title}</td>
                                             <td className='text-category'>{item.author}</td>
