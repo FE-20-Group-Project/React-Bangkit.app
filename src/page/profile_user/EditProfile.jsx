@@ -18,7 +18,6 @@ function EditProfile() {
     const dispatch = useDispatch();
     const navigate = useNavigate(); 
     const {session} = useSelector( state => state.userSession );
-
     const [ editImage, setEditImage ] = useState('');
     const [ editEmail, setEditEmail ] = useState('');
     const [ editName, setEditName ] = useState('');
@@ -43,16 +42,22 @@ function EditProfile() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        let role = '';
+        if(session.type === 'user') {
+            role = 'user'
+        }else if(session.type === 'instansi') {
+            role = 'instansi'
+        }
         const form = new FormData();
         const token = getCookie('token');
         if(editImage) {
             form.append("file", editImage);
         }
-        console.log(editImage);
+        
         form.append("name", editName);
         form.append("email", editEmail);
         axios({
-            url:`${BASE_URL}/api/user/edit/${session._id}`,
+            url:`${BASE_URL}/api/${role}/edit/${session._id}`,
             method: "PUT",
             headers: {
                 authorization: `Bearer ${token}`
