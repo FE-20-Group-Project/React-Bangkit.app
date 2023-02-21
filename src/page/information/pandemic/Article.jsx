@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import ArticleSection from '../../../components/article/ArticleSection'
-import { API_KEY_ARTICLE } from '../../../env/env'
+import { BASE_URL } from '../../../env/env'
 import Loading from '../../../components/loader/Loading'
 import axios from 'axios'
 import Navigation from '../../../components/navigation/Navigation'
@@ -13,7 +13,7 @@ function Article() {
 
   useEffect( () => {
       window.scrollTo(0, 0);
-      getApiArticle(API_KEY_ARTICLE).then( data => {
+      getApiArticle(`${BASE_URL}/api/artikel`).then( data => {
           setArticle(data);
           setIsLoading(false);
       } )

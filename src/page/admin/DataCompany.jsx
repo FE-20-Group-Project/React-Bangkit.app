@@ -33,6 +33,38 @@ function DataCompany() {
         return result;
     }
 
+    const acceptInstance = async (id) => {
+        Swal.fire({
+            title: 'Accept intansi berikut?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                const token = getCookie('token');
+                axios({
+                    url: `${BASE_URL}/api/admin/instansi-status/?id=${id}&status=true`,
+                    method: "GET",
+                    headers: {  
+                        authorization: `Bearer ${token}`
+                    }
+                }).then( data => {
+                    console.log(data);
+                    if(data.data) {
+                        Swal.fire(
+                          'Success!',
+                          'Instansi berhasil di accept.',
+                          'success'
+                        )
+                        setIsLoading(true);
+                    }
+                } )
+            }
+          })
+    }
+
     const handleBlock = async (id) => {
         Swal.fire({
             title: 'Yakin ingin memblock instansi berikut?',
@@ -135,7 +167,7 @@ function DataCompany() {
                                             <td className='text-category'>{item.email}</td>
                                             <td className='text-category'>
                                                 { item.status==='accept' ? 
-                                                <span className='badge bg-success'><FaCheck/> Accept</span> : <span className='badge bg-danger'><FaTimes/> Pending</span> }
+                                                <span className='badge bg-success'><FaCheck/> Accept</span> : <span className='badge bg-danger' onClick={() => acceptInstance(item._id)}><FaTimes/> Pending</span> }
                                             </td>
                                             <td className='text-category'><a href={`${BASE_URL}/${item.dokumen}`} 
                                             target='_blank' className='text-primary fw-semibold' >Dokumen</a></td>
