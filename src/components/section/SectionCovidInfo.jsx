@@ -40,19 +40,19 @@ function SectionCovidInfo() {
         <Row className='d-flex justify-content-center text-light my-5 fw-bold'>
             <Col xs='5' sm='3' md='2' className='card-strange p-3 m-3 shadow-md bg-primary'>
                     <h5>#Positif</h5>
-                    <h3>{positif.toLocaleString()}</h3>
+                    <h3>{positif.toLocaleString()} API Mati</h3>
             </Col>
             <Col xs='5' sm='3' md='2' className='card-strange p-3 m-3 shadow-md bg-third'>
                     <h5>#Meninggal</h5>
-                    <h3>{meninggal.toLocaleString()}</h3>
+                    <h3>{meninggal.toLocaleString()} API Mati</h3>
             </Col>
             <Col xs='5' sm='3' md='2' className='card-strange p-3 m-3 shadow-md bg-warning'>
                     <h5>#Dirawat</h5>
-                    <h3>{dirawat.toLocaleString()}</h3>
+                    <h3>{dirawat.toLocaleString()} API Mati</h3>
             </Col>
             <Col xs='5' sm='3' md='2' className='card-strange p-3 m-3 shadow-md bg-success'>
                     <h5>#Sembuh</h5>
-                    <h3>{sembuh.toLocaleString()}</h3>
+                    <h3>{sembuh.toLocaleString()} API Mati</h3>
             </Col>
             <Col xs='12' className='text-center p-3 m-3 shadow-md'>
                     <h5><FaCalendarAlt/> Data terakhir di update pada :</h5>

@@ -129,11 +129,7 @@ function SectionDetailReport({id, detailLaporan, setIsLoading}) {
                         }
                     }).then( data => {
                         if(data.data) {
-                            Swal.fire(
-                            'Terhapus!',
-                            'Pesan berhasil dihapus.',
-                            'success'
-                            )
+                            console.log('success');
                         }
                     } ).catch( error => {
                         MySwal.fire({

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { API_KEY_SCHOLARSHIP } from '../../../env/env';
+import { BASE_URL } from '../../../env/env';
 import SectionDetailJobs from '../../../components/jobSeeker/SectionDetailJobs';
 import { useSelector } from 'react-redux';
 import Swal from 'sweetalert2'
