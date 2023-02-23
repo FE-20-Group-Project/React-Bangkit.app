@@ -1,5 +1,5 @@
 //Resoure API
-const BASE_URL = 'https://malon.my.id:8181';
+const BASE_URL = 'http://malon.my.id:8181';
 // const API_KEY_AUTH = 'http://malon.my.id:8181/api/auth/data';
 // const API_KEY_REGISTER = 'http://malon.my.id:8181/api/auth/register/user';
 // const API_KEY_REGISTER_COMPANY = 'http://malon.my.id:8181/api/auth/register/instansi';
