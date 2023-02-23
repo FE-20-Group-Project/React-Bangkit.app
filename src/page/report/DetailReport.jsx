@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import Footer from '../../components/footer/Footer';
 import Loading from '../../components/loader/Loading';
 import Navigation from '../../components/navigation/Navigation';
-import { API_KEY_REPORT } from '../../env/env';
+import { BASE_URL } from '../../env/env';
 import SectionDetailReport from './SectionDetailReport';
 import SectionDetailRepsection from './SectionDetailReport';
 
@@ -15,7 +15,7 @@ function DetailReport() {
 
     useEffect( () => {
             window.scrollTo(0, 0);
-            getAPi(API_KEY_REPORT + '/' + id).then( data => {
+            getAPi(`${BASE_URL}/api/laporan/lapor/${id}`).then( data => {
                     setDetailLaporan(data);
                     setIsLoading(false);
                 } )

@@ -1,4 +1,5 @@
 import React from 'react'
+import { BASE_URL } from '../../env/env';
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 import { Row, Form, Col, Card, Button } from 'react-bootstrap'
@@ -24,7 +25,7 @@ function SectionDetailJobs({jobs, detailJobs, setIsLoading}) {
                 <Card key={item._id} className='border rounded-0 p-3'>
                             <Row className='d-flex justify-content-around'>
                                 <Col xs='3' >
-                                    <img className='img-fluid' src={`https://api-bangkit.up.railway.app/${item.image}`} />
+                                    <img className='img-fluid' src={`${BASE_URL}/${item.image}`} />
                                 </Col>
                                 <Col xs='6' >
                                     <Card.Title className='fw-semibold'>{item.positionName}</Card.Title>
@@ -40,7 +41,7 @@ function SectionDetailJobs({jobs, detailJobs, setIsLoading}) {
             ) ) }
             </Col>
             <Col xs='12' xl='7' className='card p-5'>
-                <img width='200' src={`https://api-bangkit.up.railway.app/${detailJobs.image}`} />
+                <img width='200' src={`${BASE_URL}/${detailJobs.image}`} />
                 <h2 className='mb-3'>{detailJobs.positionName}</h2>
                 <p className='mb-3'>{detailJobs.companyName}</p>
                 <p className='mb-3'>{detailJobs.location}</p>

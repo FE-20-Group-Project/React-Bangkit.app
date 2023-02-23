@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { Row, Dropdown, Button, Col, Offcanvas } from 'react-bootstrap'
 import { FaUser, FaBars, FaSignOutAlt, FaTable, FaChartLine } from 'react-icons/fa'
 import Bangkit from '../../assets/image/bangkit2.png'
+import { BASE_URL } from '../../env/env'
 import { NavLink, Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
@@ -94,7 +95,7 @@ function DashboardTopBar() {
                   <Col md='1' sm='2' xs='3'>
                   <Dropdown drop="center">
                       <Dropdown.Toggle id="dropdown-button-dark-example1" className='bg-dark border-0'>
-                      <img src={`https://api-bangkit.up.railway.app/${session.image}`} width='30' height='30' className='rounded-circle' />
+                      <img src={`${BASE_URL}/${session.image}`} width='30' height='30' className='rounded-circle' />
                       </Dropdown.Toggle>
                       <Dropdown.Menu className='bg-soft-light' >
                           <NavLink to='/' style={({isActive}) => (isActive ? linkStyle : undefined)} className='dropdown-item py-2'><FaUser/> Homepage</NavLink>

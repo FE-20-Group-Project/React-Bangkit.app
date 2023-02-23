@@ -1,4 +1,5 @@
 import React from 'react'
+import { BASE_URL } from '../../env/env';
 import DetailScolarship from '../../page/information/scholarship/DetailScolarship'
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom';
@@ -25,7 +26,7 @@ function SectionDetailScholarship({beasiswa, detailBeasiswa, setIsLoading}) {
                 <Card key={item._id} className='border rounded-0 p-3'>
                             <Row className='d-flex justify-content-around'>
                                 <Col xs='3' >
-                                    <img className='img-fluid' src={'https://api-bangkit.up.railway.app/' + item.image} />
+                                    <img className='img-fluid' src={`${BASE_URL}/${item.image}`} />
                                 </Col>
                                 <Col xs='6' >
                                     <Card.Title className='fw-semibold'>{item.name}</Card.Title>
@@ -41,7 +42,7 @@ function SectionDetailScholarship({beasiswa, detailBeasiswa, setIsLoading}) {
             ) ) }
             </Col>
             <Col xs='12' xl='7' className='card p-5'>
-                <img width='200' src={'https://api-bangkit.up.railway.app/' + detailBeasiswa.image} />
+                <img width='200' src={`${BASE_URL}/${detailBeasiswa.image}`} />
                 <h2 className='mb-3'>{detailBeasiswa.name}</h2>
                 <p className='mb-3'>{detailBeasiswa.instansiName}</p>
                 <p className='mb-3'>Kuota : {detailBeasiswa.kuota}</p>

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Container, Row, Card, Form, Button } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import DashboardTopBar from '../../components/navigation/DashboardTopBar'
-import { API_KEY_SCHOLARSHIP } from '../../env/env'
+import { BASE_URL } from '../../env/env'
 import RichTextEditor from '../../components/editors/RichTextEditor'
 import { FaArrowLeft } from 'react-icons/fa'
 import { getCookie } from '../../cookie/cookie'
@@ -38,7 +38,7 @@ function AddScholarship() {
         form.append('expired', '7');
         form.append('link', link);
         axios({
-            url: API_KEY_SCHOLARSHIP,
+            url: `${BASE_URL}/api/beasiswa`,
             method: "POST",
             headers: { authorization: `Bearer ${token}` },
             data: form

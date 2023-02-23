@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_KEY_AUTH, API_KEY_LOGOUT } from "../../env/env";
+import { BASE_URL } from "../../env/env";
 
 const FETCH_START = 'fetch_start'
 const ADD_SESSION = 'add_session';
@@ -30,7 +30,7 @@ const editProfile = (data) => {
 
 const getSession = (token, setIsLoading) => {
     return async (dispatch) => {
-        const response = await axios.get(API_KEY_AUTH, {
+        const response = await axios.get(`${BASE_URL}/api/auth/data`, {
             "headers": { "Authorization": `Bearer ${token}` }
         });
         dispatch(addSession(response.data.data));
@@ -47,7 +47,7 @@ const successClearSession = () => {
 
 const clearSession = (token) => {
     return async (dispatch) => {
-        const response = await axios.get(API_KEY_LOGOUT, {
+        const response = await axios.get(`${BASE_URL}/api/auth/logout`, {
             "headers" : {"Authorization": "Bearer " + token}
         })
         console.log(response);

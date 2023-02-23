@@ -4,7 +4,7 @@ import DashboardTopBar from '../../components/navigation/DashboardTopBar'
 import Loading from '../../components/loader/Loading'
 import { FaBookOpen, FaCheck, FaEdit, FaTimes, FaTrash, FaUser } from 'react-icons/fa'
 import axios from 'axios'
-import { API_KEY_INSTANSI } from '../../env/env'
+import { BASE_URL } from '../../env/env'
 import { getCookie } from '../../cookie/cookie'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
@@ -18,7 +18,7 @@ function DataCompany() {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect( () => {
-        getAPI(API_KEY_INSTANSI).then( data => {
+        getAPI(`${BASE_URL}/api/admin/data/instansi/all`).then( data => {
             setCompany(data);
             setIsLoading(false);
         } )
@@ -33,6 +33,38 @@ function DataCompany() {
         return result;
     }
 
+    const acceptInstance = async (id) => {
+        Swal.fire({
+            title: 'Accept intansi berikut?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                const token = getCookie('token');
+                axios({
+                    url: `${BASE_URL}/api/admin/instansi-status/?id=${id}&status=true`,
+                    method: "GET",
+                    headers: {  
+                        authorization: `Bearer ${token}`
+                    }
+                }).then( data => {
+                    console.log(data);
+                    if(data.data) {
+                        Swal.fire(
+                          'Success!',
+                          'Instansi berhasil di accept.',
+                          'success'
+                        )
+                        setIsLoading(true);
+                    }
+                } )
+            }
+          })
+    }
+
     const handleBlock = async (id) => {
         Swal.fire({
             title: 'Yakin ingin memblock instansi berikut?',
@@ -45,7 +77,7 @@ function DataCompany() {
             if (result.isConfirmed) {
                 const token = getCookie('token');
                 axios({
-                    url: `https://api-bangkit.up.railway.app/api/admin/data/instansi/block/?id=${id}&isBlocked=true`,
+                    url: `${BASE_URL}/api/admin/data/instansi/block/?id=${id}&isBlocked=true`,
                     method: "GET",
                     headers: {  
                         authorization: `Bearer ${token}`
@@ -76,7 +108,7 @@ function DataCompany() {
             if (result.isConfirmed) {
                 const token = getCookie('token');
                 axios({
-                    url: `https://api-bangkit.up.railway.app/api/admin/data/instansi/block/?id=${id}&isBlocked=false`,
+                    url: `${BASE_URL}/api/admin/data/instansi/block/?id=${id}&isBlocked=false`,
                     method: "GET",
                     headers: {  
                         authorization: `Bearer ${token}`
@@ -129,15 +161,15 @@ function DataCompany() {
                                         <tr key={item._id}>
                                             <td className='text-category'>{index + 1}</td>
                                             <td className='text-category'>
-                                                <img src={'https://api-bangkit.up.railway.app/'+item.image} width='80' />
+                                                <img src={`${BASE_URL}/${item.image}`} width='80' />
                                             </td>
                                             <td className='text-category'>{item.name}</td>
                                             <td className='text-category'>{item.email}</td>
                                             <td className='text-category'>
                                                 { item.status==='accept' ? 
-                                                <span className='badge bg-success'><FaCheck/> Accept</span> : <span className='badge bg-danger'><FaTimes/> Pending</span> }
+                                                <span className='badge bg-success'><FaCheck/> Accept</span> : <span className='badge bg-danger' onClick={() => acceptInstance(item._id)}><FaTimes/> Pending</span> }
                                             </td>
-                                            <td className='text-category'><a href={'https://api-bangkit.up.railway.app'+item.dokumen} 
+                                            <td className='text-category'><a href={`${BASE_URL}/${item.dokumen}`} 
                                             target='_blank' className='text-primary fw-semibold' >Dokumen</a></td>
                                             <td className='text-category'>
                                                 { item.isBlocked ? 

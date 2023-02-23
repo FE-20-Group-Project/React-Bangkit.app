@@ -9,7 +9,7 @@ import axios from 'axios'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 const MySwal = withReactContent(Swal)
-import { API_KEY_ARTICLE } from '../../env/env'
+import { BASE_URL } from '../../env/env'
 import NavSide from '../../components/navigation/NavSide'
 
 function AddArticle() {
@@ -30,7 +30,7 @@ function AddArticle() {
         form.append('content', content);
 
         axios({
-            url: API_KEY_ARTICLE,
+            url: `${BASE_URL}/api/artikel`,
             method: "POST",
             headers: { authorization: `Bearer ${token}` },
             data: form

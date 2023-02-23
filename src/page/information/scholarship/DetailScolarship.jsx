@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { API_KEY_SCHOLARSHIP } from '../../../env/env';
+import { BASE_URL } from '../../../env/env';
 import SectionDetailJobs from '../../../components/jobSeeker/SectionDetailJobs';
 import { useSelector } from 'react-redux';
 import Swal from 'sweetalert2'
@@ -31,11 +31,11 @@ function DetailScolarship() {
             navigate('/login');
         }else {
             window.scrollTo(0, 0);
-            getAPi(`${API_KEY_SCHOLARSHIP}/${id}`).then( data => {
+            getAPi(`${BASE_URL}/api/beasiswa/${id}`).then( data => {
                 setDetailBeasiswa(data);
                 setIsLoading(false);
             } )
-            getAPi(API_KEY_SCHOLARSHIP).then( data => {
+            getAPi(`${BASE_URL}/api/beasiswa`).then( data => {
                 setBeasiswa(data);
             } )
         }

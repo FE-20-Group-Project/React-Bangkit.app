@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { API_KEY_REPORT } from '../../env/env'
+import { BASE_URL } from '../../env/env'
 import { NavLink, Link, useNavigate } from 'react-router-dom'
 import { Row, Col, Card } from 'react-bootstrap'
 import { FaRocketchat, FaEye, FaCheck, FaRedoAlt, FaTrash } from 'react-icons/fa'
@@ -8,7 +8,6 @@ import Footer from '../../components/footer/Footer'
 import Loading from '../../components/loader/Loading'
 import axios from 'axios';
 import { useSelector } from 'react-redux'
-import HeroSectionReport from '../../components/report/HeroSectionReport'
 import { getCookie } from '../../cookie/cookie'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
@@ -29,7 +28,7 @@ function MyReport() {
             })
             navigate('/login');
         }else {
-            axios.get(API_KEY_REPORT).then( data => {
+            axios.get(`${BASE_URL}/api/laporan/lapor`).then( data => {
                     setLaporan(data.data.data.filter( item => item.laporan.user.name == session.name));
                     setIsLoading(false);
                     console.log(data);
@@ -50,7 +49,7 @@ function MyReport() {
             if (result.isConfirmed) {
                 const token = getCookie('token');
                 axios({
-                    url: `${API_KEY_REPORT}/${id}`,
+                    url: `${BASE_URL}/api/laporan/lapor/${id}`,
                     method: "DELETE",
                     headers: {  
                         authorization: `Bearer ${token}`
@@ -95,7 +94,7 @@ function MyReport() {
                     <article key={item.id} className='border-top border-bottom shadow-md'>
                         <Row className='p-3'>
                             <Col xs='2' sm='1'>
-                                <img src={ item.laporan.image[0] ? `https://api-bangkit.up.railway.app/${item.laporan.image[0]}`: `https://api-bangkit.up.railway.app/${item.laporan.user.image}`} width='30px' />
+                                <img src={ item.laporan.image[0] ? `${BASE_URL}/${item.laporan.image[0]}`: `${BASE_URL}/${item.laporan.user.image}`} width='30px' />
                             </Col>
                             <Col xs='10' md='2' >
                                 <Link className='text-category text-danger' to={'/report/detail-report/' + item.laporan._id}>{item.laporan.title}</Link>

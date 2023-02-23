@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_KEY_REPORT } from "../../env/env";
+import { BASE_URL } from "../../env/env";
 
 const SUCCESS_GET_REPORT = 'success_get_report';
 const CALL_REPORT = 'call_report';
@@ -22,7 +22,7 @@ const callReport = (data) => {
 
 const getDataReport = () => {
     return async (dispatch) => {
-        const response = await axios.get(API_KEY_REPORT);
+        const response = await axios.get(`${BASE_URL}/api/laporan/lapor`);
         console.log(response);
         dispatch(callReport(response.data.data));
     }
@@ -32,7 +32,7 @@ const getDataReport = () => {
 const postDataReport = (token, form, MySwal, navigate) => {
     return async (dispatch) => {
         axios({
-            url: API_KEY_REPORT,
+            url: `${BASE_URL}/api/laporan/lapor`,
             method: "POST",
             headers: { 
                 authorization: `Bearer ${token}` 

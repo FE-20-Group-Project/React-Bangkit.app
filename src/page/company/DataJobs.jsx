@@ -23,6 +23,7 @@ function DataJobs() {
 
   useEffect( () => {
       getAPI(`${API_KEY_JOBS}/instansi`).then( data => {
+        console.log(data);
           setJobs(data);
           setIsLoading(false);
       } )

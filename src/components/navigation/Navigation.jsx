@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { getCookie } from '../../cookie/cookie'
+import { BASE_URL } from '../../env/env'
 import cookieCutter from 'cookie-cutter'
 import { clearSession, getSession, } from '../../redux/action/userSession'
 import { Nav, Navbar, NavDropdown, Container,  Form, Button, Dropdown } from 'react-bootstrap'
@@ -69,7 +70,7 @@ function Navigation() {
                 ): (
                       <Dropdown drop="start">
                         <Dropdown.Toggle id="dropdown-button-dark-example1" className='bg-light border-0'>
-                        <img src={`https://api-bangkit.up.railway.app/${session.image}`} width='30' height='30' className='rounded-circle' />
+                        <img src={`${BASE_URL}/${session.image}`} width='30' height='30' className='rounded-circle' />
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu variant="light" >

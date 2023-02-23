@@ -3,6 +3,7 @@ import { Button, Form, Row } from 'react-bootstrap'
 import { useParams, NavLink, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { editProfile, getSession } from '../../redux/action/userSession';
+import { BASE_URL } from '../../env/env';
 import { getCookie } from '../../cookie/cookie';
 import axios from 'axios'
 import Navigation from '../../components/navigation/Navigation';
@@ -17,7 +18,6 @@ function EditProfile() {
     const dispatch = useDispatch();
     const navigate = useNavigate(); 
     const {session} = useSelector( state => state.userSession );
-
     const [ editImage, setEditImage ] = useState('');
     const [ editEmail, setEditEmail ] = useState('');
     const [ editName, setEditName ] = useState('');
@@ -42,16 +42,22 @@ function EditProfile() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        let role = '';
+        if(session.type === 'user') {
+            role = 'user'
+        }else if(session.type === 'instansi') {
+            role = 'instansi'
+        }
         const form = new FormData();
         const token = getCookie('token');
         if(editImage) {
             form.append("file", editImage);
         }
-        console.log(editImage);
+        
         form.append("name", editName);
         form.append("email", editEmail);
         axios({
-            url:` https://api-bangkit.up.railway.app/api/user/edit/${session._id}`,
+            url:`${BASE_URL}/api/${role}/edit/${session._id}`,
             method: "PUT",
             headers: {
                 authorization: `Bearer ${token}`
@@ -82,7 +88,7 @@ function EditProfile() {
         formPassword.append("newPassword", editNewPassword);
         formPassword.append("confirmPassword", editConfirmNewPassword);
         axios({
-            url: `https://api-bangkit.up.railway.app/api/user/edit/${session._id}`,
+            url: `${BASE_URL}/api/user/edit/${session._id}`,
             method: "PUT",
             headers: {
                 authorization: `Bearer ${token}`
